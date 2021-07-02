@@ -49,65 +49,55 @@
  * echo $crypt->decrypt($encrypted, $key);
  * ```
  */
-ZEPHIR_INIT_CLASS(Phalcon_Crypt) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Crypt)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon, Crypt, phalcon, crypt, phalcon_crypt_method_entry, 0);
 
 	/**
 	 * @var string
 	 */
 	zend_declare_property_null(phalcon_crypt_ce, SL("authTag"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var string
 	 */
 	zend_declare_property_string(phalcon_crypt_ce, SL("authData"), "", ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var int
 	 */
 	zend_declare_property_long(phalcon_crypt_ce, SL("authTagLength"), 16, ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var string
 	 */
 	zend_declare_property_string(phalcon_crypt_ce, SL("key"), "", ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var int
 	 */
 	zend_declare_property_long(phalcon_crypt_ce, SL("padding"), 0, ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var string
 	 */
 	zend_declare_property_string(phalcon_crypt_ce, SL("cipher"), "aes-256-cfb", ZEND_ACC_PROTECTED);
-
 	/**
 	 * Available cipher methods.
 	 * @var array
 	 */
 	zend_declare_property_null(phalcon_crypt_ce, SL("availableCiphers"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * The cipher iv length.
 	 * @var int
 	 */
 	zend_declare_property_long(phalcon_crypt_ce, SL("ivLength"), 16, ZEND_ACC_PROTECTED);
-
 	/**
 	 * The name of hashing algorithm.
 	 * @var string
 	 */
 	zend_declare_property_string(phalcon_crypt_ce, SL("hashAlgo"), "sha256", ZEND_ACC_PROTECTED);
-
 	/**
 	 * Whether calculating message digest enabled or not.
 	 *
 	 * @var bool
 	 */
 	zend_declare_property_bool(phalcon_crypt_ce, SL("useSigning"), 1, ZEND_ACC_PROTECTED);
-
 	zephir_declare_class_constant_long(phalcon_crypt_ce, SL("PADDING_ANSI_X_923"), 1);
 
 	zephir_declare_class_constant_long(phalcon_crypt_ce, SL("PADDING_DEFAULT"), 0);
@@ -124,47 +114,46 @@ ZEPHIR_INIT_CLASS(Phalcon_Crypt) {
 
 	zend_class_implements(phalcon_crypt_ce, 1, phalcon_crypt_cryptinterface_ce);
 	return SUCCESS;
-
 }
 
 /**
  */
-PHP_METHOD(Phalcon_Crypt, getAuthTag) {
-
+PHP_METHOD(Phalcon_Crypt, getAuthTag)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "authTag");
-
 }
 
 /**
  */
-PHP_METHOD(Phalcon_Crypt, getAuthData) {
-
+PHP_METHOD(Phalcon_Crypt, getAuthData)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "authData");
-
 }
 
 /**
  */
-PHP_METHOD(Phalcon_Crypt, getAuthTagLength) {
-
+PHP_METHOD(Phalcon_Crypt, getAuthTagLength)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "authTagLength");
 
+	RETURN_MEMBER(getThis(), "authTagLength");
 }
 
 /**
  * Phalcon\Crypt constructor.
  */
-PHP_METHOD(Phalcon_Crypt, __construct) {
-
+PHP_METHOD(Phalcon_Crypt, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool useSigning;
@@ -174,10 +163,18 @@ PHP_METHOD(Phalcon_Crypt, __construct) {
 
 	ZVAL_UNDEF(&cipher);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(cipher)
+		Z_PARAM_BOOL(useSigning)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &cipher_param, &useSigning_param);
-
 	if (!cipher_param) {
 		ZEPHIR_INIT_VAR(&cipher);
 		ZVAL_STRING(&cipher, "aes-256-cfb");
@@ -190,7 +187,6 @@ PHP_METHOD(Phalcon_Crypt, __construct) {
 		zephir_get_strval(&cipher, cipher_param);
 	} else {
 		ZEPHIR_INIT_VAR(&cipher);
-		ZVAL_EMPTY_STRING(&cipher);
 	}
 	}
 	if (!useSigning_param) {
@@ -212,7 +208,6 @@ PHP_METHOD(Phalcon_Crypt, __construct) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "usesigning", NULL, 0, &_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -225,8 +220,8 @@ PHP_METHOD(Phalcon_Crypt, __construct) {
  * );
  * ```
  */
-PHP_METHOD(Phalcon_Crypt, decrypt) {
-
+PHP_METHOD(Phalcon_Crypt, decrypt)
+{
 	zend_bool _23, _25, _29, _12$$8, _14$$8, _18$$8;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -277,10 +272,18 @@ PHP_METHOD(Phalcon_Crypt, decrypt) {
 	ZVAL_UNDEF(&_28$$14);
 	ZVAL_UNDEF(&_30$$15);
 	ZVAL_UNDEF(&_31$$15);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(text)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(key)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &text_param, &key_param);
-
 	if (UNEXPECTED(Z_TYPE_P(text_param) != IS_STRING && Z_TYPE_P(text_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'text' must be of the type string"));
 		RETURN_MM_NULL();
@@ -289,11 +292,9 @@ PHP_METHOD(Phalcon_Crypt, decrypt) {
 		zephir_get_strval(&text, text_param);
 	} else {
 		ZEPHIR_INIT_VAR(&text);
-		ZVAL_EMPTY_STRING(&text);
 	}
 	if (!key_param) {
 		ZEPHIR_INIT_VAR(&key);
-		ZVAL_STRING(&key, "");
 	} else {
 	if (UNEXPECTED(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be of the type string"));
@@ -303,7 +304,6 @@ PHP_METHOD(Phalcon_Crypt, decrypt) {
 		zephir_get_strval(&key, key_param);
 	} else {
 		ZEPHIR_INIT_VAR(&key);
-		ZVAL_EMPTY_STRING(&key);
 	}
 	}
 
@@ -451,7 +451,6 @@ PHP_METHOD(Phalcon_Crypt, decrypt) {
 		ZEPHIR_CPY_WRT(&decrypted, &_30$$15);
 	}
 	RETURN_CCTOR(&decrypted);
-
 }
 
 /**
@@ -459,8 +458,8 @@ PHP_METHOD(Phalcon_Crypt, decrypt) {
  *
  * @throws \Phalcon\Crypt\Mismatch
  */
-PHP_METHOD(Phalcon_Crypt, decryptBase64) {
-
+PHP_METHOD(Phalcon_Crypt, decryptBase64)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool safe;
@@ -477,10 +476,19 @@ PHP_METHOD(Phalcon_Crypt, decryptBase64) {
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_STR(text)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(key)
+		Z_PARAM_BOOL(safe)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &text_param, &key, &safe_param);
-
 	if (UNEXPECTED(Z_TYPE_P(text_param) != IS_STRING && Z_TYPE_P(text_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'text' must be of the type string"));
 		RETURN_MM_NULL();
@@ -489,7 +497,6 @@ PHP_METHOD(Phalcon_Crypt, decryptBase64) {
 		zephir_get_strval(&text, text_param);
 	} else {
 		ZEPHIR_INIT_VAR(&text);
-		ZVAL_EMPTY_STRING(&text);
 	}
 	if (!key) {
 		key = &key_sub;
@@ -527,7 +534,6 @@ PHP_METHOD(Phalcon_Crypt, decryptBase64) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "decrypt", NULL, 0, &_5, key);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -540,8 +546,8 @@ PHP_METHOD(Phalcon_Crypt, decryptBase64) {
  * );
  * ```
  */
-PHP_METHOD(Phalcon_Crypt, encrypt) {
-
+PHP_METHOD(Phalcon_Crypt, encrypt)
+{
 	zend_bool _7, _8, _10, _12;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -578,10 +584,18 @@ PHP_METHOD(Phalcon_Crypt, encrypt) {
 	ZVAL_UNDEF(&_14$$11);
 	ZVAL_UNDEF(&digest$$12);
 	ZVAL_UNDEF(&hashAlgo$$12);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(text)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(key)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &text_param, &key_param);
-
 	if (UNEXPECTED(Z_TYPE_P(text_param) != IS_STRING && Z_TYPE_P(text_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'text' must be of the type string"));
 		RETURN_MM_NULL();
@@ -590,11 +604,9 @@ PHP_METHOD(Phalcon_Crypt, encrypt) {
 		zephir_get_strval(&text, text_param);
 	} else {
 		ZEPHIR_INIT_VAR(&text);
-		ZVAL_EMPTY_STRING(&text);
 	}
 	if (!key_param) {
 		ZEPHIR_INIT_VAR(&key);
-		ZVAL_STRING(&key, "");
 	} else {
 	if (UNEXPECTED(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be of the type string"));
@@ -604,7 +616,6 @@ PHP_METHOD(Phalcon_Crypt, encrypt) {
 		zephir_get_strval(&key, key_param);
 	} else {
 		ZEPHIR_INIT_VAR(&key);
-		ZVAL_EMPTY_STRING(&key);
 	}
 	}
 
@@ -706,14 +717,13 @@ PHP_METHOD(Phalcon_Crypt, encrypt) {
 	}
 	ZEPHIR_CONCAT_VV(return_value, &iv, &encrypted);
 	RETURN_MM();
-
 }
 
 /**
  * Encrypts a text returning the result as a base64 string.
  */
-PHP_METHOD(Phalcon_Crypt, encryptBase64) {
-
+PHP_METHOD(Phalcon_Crypt, encryptBase64)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool safe;
@@ -730,10 +740,19 @@ PHP_METHOD(Phalcon_Crypt, encryptBase64) {
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_STR(text)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(key)
+		Z_PARAM_BOOL(safe)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &text_param, &key, &safe_param);
-
 	if (UNEXPECTED(Z_TYPE_P(text_param) != IS_STRING && Z_TYPE_P(text_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'text' must be of the type string"));
 		RETURN_MM_NULL();
@@ -742,7 +761,6 @@ PHP_METHOD(Phalcon_Crypt, encryptBase64) {
 		zephir_get_strval(&text, text_param);
 	} else {
 		ZEPHIR_INIT_VAR(&text);
-		ZVAL_EMPTY_STRING(&text);
 	}
 	if (!key) {
 		key = &key_sub;
@@ -780,14 +798,13 @@ PHP_METHOD(Phalcon_Crypt, encryptBase64) {
 	ZEPHIR_RETURN_CALL_FUNCTION("base64_encode", NULL, 190, &_5);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Returns a list of available ciphers.
  */
-PHP_METHOD(Phalcon_Crypt, getAvailableCiphers) {
-
+PHP_METHOD(Phalcon_Crypt, getAvailableCiphers)
+{
 	zval availableCiphers, _0, _1$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -796,6 +813,7 @@ PHP_METHOD(Phalcon_Crypt, getAvailableCiphers) {
 	ZVAL_UNDEF(&availableCiphers);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -808,17 +826,17 @@ PHP_METHOD(Phalcon_Crypt, getAvailableCiphers) {
 		ZEPHIR_CPY_WRT(&availableCiphers, &_1$$3);
 	}
 	RETURN_CCTOR(&availableCiphers);
-
 }
 
 /**
  * Return a list of registered hashing algorithms suitable for hash_hmac.
  */
-PHP_METHOD(Phalcon_Crypt, getAvailableHashAlgos) {
-
+PHP_METHOD(Phalcon_Crypt, getAvailableHashAlgos)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
+
 
 
 	ZEPHIR_MM_GROW();
@@ -831,57 +849,62 @@ PHP_METHOD(Phalcon_Crypt, getAvailableHashAlgos) {
 	ZEPHIR_RETURN_CALL_FUNCTION("hash_algos", NULL, 192);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Returns the current cipher
  */
-PHP_METHOD(Phalcon_Crypt, getCipher) {
-
+PHP_METHOD(Phalcon_Crypt, getCipher)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "cipher");
 
+	RETURN_MEMBER(getThis(), "cipher");
 }
 
 /**
  * Get the name of hashing algorithm.
  */
-PHP_METHOD(Phalcon_Crypt, getHashAlgo) {
-
+PHP_METHOD(Phalcon_Crypt, getHashAlgo)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "hashAlgo");
 
+	RETURN_MEMBER(getThis(), "hashAlgo");
 }
 
 /**
  * Returns the encryption key
  */
-PHP_METHOD(Phalcon_Crypt, getKey) {
-
+PHP_METHOD(Phalcon_Crypt, getKey)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "key");
 
+	RETURN_MEMBER(getThis(), "key");
 }
 
-PHP_METHOD(Phalcon_Crypt, setAuthTag) {
-
+PHP_METHOD(Phalcon_Crypt, setAuthTag)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *tag_param = NULL;
 	zval tag;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&tag);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(tag)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &tag_param);
-
 	if (UNEXPECTED(Z_TYPE_P(tag_param) != IS_STRING && Z_TYPE_P(tag_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'tag' must be of the type string"));
 		RETURN_MM_NULL();
@@ -890,27 +913,31 @@ PHP_METHOD(Phalcon_Crypt, setAuthTag) {
 		zephir_get_strval(&tag, tag_param);
 	} else {
 		ZEPHIR_INIT_VAR(&tag);
-		ZVAL_EMPTY_STRING(&tag);
 	}
 
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("authTag"), &tag);
 	RETURN_THIS();
-
 }
 
-PHP_METHOD(Phalcon_Crypt, setAuthData) {
-
+PHP_METHOD(Phalcon_Crypt, setAuthData)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *data_param = NULL;
 	zval data;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&data);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(data)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &data_param);
-
 	if (UNEXPECTED(Z_TYPE_P(data_param) != IS_STRING && Z_TYPE_P(data_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'data' must be of the type string"));
 		RETURN_MM_NULL();
@@ -919,25 +946,29 @@ PHP_METHOD(Phalcon_Crypt, setAuthData) {
 		zephir_get_strval(&data, data_param);
 	} else {
 		ZEPHIR_INIT_VAR(&data);
-		ZVAL_EMPTY_STRING(&data);
 	}
 
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("authData"), &data);
 	RETURN_THIS();
-
 }
 
-PHP_METHOD(Phalcon_Crypt, setAuthTagLength) {
-
+PHP_METHOD(Phalcon_Crypt, setAuthTagLength)
+{
 	zval *length_param = NULL, _0;
 	zend_long length;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(length)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &length_param);
-
 	if (UNEXPECTED(Z_TYPE_P(length_param) != IS_LONG)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'length' must be of the type int"));
 		RETURN_NULL();
@@ -949,7 +980,6 @@ PHP_METHOD(Phalcon_Crypt, setAuthTagLength) {
 	ZVAL_LONG(&_0, length);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("authTagLength"), &_0);
 	RETURN_THISW();
-
 }
 
 /**
@@ -961,8 +991,8 @@ PHP_METHOD(Phalcon_Crypt, setAuthTagLength) {
  * The `aes-256-ctr' is arguably the best choice for cipher
  * algorithm for current openssl library version.
  */
-PHP_METHOD(Phalcon_Crypt, setCipher) {
-
+PHP_METHOD(Phalcon_Crypt, setCipher)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *cipher_param = NULL, _0;
@@ -971,10 +1001,16 @@ PHP_METHOD(Phalcon_Crypt, setCipher) {
 
 	ZVAL_UNDEF(&cipher);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(cipher)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &cipher_param);
-
 	if (UNEXPECTED(Z_TYPE_P(cipher_param) != IS_STRING && Z_TYPE_P(cipher_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'cipher' must be of the type string"));
 		RETURN_MM_NULL();
@@ -983,7 +1019,6 @@ PHP_METHOD(Phalcon_Crypt, setCipher) {
 		zephir_get_strval(&cipher, cipher_param);
 	} else {
 		ZEPHIR_INIT_VAR(&cipher);
-		ZVAL_EMPTY_STRING(&cipher);
 	}
 
 
@@ -994,7 +1029,6 @@ PHP_METHOD(Phalcon_Crypt, setCipher) {
 	zephir_update_property_zval(this_ptr, ZEND_STRL("ivLength"), &_0);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("cipher"), &cipher);
 	RETURN_THIS();
-
 }
 
 /**
@@ -1002,8 +1036,8 @@ PHP_METHOD(Phalcon_Crypt, setCipher) {
  *
  * @throws \Phalcon\Crypt\Exception
  */
-PHP_METHOD(Phalcon_Crypt, setHashAlgo) {
-
+PHP_METHOD(Phalcon_Crypt, setHashAlgo)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *hashAlgo_param = NULL;
@@ -1011,10 +1045,16 @@ PHP_METHOD(Phalcon_Crypt, setHashAlgo) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&hashAlgo);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(hashAlgo)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &hashAlgo_param);
-
 	if (UNEXPECTED(Z_TYPE_P(hashAlgo_param) != IS_STRING && Z_TYPE_P(hashAlgo_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'hashAlgo' must be of the type string"));
 		RETURN_MM_NULL();
@@ -1023,7 +1063,6 @@ PHP_METHOD(Phalcon_Crypt, setHashAlgo) {
 		zephir_get_strval(&hashAlgo, hashAlgo_param);
 	} else {
 		ZEPHIR_INIT_VAR(&hashAlgo);
-		ZVAL_EMPTY_STRING(&hashAlgo);
 	}
 
 
@@ -1031,7 +1070,6 @@ PHP_METHOD(Phalcon_Crypt, setHashAlgo) {
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("hashAlgo"), &hashAlgo);
 	RETURN_THIS();
-
 }
 
 /**
@@ -1049,18 +1087,24 @@ PHP_METHOD(Phalcon_Crypt, setHashAlgo) {
  * Good key:
  * "T4\xb1\x8d\xa9\x98\x05\\\x8c\xbe\x1d\x07&[\x99\x18\xa4~Lc1\xbeW\xb3"
  */
-PHP_METHOD(Phalcon_Crypt, setKey) {
-
+PHP_METHOD(Phalcon_Crypt, setKey)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *key_param = NULL;
 	zval key;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(key)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &key_param);
-
 	if (UNEXPECTED(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be of the type string"));
 		RETURN_MM_NULL();
@@ -1069,28 +1113,32 @@ PHP_METHOD(Phalcon_Crypt, setKey) {
 		zephir_get_strval(&key, key_param);
 	} else {
 		ZEPHIR_INIT_VAR(&key);
-		ZVAL_EMPTY_STRING(&key);
 	}
 
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("key"), &key);
 	RETURN_THIS();
-
 }
 
 /**
  * Changes the padding scheme used.
  */
-PHP_METHOD(Phalcon_Crypt, setPadding) {
-
+PHP_METHOD(Phalcon_Crypt, setPadding)
+{
 	zval *scheme_param = NULL, _0;
 	zend_long scheme;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(scheme)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &scheme_param);
-
 	if (UNEXPECTED(Z_TYPE_P(scheme_param) != IS_LONG)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'scheme' must be of the type int"));
 		RETURN_NULL();
@@ -1102,23 +1150,28 @@ PHP_METHOD(Phalcon_Crypt, setPadding) {
 	ZVAL_LONG(&_0, scheme);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("padding"), &_0);
 	RETURN_THISW();
-
 }
 
 /**
  * Sets if the calculating message digest must used.
  */
-PHP_METHOD(Phalcon_Crypt, useSigning) {
-
+PHP_METHOD(Phalcon_Crypt, useSigning)
+{
 	zval *useSigning_param = NULL, __$true, __$false;
 	zend_bool useSigning;
 	zval *this_ptr = getThis();
 
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_BOOL(&__$false, 0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_BOOL(useSigning)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &useSigning_param);
-
 	useSigning = zephir_get_boolval(useSigning_param);
 
 
@@ -1128,14 +1181,13 @@ PHP_METHOD(Phalcon_Crypt, useSigning) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("useSigning"), &__$false);
 	}
 	RETURN_THISW();
-
 }
 
 /**
  * Assert the cipher is available.
  */
-PHP_METHOD(Phalcon_Crypt, assertCipherIsAvailable) {
-
+PHP_METHOD(Phalcon_Crypt, assertCipherIsAvailable)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *cipher_param = NULL, availableCiphers, _0, _1$$3, _2$$3, _3$$3;
@@ -1148,10 +1200,16 @@ PHP_METHOD(Phalcon_Crypt, assertCipherIsAvailable) {
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&_3$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(cipher)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &cipher_param);
-
 	if (UNEXPECTED(Z_TYPE_P(cipher_param) != IS_STRING && Z_TYPE_P(cipher_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'cipher' must be of the type string"));
 		RETURN_MM_NULL();
@@ -1160,7 +1218,6 @@ PHP_METHOD(Phalcon_Crypt, assertCipherIsAvailable) {
 		zephir_get_strval(&cipher, cipher_param);
 	} else {
 		ZEPHIR_INIT_VAR(&cipher);
-		ZVAL_EMPTY_STRING(&cipher);
 	}
 
 
@@ -1182,14 +1239,13 @@ PHP_METHOD(Phalcon_Crypt, assertCipherIsAvailable) {
 		return;
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Assert the hash algorithm is available.
  */
-PHP_METHOD(Phalcon_Crypt, assertHashAlgorithmAvailable) {
-
+PHP_METHOD(Phalcon_Crypt, assertHashAlgorithmAvailable)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *hashAlgo_param = NULL, availableAlgorithms, _0$$3, _1$$3, _2$$3;
@@ -1201,10 +1257,16 @@ PHP_METHOD(Phalcon_Crypt, assertHashAlgorithmAvailable) {
 	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(hashAlgo)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &hashAlgo_param);
-
 	if (UNEXPECTED(Z_TYPE_P(hashAlgo_param) != IS_STRING && Z_TYPE_P(hashAlgo_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'hashAlgo' must be of the type string"));
 		RETURN_MM_NULL();
@@ -1213,7 +1275,6 @@ PHP_METHOD(Phalcon_Crypt, assertHashAlgorithmAvailable) {
 		zephir_get_strval(&hashAlgo, hashAlgo_param);
 	} else {
 		ZEPHIR_INIT_VAR(&hashAlgo);
-		ZVAL_EMPTY_STRING(&hashAlgo);
 	}
 
 
@@ -1233,14 +1294,13 @@ PHP_METHOD(Phalcon_Crypt, assertHashAlgorithmAvailable) {
 		return;
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Initialize available cipher algorithms.
  */
-PHP_METHOD(Phalcon_Crypt, getIvLength) {
-
+PHP_METHOD(Phalcon_Crypt, getIvLength)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *cipher_param = NULL;
@@ -1248,10 +1308,16 @@ PHP_METHOD(Phalcon_Crypt, getIvLength) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&cipher);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(cipher)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &cipher_param);
-
 	if (UNEXPECTED(Z_TYPE_P(cipher_param) != IS_STRING && Z_TYPE_P(cipher_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'cipher' must be of the type string"));
 		RETURN_MM_NULL();
@@ -1260,7 +1326,6 @@ PHP_METHOD(Phalcon_Crypt, getIvLength) {
 		zephir_get_strval(&cipher, cipher_param);
 	} else {
 		ZEPHIR_INIT_VAR(&cipher);
-		ZVAL_EMPTY_STRING(&cipher);
 	}
 
 
@@ -1271,14 +1336,13 @@ PHP_METHOD(Phalcon_Crypt, getIvLength) {
 	ZEPHIR_RETURN_CALL_FUNCTION("openssl_cipher_iv_length", NULL, 194, &cipher);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Initialize available cipher algorithms.
  */
-PHP_METHOD(Phalcon_Crypt, initializeAvailableCiphers) {
-
+PHP_METHOD(Phalcon_Crypt, initializeAvailableCiphers)
+{
 	zend_bool _3$$4, _5$$4, _7$$4, _9$$4, _13$$6, _15$$6, _17$$6, _19$$6;
 	zval allowedCiphers;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -1303,6 +1367,7 @@ PHP_METHOD(Phalcon_Crypt, initializeAvailableCiphers) {
 	ZVAL_UNDEF(&_20$$6);
 	ZVAL_UNDEF(&_21$$7);
 	ZVAL_UNDEF(&allowedCiphers);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -1401,14 +1466,13 @@ PHP_METHOD(Phalcon_Crypt, initializeAvailableCiphers) {
 	ZEPHIR_INIT_NVAR(&cipher);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("availableCiphers"), &allowedCiphers);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Pads texts before encryption. See [cryptopad](http://www.di-mgt.com.au/cryptopad.html)
  */
-PHP_METHOD(Phalcon_Crypt, cryptPadText) {
-
+PHP_METHOD(Phalcon_Crypt, cryptPadText)
+{
 	zend_bool _0, _7$$7;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_11 = NULL;
@@ -1441,10 +1505,19 @@ PHP_METHOD(Phalcon_Crypt, cryptPadText) {
 	ZVAL_UNDEF(&_20$$10);
 	ZVAL_UNDEF(&_21$$11);
 	ZVAL_UNDEF(&_22$$11);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(4, 4)
+		Z_PARAM_STR(text)
+		Z_PARAM_STR(mode)
+		Z_PARAM_LONG(blockSize)
+		Z_PARAM_LONG(paddingType)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 4, 0, &text_param, &mode_param, &blockSize_param, &paddingType_param);
-
 	zephir_get_strval(&text, text_param);
 	if (UNEXPECTED(Z_TYPE_P(mode_param) != IS_STRING && Z_TYPE_P(mode_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'mode' must be of the type string"));
@@ -1454,7 +1527,6 @@ PHP_METHOD(Phalcon_Crypt, cryptPadText) {
 		zephir_get_strval(&mode, mode_param);
 	} else {
 		ZEPHIR_INIT_VAR(&mode);
-		ZVAL_EMPTY_STRING(&mode);
 	}
 	if (UNEXPECTED(Z_TYPE_P(blockSize_param) != IS_LONG)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'blockSize' must be of the type int"));
@@ -1584,7 +1656,6 @@ PHP_METHOD(Phalcon_Crypt, cryptPadText) {
 	zephir_substr(&_25, &padding, 0 , zephir_get_intval(&_24), 0);
 	ZEPHIR_CONCAT_VV(return_value, &text, &_25);
 	RETURN_MM();
-
 }
 
 /**
@@ -1593,8 +1664,8 @@ PHP_METHOD(Phalcon_Crypt, cryptPadText) {
  * If the function detects that the text was not padded, it will return it
  * unmodified.
  */
-PHP_METHOD(Phalcon_Crypt, cryptUnpadText) {
-
+PHP_METHOD(Phalcon_Crypt, cryptUnpadText)
+{
 	unsigned char _20$$11, _22$$11, _24$$15, _27$$17;
 	zend_bool _0, _1, _2, _19$$11, _21$$11, _23$$15, _25$$15, _26$$17, _28$$17, _29$$3;
 	long length = 0;
@@ -1626,10 +1697,19 @@ PHP_METHOD(Phalcon_Crypt, cryptUnpadText) {
 	ZVAL_UNDEF(&_18$$10);
 	ZVAL_UNDEF(&_30$$21);
 	ZVAL_UNDEF(&_31$$21);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(4, 4)
+		Z_PARAM_STR(text)
+		Z_PARAM_STR(mode)
+		Z_PARAM_LONG(blockSize)
+		Z_PARAM_LONG(paddingType)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 4, 0, &text_param, &mode_param, &blockSize_param, &paddingType_param);
-
 	zephir_get_strval(&text, text_param);
 	if (UNEXPECTED(Z_TYPE_P(mode_param) != IS_STRING && Z_TYPE_P(mode_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'mode' must be of the type string"));
@@ -1639,7 +1719,6 @@ PHP_METHOD(Phalcon_Crypt, cryptUnpadText) {
 		zephir_get_strval(&mode, mode_param);
 	} else {
 		ZEPHIR_INIT_VAR(&mode);
-		ZVAL_EMPTY_STRING(&mode);
 	}
 	if (UNEXPECTED(Z_TYPE_P(blockSize_param) != IS_LONG)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'blockSize' must be of the type int"));
@@ -1820,6 +1899,5 @@ PHP_METHOD(Phalcon_Crypt, cryptUnpadText) {
 		RETURN_CTOR(&text);
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 

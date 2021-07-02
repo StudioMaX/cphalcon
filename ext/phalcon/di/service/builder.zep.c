@@ -35,12 +35,11 @@
  *
  * This class builds instances based on complex definitions
  */
-ZEPHIR_INIT_CLASS(Phalcon_Di_Service_Builder) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Di_Service_Builder)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Di\\Service, Builder, phalcon, di_service_builder, phalcon_di_service_builder_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -49,8 +48,8 @@ ZEPHIR_INIT_CLASS(Phalcon_Di_Service_Builder) {
  * @param array parameters
  * @return mixed
  */
-PHP_METHOD(Phalcon_Di_Service_Builder, build) {
-
+PHP_METHOD(Phalcon_Di_Service_Builder, build)
+{
 	zend_string *_4$$10, *_28$$25;
 	zend_ulong _3$$10, _27$$25;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -112,10 +111,19 @@ PHP_METHOD(Phalcon_Di_Service_Builder, build) {
 	ZVAL_UNDEF(&_42$$35);
 	ZVAL_UNDEF(&_43$$32);
 	ZVAL_UNDEF(&definition);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_OBJECT_OF_CLASS(container, phalcon_di_diinterface_ce)
+		Z_PARAM_ARRAY(definition)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(parameters)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &container, &definition_param, &parameters);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&definition, definition_param);
 	if (!parameters) {
 		parameters = &parameters_sub;
@@ -420,7 +428,6 @@ PHP_METHOD(Phalcon_Di_Service_Builder, build) {
 		ZEPHIR_INIT_NVAR(&propertyPosition);
 	}
 	RETURN_CCTOR(&instance);
-
 }
 
 /**
@@ -428,8 +435,8 @@ PHP_METHOD(Phalcon_Di_Service_Builder, build) {
  *
  * @return mixed
  */
-PHP_METHOD(Phalcon_Di_Service_Builder, buildParameter) {
-
+PHP_METHOD(Phalcon_Di_Service_Builder, buildParameter)
+{
 	zval _2$$3, _5$$5, _8$$8, _11$$10, _14$$13;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval argument;
@@ -458,10 +465,18 @@ PHP_METHOD(Phalcon_Di_Service_Builder, buildParameter) {
 	ZVAL_UNDEF(&_8$$8);
 	ZVAL_UNDEF(&_11$$10);
 	ZVAL_UNDEF(&_14$$13);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(3, 3)
+		Z_PARAM_OBJECT_OF_CLASS(container, phalcon_di_diinterface_ce)
+		Z_PARAM_LONG(position)
+		Z_PARAM_ARRAY(argument)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 0, &container, &position_param, &argument_param);
-
 	position = zephir_get_intval(position_param);
 	ZEPHIR_OBS_COPY_OR_DUP(&argument, argument_param);
 
@@ -564,14 +579,13 @@ PHP_METHOD(Phalcon_Di_Service_Builder, buildParameter) {
 	} while(0);
 
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Resolves an array of parameters
  */
-PHP_METHOD(Phalcon_Di_Service_Builder, buildParameters) {
-
+PHP_METHOD(Phalcon_Di_Service_Builder, buildParameters)
+{
 	zend_string *_3;
 	zend_ulong _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -589,10 +603,17 @@ PHP_METHOD(Phalcon_Di_Service_Builder, buildParameters) {
 	ZVAL_UNDEF(&_6$$4);
 	ZVAL_UNDEF(&arguments);
 	ZVAL_UNDEF(&buildArguments);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_OBJECT_OF_CLASS(container, phalcon_di_diinterface_ce)
+		Z_PARAM_ARRAY(arguments)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &container, &arguments_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&arguments, arguments_param);
 
 
@@ -637,6 +658,5 @@ PHP_METHOD(Phalcon_Di_Service_Builder, buildParameters) {
 	ZEPHIR_INIT_NVAR(&argument);
 	ZEPHIR_INIT_NVAR(&position);
 	RETURN_CTOR(&buildArguments);
-
 }
 

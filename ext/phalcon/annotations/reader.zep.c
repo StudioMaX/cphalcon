@@ -32,20 +32,19 @@
 /**
  * Parses docblocks returning an array with the found annotations
  */
-ZEPHIR_INIT_CLASS(Phalcon_Annotations_Reader) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Annotations_Reader)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Annotations, Reader, phalcon, annotations_reader, phalcon_annotations_reader_method_entry, 0);
 
 	zend_class_implements(phalcon_annotations_reader_ce, 1, phalcon_annotations_readerinterface_ce);
 	return SUCCESS;
-
 }
 
 /**
  * Reads annotations from the class docblocks, its methods and/or properties
  */
-PHP_METHOD(Phalcon_Annotations_Reader, parse) {
-
+PHP_METHOD(Phalcon_Annotations_Reader, parse)
+{
 	zval annotations;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS, line = 0;
@@ -82,10 +81,16 @@ PHP_METHOD(Phalcon_Annotations_Reader, parse) {
 	ZVAL_UNDEF(&_16$$18);
 	ZVAL_UNDEF(&_17$$19);
 	ZVAL_UNDEF(&annotations);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(className)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &className_param);
-
 	zephir_get_strval(&className, className_param);
 
 
@@ -237,14 +242,13 @@ PHP_METHOD(Phalcon_Annotations_Reader, parse) {
 		}
 	}
 	RETURN_CTOR(&annotations);
-
 }
 
 /**
  * Parses a raw doc block returning the annotations found
  */
-PHP_METHOD(Phalcon_Annotations_Reader, parseDocBlock) {
-
+PHP_METHOD(Phalcon_Annotations_Reader, parseDocBlock)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *docBlock_param = NULL, *file = NULL, file_sub, *line = NULL, line_sub, __$null;
@@ -255,10 +259,19 @@ PHP_METHOD(Phalcon_Annotations_Reader, parseDocBlock) {
 	ZVAL_UNDEF(&file_sub);
 	ZVAL_UNDEF(&line_sub);
 	ZVAL_NULL(&__$null);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_STR(docBlock)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(file)
+		Z_PARAM_ZVAL(line)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &docBlock_param, &file, &line);
-
 	zephir_get_strval(&docBlock, docBlock_param);
 	if (!file) {
 		file = &file_sub;
@@ -279,6 +292,5 @@ PHP_METHOD(Phalcon_Annotations_Reader, parseDocBlock) {
 	ZEPHIR_LAST_CALL_STATUS = phannot_parse_annotations(return_value, &docBlock, file, line TSRMLS_CC);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

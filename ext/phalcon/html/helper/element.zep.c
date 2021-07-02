@@ -29,12 +29,11 @@
 /**
  * Class Element
  */
-ZEPHIR_INIT_CLASS(Phalcon_Html_Helper_Element) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Html_Helper_Element)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Html\\Helper, Element, phalcon, html_helper_element, phalcon_html_helper_abstracthelper_ce, phalcon_html_helper_element_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -48,8 +47,8 @@ ZEPHIR_INIT_CLASS(Phalcon_Html_Helper_Element) {
  * @return string
  * @throws Exception
  */
-PHP_METHOD(Phalcon_Html_Helper_Element, __invoke) {
-
+PHP_METHOD(Phalcon_Html_Helper_Element, __invoke)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool raw;
@@ -62,10 +61,20 @@ PHP_METHOD(Phalcon_Html_Helper_Element, __invoke) {
 	ZVAL_UNDEF(&text);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&attributes);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 4)
+		Z_PARAM_STR(tag)
+		Z_PARAM_STR(text)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(attributes)
+		Z_PARAM_BOOL(raw)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 2, &tag_param, &text_param, &attributes_param, &raw_param);
-
 	zephir_get_strval(&tag, tag_param);
 	zephir_get_strval(&text, text_param);
 	if (!attributes_param) {
@@ -89,6 +98,5 @@ PHP_METHOD(Phalcon_Html_Helper_Element, __invoke) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "renderfullelement", NULL, 0, &tag, &text, &attributes, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

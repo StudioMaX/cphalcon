@@ -29,20 +29,19 @@
  * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
-ZEPHIR_INIT_CLASS(Phalcon_Mvc_Model_MetaData_Strategy_Annotations) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Mvc_Model_MetaData_Strategy_Annotations)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Mvc\\Model\\MetaData\\Strategy, Annotations, phalcon, mvc_model_metadata_strategy_annotations, phalcon_mvc_model_metadata_strategy_annotations_method_entry, 0);
 
 	zend_class_implements(phalcon_mvc_model_metadata_strategy_annotations_ce, 1, phalcon_mvc_model_metadata_strategy_strategyinterface_ce);
 	return SUCCESS;
-
 }
 
 /**
  * Read the model's column map, this can't be inferred
  */
-PHP_METHOD(Phalcon_Mvc_Model_MetaData_Strategy_Annotations, getColumnMaps) {
-
+PHP_METHOD(Phalcon_Mvc_Model_MetaData_Strategy_Annotations, getColumnMaps)
+{
 	zend_string *_8;
 	zend_ulong _7;
 	zend_bool hasReversedColumn = 0, _11$$6, _14$$10;
@@ -75,10 +74,17 @@ PHP_METHOD(Phalcon_Mvc_Model_MetaData_Strategy_Annotations, getColumnMaps) {
 	ZVAL_UNDEF(&_13$$10);
 	ZVAL_UNDEF(&orderedColumnMap);
 	ZVAL_UNDEF(&reversedColumnMap);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_OBJECT_OF_CLASS(model, phalcon_mvc_modelinterface_ce)
+		Z_PARAM_OBJECT_OF_CLASS(container, phalcon_di_diinterface_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &model, &container);
-
 
 
 	if (UNEXPECTED(Z_TYPE_P(container) != IS_OBJECT)) {
@@ -218,14 +224,13 @@ PHP_METHOD(Phalcon_Mvc_Model_MetaData_Strategy_Annotations, getColumnMaps) {
 	zephir_array_fast_append(return_value, &orderedColumnMap);
 	zephir_array_fast_append(return_value, &reversedColumnMap);
 	RETURN_MM();
-
 }
 
 /**
  * The meta-data is obtained by reading the column descriptions from the database information schema
  */
-PHP_METHOD(Phalcon_Mvc_Model_MetaData_Strategy_Annotations, getMetaData) {
-
+PHP_METHOD(Phalcon_Mvc_Model_MetaData_Strategy_Annotations, getMetaData)
+{
 	zend_bool _71$$6, _135$$44;
 	zend_string *_8;
 	zend_ulong _7;
@@ -391,10 +396,17 @@ PHP_METHOD(Phalcon_Mvc_Model_MetaData_Strategy_Annotations, getMetaData) {
 	ZVAL_UNDEF(&_126$$72);
 	ZVAL_UNDEF(&_127$$73);
 	ZVAL_UNDEF(&_128$$73);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_OBJECT_OF_CLASS(model, phalcon_mvc_modelinterface_ce)
+		Z_PARAM_OBJECT_OF_CLASS(container, phalcon_di_diinterface_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &model, &container);
-
 
 
 	if (UNEXPECTED(Z_TYPE_P(container) != IS_OBJECT)) {
@@ -1173,6 +1185,5 @@ PHP_METHOD(Phalcon_Mvc_Model_MetaData_Strategy_Annotations, getMetaData) {
 	zephir_array_update_long(return_value, 12, &defaultValues, PH_COPY ZEPHIR_DEBUG_PARAMS_DUMMY);
 	zephir_array_update_long(return_value, 13, &emptyStringValues, PH_COPY ZEPHIR_DEBUG_PARAMS_DUMMY);
 	RETURN_MM();
-
 }
 

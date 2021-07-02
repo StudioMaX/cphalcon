@@ -29,18 +29,16 @@
 /**
  * Class for exceptions thrown by Phalcon\Mvc\View
  */
-ZEPHIR_INIT_CLASS(Phalcon_Mvc_View_Engine_Volt_Exception) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Mvc_View_Engine_Volt_Exception)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Mvc\\View\\Engine\\Volt, Exception, phalcon, mvc_view_engine_volt_exception, phalcon_mvc_view_exception_ce, phalcon_mvc_view_engine_volt_exception_method_entry, 0);
 
 	zend_declare_property_null(phalcon_mvc_view_engine_volt_exception_ce, SL("statement"), ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Phalcon_Mvc_View_Engine_Volt_Exception, __construct) {
-
+PHP_METHOD(Phalcon_Mvc_View_Engine_Volt_Exception, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long code, ZEPHIR_LAST_CALL_STATUS;
 	zval statement;
@@ -53,10 +51,20 @@ PHP_METHOD(Phalcon_Mvc_View_Engine_Volt_Exception, __construct) {
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&statement);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 4)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(message)
+		Z_PARAM_ARRAY(statement)
+		Z_PARAM_LONG(code)
+		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(previous, zend_ce_exception)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 4, &message_param, &statement_param, &code_param, &previous);
-
 	if (!message_param) {
 		ZEPHIR_INIT_VAR(&message);
 		ZVAL_STRING(&message, "");
@@ -85,20 +93,20 @@ PHP_METHOD(Phalcon_Mvc_View_Engine_Volt_Exception, __construct) {
 	ZEPHIR_CALL_PARENT(NULL, phalcon_mvc_view_engine_volt_exception_ce, getThis(), "__construct", NULL, 0, &message, &_0, previous);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Gets currently parsed statement (if any).
  */
-PHP_METHOD(Phalcon_Mvc_View_Engine_Volt_Exception, getStatement) {
-
+PHP_METHOD(Phalcon_Mvc_View_Engine_Volt_Exception, getStatement)
+{
 	zval statement, _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&statement);
 	ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -109,6 +117,5 @@ PHP_METHOD(Phalcon_Mvc_View_Engine_Volt_Exception, getStatement) {
 		array_init(&statement);
 	}
 	RETURN_CCTOR(&statement);
-
 }
 

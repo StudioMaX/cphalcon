@@ -35,21 +35,20 @@
 /**
  * PSR-17 UriFactory
  */
-ZEPHIR_INIT_CLASS(Phalcon_Http_Message_UriFactory) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Http_Message_UriFactory)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Http\\Message, UriFactory, phalcon, http_message_urifactory, phalcon_http_message_urifactory_method_entry, ZEND_ACC_FINAL_CLASS);
 
 	zend_class_implements(phalcon_http_message_urifactory_ce, 1, zephir_get_internal_ce(SL("psr\\http\\message\\urifactoryinterface")));
 	return SUCCESS;
-
 }
 
 /**
  * Returns a Locator object with all the helpers defined in anonynous
  * functions
  */
-PHP_METHOD(Phalcon_Http_Message_UriFactory, createUri) {
-
+PHP_METHOD(Phalcon_Http_Message_UriFactory, createUri)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *uri_param = NULL;
@@ -57,10 +56,17 @@ PHP_METHOD(Phalcon_Http_Message_UriFactory, createUri) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&uri);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(uri)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &uri_param);
-
 	if (!uri_param) {
 		ZEPHIR_INIT_VAR(&uri);
 		ZVAL_STRING(&uri, "");
@@ -73,7 +79,6 @@ PHP_METHOD(Phalcon_Http_Message_UriFactory, createUri) {
 		zephir_get_strval(&uri, uri_param);
 	} else {
 		ZEPHIR_INIT_VAR(&uri);
-		ZVAL_EMPTY_STRING(&uri);
 	}
 	}
 
@@ -82,6 +87,5 @@ PHP_METHOD(Phalcon_Http_Message_UriFactory, createUri) {
 	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 105, &uri);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

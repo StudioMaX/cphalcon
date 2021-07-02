@@ -30,19 +30,18 @@
  *
  * Sanitizes an email string
  */
-ZEPHIR_INIT_CLASS(Phalcon_Filter_Sanitize_Email) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Filter_Sanitize_Email)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Filter\\Sanitize, Email, phalcon, filter_sanitize_email, phalcon_filter_sanitize_email_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
  * @var mixed input The text to sanitize
  */
-PHP_METHOD(Phalcon_Filter_Sanitize_Email, __invoke) {
-
+PHP_METHOD(Phalcon_Filter_Sanitize_Email, __invoke)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *input, input_sub, _0, _1;
@@ -51,10 +50,16 @@ PHP_METHOD(Phalcon_Filter_Sanitize_Email, __invoke) {
 	ZVAL_UNDEF(&input_sub);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(input)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &input);
-
 
 
 	ZVAL_LONG(&_0, 517);
@@ -62,6 +67,5 @@ PHP_METHOD(Phalcon_Filter_Sanitize_Email, __invoke) {
 	ZEPHIR_RETURN_CALL_FUNCTION("filter_var", NULL, 257, input, &_0, &_1);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

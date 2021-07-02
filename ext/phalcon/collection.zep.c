@@ -12,7 +12,6 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "ext/spl/spl_iterators.h"
 #include "kernel/object.h"
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
@@ -43,42 +42,38 @@
  * Such implementations are for instance accessing globals `$_GET`, `$_POST`
  * etc.
  */
-ZEPHIR_INIT_CLASS(Phalcon_Collection) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Collection)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon, Collection, phalcon, collection, phalcon_collection_method_entry, 0);
 
 	/**
 	 * @var array
 	 */
 	zend_declare_property_null(phalcon_collection_ce, SL("data"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var bool
 	 */
 	zend_declare_property_bool(phalcon_collection_ce, SL("insensitive"), 1, ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var array
 	 */
 	zend_declare_property_null(phalcon_collection_ce, SL("lowerKeys"), ZEND_ACC_PROTECTED);
-
 	phalcon_collection_ce->create_object = zephir_init_properties_Phalcon_Collection;
 
 	zend_class_implements(phalcon_collection_ce, 1, zend_ce_arrayaccess);
 	zend_class_implements(phalcon_collection_ce, 1, phalcon_collection_collectioninterface_ce);
-	zend_class_implements(phalcon_collection_ce, 1, spl_ce_Countable);
-	zend_class_implements(phalcon_collection_ce, 1, zend_ce_aggregate);
+	zend_class_implements(phalcon_collection_ce, 1, zend_ce_countable);
+	zend_class_implements(phalcon_collection_ce, 1, zephir_get_internal_ce(SL("iteratoraggregate")));
 	zend_class_implements(phalcon_collection_ce, 1, zephir_get_internal_ce(SL("jsonserializable")));
 	zend_class_implements(phalcon_collection_ce, 1, zend_ce_serializable);
 	return SUCCESS;
-
 }
 
 /**
  * Collection constructor.
  */
-PHP_METHOD(Phalcon_Collection, __construct) {
-
+PHP_METHOD(Phalcon_Collection, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool insensitive;
@@ -89,10 +84,18 @@ PHP_METHOD(Phalcon_Collection, __construct) {
 	ZVAL_UNDEF(&data);
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_BOOL(&__$false, 0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(data)
+		Z_PARAM_BOOL(insensitive)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &data_param, &insensitive_param);
-
 	if (!data_param) {
 		ZEPHIR_INIT_VAR(&data);
 		array_init(&data);
@@ -114,14 +117,13 @@ PHP_METHOD(Phalcon_Collection, __construct) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "init", NULL, 0, &data);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Magic getter to get an element from the collection
  */
-PHP_METHOD(Phalcon_Collection, __get) {
-
+PHP_METHOD(Phalcon_Collection, __get)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *element_param = NULL;
@@ -129,24 +131,29 @@ PHP_METHOD(Phalcon_Collection, __get) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&element);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(element)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &element_param);
-
 	zephir_get_strval(&element, element_param);
 
 
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "get", NULL, 0, &element);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Magic isset to check whether an element exists or not
  */
-PHP_METHOD(Phalcon_Collection, __isset) {
-
+PHP_METHOD(Phalcon_Collection, __isset)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *element_param = NULL;
@@ -154,24 +161,29 @@ PHP_METHOD(Phalcon_Collection, __isset) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&element);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(element)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &element_param);
-
 	zephir_get_strval(&element, element_param);
 
 
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "has", NULL, 0, &element);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Magic setter to assign values to an element
  */
-PHP_METHOD(Phalcon_Collection, __set) {
-
+PHP_METHOD(Phalcon_Collection, __set)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *element_param = NULL, *value, value_sub;
@@ -180,24 +192,30 @@ PHP_METHOD(Phalcon_Collection, __set) {
 
 	ZVAL_UNDEF(&element);
 	ZVAL_UNDEF(&value_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(element)
+		Z_PARAM_ZVAL(value)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &element_param, &value);
-
 	zephir_get_strval(&element, element_param);
 
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "set", NULL, 0, &element, value);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Magic unset to remove an element from the collection
  */
-PHP_METHOD(Phalcon_Collection, __unset) {
-
+PHP_METHOD(Phalcon_Collection, __unset)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *element_param = NULL;
@@ -205,30 +223,36 @@ PHP_METHOD(Phalcon_Collection, __unset) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&element);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(element)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &element_param);
-
 	zephir_get_strval(&element, element_param);
 
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "remove", NULL, 0, &element);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Clears the internal collection
  */
-PHP_METHOD(Phalcon_Collection, clear) {
-
+PHP_METHOD(Phalcon_Collection, clear)
+{
 	zval _0, _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -239,31 +263,30 @@ PHP_METHOD(Phalcon_Collection, clear) {
 	array_init(&_1);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("lowerKeys"), &_1);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Count elements of an object.
  * See [count](https://php.net/manual/en/countable.count.php)
  */
-PHP_METHOD(Phalcon_Collection, count) {
-
+PHP_METHOD(Phalcon_Collection, count)
+{
 	zval _0;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
 
+
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("data"), PH_NOISY_CC | PH_READONLY);
 	RETURN_LONG(zephir_fast_count_int(&_0));
-
 }
 
 /**
  * Get the element from the collection
  */
-PHP_METHOD(Phalcon_Collection, get) {
-
+PHP_METHOD(Phalcon_Collection, get)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *element_param = NULL, *defaultValue = NULL, defaultValue_sub, *cast_param = NULL, __$null, key, value, _0, _2, _3, _1$$3;
@@ -280,10 +303,19 @@ PHP_METHOD(Phalcon_Collection, get) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_1$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_STR(element)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(defaultValue)
+		Z_PARAM_STR_OR_NULL(cast)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &element_param, &defaultValue, &cast_param);
-
 	zephir_get_strval(&element, element_param);
 	if (!defaultValue) {
 		defaultValue = &defaultValue_sub;
@@ -291,7 +323,6 @@ PHP_METHOD(Phalcon_Collection, get) {
 	}
 	if (!cast_param) {
 		ZEPHIR_INIT_VAR(&cast);
-		ZVAL_STRING(&cast, "");
 	} else {
 	if (UNEXPECTED(Z_TYPE_P(cast_param) != IS_STRING && Z_TYPE_P(cast_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'cast' must be of the type string"));
@@ -301,7 +332,6 @@ PHP_METHOD(Phalcon_Collection, get) {
 		zephir_get_strval(&cast, cast_param);
 	} else {
 		ZEPHIR_INIT_VAR(&cast);
-		ZVAL_EMPTY_STRING(&cast);
 	}
 	}
 
@@ -328,20 +358,20 @@ PHP_METHOD(Phalcon_Collection, get) {
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(&value);
-
 }
 
 /**
  * Returns the iterator of the class
  */
-PHP_METHOD(Phalcon_Collection, getIterator) {
-
+PHP_METHOD(Phalcon_Collection, getIterator)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -350,20 +380,26 @@ PHP_METHOD(Phalcon_Collection, getIterator) {
 	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 11, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-PHP_METHOD(Phalcon_Collection, getKeys) {
-
+PHP_METHOD(Phalcon_Collection, getKeys)
+{
 	zval *insensitive_param = NULL, _0$$3, _1$$4;
 	zend_bool insensitive;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&_1$$4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(insensitive)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(0, 1, &insensitive_param);
-
 	if (!insensitive_param) {
 		insensitive = 1;
 	} else {
@@ -380,11 +416,10 @@ PHP_METHOD(Phalcon_Collection, getKeys) {
 		zephir_array_keys(return_value, &_1$$4);
 		return;
 	}
-
 }
 
-PHP_METHOD(Phalcon_Collection, getValues) {
-
+PHP_METHOD(Phalcon_Collection, getValues)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -392,20 +427,20 @@ PHP_METHOD(Phalcon_Collection, getValues) {
 
 	ZVAL_UNDEF(&_0);
 
+
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("data"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_FUNCTION("array_values", NULL, 12, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Determines whether an element is present in the collection.
  */
-PHP_METHOD(Phalcon_Collection, has) {
-
+PHP_METHOD(Phalcon_Collection, has)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *element_param = NULL, _0, _2, _1$$3;
 	zval element;
@@ -415,10 +450,16 @@ PHP_METHOD(Phalcon_Collection, has) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_1$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(element)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &element_param);
-
 	zephir_get_strval(&element, element_param);
 
 
@@ -430,14 +471,13 @@ PHP_METHOD(Phalcon_Collection, has) {
 	}
 	zephir_read_property(&_2, this_ptr, ZEND_STRL("lowerKeys"), PH_NOISY_CC | PH_READONLY);
 	RETURN_MM_BOOL(zephir_array_isset(&_2, &element));
-
 }
 
 /**
  * Initialize internal array
  */
-PHP_METHOD(Phalcon_Collection, init) {
-
+PHP_METHOD(Phalcon_Collection, init)
+{
 	zend_string *_3;
 	zend_ulong _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -451,10 +491,17 @@ PHP_METHOD(Phalcon_Collection, init) {
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(data)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &data_param);
-
 	if (!data_param) {
 		ZEPHIR_INIT_VAR(&data);
 		array_init(&data);
@@ -500,15 +547,14 @@ PHP_METHOD(Phalcon_Collection, init) {
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Specify data which should be serialized to JSON
  * See [jsonSerialize](https://php.net/manual/en/jsonserializable.jsonserialize.php)
  */
-PHP_METHOD(Phalcon_Collection, jsonSerialize) {
-
+PHP_METHOD(Phalcon_Collection, jsonSerialize)
+{
 	zend_bool _5$$3, _7$$6;
 	zend_string *_4;
 	zend_ulong _3;
@@ -525,6 +571,7 @@ PHP_METHOD(Phalcon_Collection, jsonSerialize) {
 	ZVAL_UNDEF(&_6$$4);
 	ZVAL_UNDEF(&_8$$7);
 	ZVAL_UNDEF(&records);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -586,15 +633,14 @@ PHP_METHOD(Phalcon_Collection, jsonSerialize) {
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
 	RETURN_CTOR(&records);
-
 }
 
 /**
  * Whether a offset exists
  * See [offsetExists](https://php.net/manual/en/arrayaccess.offsetexists.php)
  */
-PHP_METHOD(Phalcon_Collection, offsetExists) {
-
+PHP_METHOD(Phalcon_Collection, offsetExists)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -603,27 +649,32 @@ PHP_METHOD(Phalcon_Collection, offsetExists) {
 
 	ZVAL_UNDEF(&element_sub);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(element)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &element);
-
 	ZEPHIR_SEPARATE_PARAM(element);
 
 
-	zephir_get_strval(&_0, element);
+	zephir_cast_to_string(&_0, element);
 	ZEPHIR_CPY_WRT(element, &_0);
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "has", NULL, 0, element);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Offset to retrieve
  * See [offsetGet](https://php.net/manual/en/arrayaccess.offsetget.php)
  */
-PHP_METHOD(Phalcon_Collection, offsetGet) {
-
+PHP_METHOD(Phalcon_Collection, offsetGet)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -632,27 +683,32 @@ PHP_METHOD(Phalcon_Collection, offsetGet) {
 
 	ZVAL_UNDEF(&element_sub);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(element)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &element);
-
 	ZEPHIR_SEPARATE_PARAM(element);
 
 
-	zephir_get_strval(&_0, element);
+	zephir_cast_to_string(&_0, element);
 	ZEPHIR_CPY_WRT(element, &_0);
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "get", NULL, 0, element);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Offset to set
  * See [offsetSet](https://php.net/manual/en/arrayaccess.offsetset.php)
  */
-PHP_METHOD(Phalcon_Collection, offsetSet) {
-
+PHP_METHOD(Phalcon_Collection, offsetSet)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -662,27 +718,33 @@ PHP_METHOD(Phalcon_Collection, offsetSet) {
 	ZVAL_UNDEF(&element_sub);
 	ZVAL_UNDEF(&value_sub);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_ZVAL(element)
+		Z_PARAM_ZVAL(value)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &element, &value);
-
 	ZEPHIR_SEPARATE_PARAM(element);
 
 
-	zephir_get_strval(&_0, element);
+	zephir_cast_to_string(&_0, element);
 	ZEPHIR_CPY_WRT(element, &_0);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "set", NULL, 0, element, value);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Offset to unset
  * See [offsetUnset](https://php.net/manual/en/arrayaccess.offsetunset.php)
  */
-PHP_METHOD(Phalcon_Collection, offsetUnset) {
-
+PHP_METHOD(Phalcon_Collection, offsetUnset)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -691,26 +753,31 @@ PHP_METHOD(Phalcon_Collection, offsetUnset) {
 
 	ZVAL_UNDEF(&element_sub);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(element)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &element);
-
 	ZEPHIR_SEPARATE_PARAM(element);
 
 
-	zephir_get_strval(&_0, element);
+	zephir_cast_to_string(&_0, element);
 	ZEPHIR_CPY_WRT(element, &_0);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "remove", NULL, 0, element);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Delete the element from the collection
  */
-PHP_METHOD(Phalcon_Collection, remove) {
-
+PHP_METHOD(Phalcon_Collection, remove)
+{
 	zval lowerKeys, data;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -727,10 +794,16 @@ PHP_METHOD(Phalcon_Collection, remove) {
 	ZVAL_UNDEF(&_2$$4);
 	ZVAL_UNDEF(&lowerKeys);
 	ZVAL_UNDEF(&data);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(element)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &element_param);
-
 	zephir_get_strval(&element, element_param);
 
 
@@ -754,14 +827,13 @@ PHP_METHOD(Phalcon_Collection, remove) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("lowerKeys"), &lowerKeys);
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Set an element in the collection
  */
-PHP_METHOD(Phalcon_Collection, set) {
-
+PHP_METHOD(Phalcon_Collection, set)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *element_param = NULL, *value, value_sub;
@@ -770,31 +842,38 @@ PHP_METHOD(Phalcon_Collection, set) {
 
 	ZVAL_UNDEF(&element);
 	ZVAL_UNDEF(&value_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(element)
+		Z_PARAM_ZVAL(value)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &element_param, &value);
-
 	zephir_get_strval(&element, element_param);
 
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setdata", NULL, 0, &element, value);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * String representation of object
  * See [serialize](https://php.net/manual/en/serializable.serialize.php)
  */
-PHP_METHOD(Phalcon_Collection, serialize) {
-
+PHP_METHOD(Phalcon_Collection, serialize)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -803,19 +882,18 @@ PHP_METHOD(Phalcon_Collection, serialize) {
 	ZEPHIR_RETURN_CALL_FUNCTION("serialize", NULL, 13, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Returns the object in an array format
  */
-PHP_METHOD(Phalcon_Collection, toArray) {
-
+PHP_METHOD(Phalcon_Collection, toArray)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "data");
 
+	RETURN_MEMBER(getThis(), "data");
 }
 
 /**
@@ -828,8 +906,8 @@ PHP_METHOD(Phalcon_Collection, toArray) {
  *
  * See [rfc4627](https://www.ietf.org/rfc/rfc4627.txt)
  */
-PHP_METHOD(Phalcon_Collection, toJson) {
-
+PHP_METHOD(Phalcon_Collection, toJson)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *options_param = NULL, _1, _2;
@@ -838,10 +916,17 @@ PHP_METHOD(Phalcon_Collection, toJson) {
 
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_LONG(options)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &options_param);
-
 	if (!options_param) {
 		options = 79;
 	} else {
@@ -855,15 +940,14 @@ PHP_METHOD(Phalcon_Collection, toJson) {
 	ZEPHIR_RETURN_CALL_CE_STATIC(phalcon_helper_json_ce, "encode", &_0, 14, &_1, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Constructs the object
  * See [unserialize](https://php.net/manual/en/serializable.unserialize.php)
  */
-PHP_METHOD(Phalcon_Collection, unserialize) {
-
+PHP_METHOD(Phalcon_Collection, unserialize)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -873,28 +957,33 @@ PHP_METHOD(Phalcon_Collection, unserialize) {
 	ZVAL_UNDEF(&serialized_sub);
 	ZVAL_UNDEF(&data);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(serialized)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &serialized);
-
 	ZEPHIR_SEPARATE_PARAM(serialized);
 
 
-	zephir_get_strval(&_0, serialized);
+	zephir_cast_to_string(&_0, serialized);
 	ZEPHIR_CPY_WRT(serialized, &_0);
 	ZEPHIR_CALL_FUNCTION(&data, "unserialize", NULL, 15, serialized);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "init", NULL, 0, &data);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Internal method to set data
  */
-PHP_METHOD(Phalcon_Collection, setData) {
-
+PHP_METHOD(Phalcon_Collection, setData)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *element_param = NULL, *value, value_sub, key, _0, _1;
 	zval element;
@@ -905,10 +994,17 @@ PHP_METHOD(Phalcon_Collection, setData) {
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(element)
+		Z_PARAM_ZVAL(value)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &element_param, &value);
-
 	zephir_get_strval(&element, element_param);
 
 
@@ -923,17 +1019,17 @@ PHP_METHOD(Phalcon_Collection, setData) {
 	zephir_update_property_array(this_ptr, SL("data"), &element, value);
 	zephir_update_property_array(this_ptr, SL("lowerKeys"), &key, &element);
 	ZEPHIR_MM_RESTORE();
-
 }
 
-zend_object *zephir_init_properties_Phalcon_Collection(zend_class_entry *class_type TSRMLS_DC) {
-
+zend_object *zephir_init_properties_Phalcon_Collection(zend_class_entry *class_type)
+{
 		zval _0, _2, _1$$3, _3$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_3$$4);
+	
 
 		ZEPHIR_MM_GROW();
 	
@@ -955,6 +1051,5 @@ zend_object *zephir_init_properties_Phalcon_Collection(zend_class_entry *class_t
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

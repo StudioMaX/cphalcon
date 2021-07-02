@@ -51,19 +51,18 @@
  * );
  *```
  */
-ZEPHIR_INIT_CLASS(Phalcon_Paginator_Adapter_NativeArray) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Paginator_Adapter_NativeArray)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Paginator\\Adapter, NativeArray, phalcon, paginator_adapter_nativearray, phalcon_paginator_adapter_abstractadapter_ce, phalcon_paginator_adapter_nativearray_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
  * Returns a slice of the resultset to show in the pagination
  */
-PHP_METHOD(Phalcon_Paginator_Adapter_NativeArray, paginate) {
-
+PHP_METHOD(Phalcon_Paginator_Adapter_NativeArray, paginate)
+{
 	zval _6;
 	double roundedTotal = 0;
 	zval config, items, _0, _1, _2, _3, _4, _5, _7, _8;
@@ -82,6 +81,7 @@ PHP_METHOD(Phalcon_Paginator_Adapter_NativeArray, paginate) {
 	ZVAL_UNDEF(&_7);
 	ZVAL_UNDEF(&_8);
 	ZVAL_UNDEF(&_6);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -151,6 +151,5 @@ PHP_METHOD(Phalcon_Paginator_Adapter_NativeArray, paginate) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getrepository", NULL, 0, &_6);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

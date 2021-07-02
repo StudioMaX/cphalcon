@@ -31,12 +31,11 @@
 /**
  * This interface is used for consumers (write)
  */
-ZEPHIR_INIT_CLASS(Phalcon_Domain_Payload_WriteableInterface) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Domain_Payload_WriteableInterface)
+{
 	ZEPHIR_REGISTER_INTERFACE(Phalcon\\Domain\\Payload, WriteableInterface, phalcon, domain_payload_writeableinterface, phalcon_domain_payload_writeableinterface_method_entry);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -47,7 +46,6 @@ ZEPHIR_INIT_CLASS(Phalcon_Domain_Payload_WriteableInterface) {
  * @return PayloadInterface
  */
 ZEPHIR_DOC_METHOD(Phalcon_Domain_Payload_WriteableInterface, setException);
-
 /**
  * Sets arbitrary extra values produced by the domain layer.
  *
@@ -56,7 +54,6 @@ ZEPHIR_DOC_METHOD(Phalcon_Domain_Payload_WriteableInterface, setException);
  * @return PayloadInterface
  */
 ZEPHIR_DOC_METHOD(Phalcon_Domain_Payload_WriteableInterface, setExtras);
-
 /**
  * Sets the input received by the domain layer.
  *
@@ -65,7 +62,6 @@ ZEPHIR_DOC_METHOD(Phalcon_Domain_Payload_WriteableInterface, setExtras);
  * @return PayloadInterface
  */
 ZEPHIR_DOC_METHOD(Phalcon_Domain_Payload_WriteableInterface, setInput);
-
 /**
  * Sets the messages produced by the domain layer.
  *
@@ -74,7 +70,6 @@ ZEPHIR_DOC_METHOD(Phalcon_Domain_Payload_WriteableInterface, setInput);
  * @return PayloadInterface
  */
 ZEPHIR_DOC_METHOD(Phalcon_Domain_Payload_WriteableInterface, setMessages);
-
 /**
  * Sets the output produced from the domain layer.
  *
@@ -83,7 +78,6 @@ ZEPHIR_DOC_METHOD(Phalcon_Domain_Payload_WriteableInterface, setMessages);
  * @return PayloadInterface
  */
 ZEPHIR_DOC_METHOD(Phalcon_Domain_Payload_WriteableInterface, setOutput);
-
 /**
  * Sets the status of this payload.
  *
@@ -92,4 +86,3 @@ ZEPHIR_DOC_METHOD(Phalcon_Domain_Payload_WriteableInterface, setOutput);
  * @return PayloadInterface
  */
 ZEPHIR_DOC_METHOD(Phalcon_Domain_Payload_WriteableInterface, setStatus);
-

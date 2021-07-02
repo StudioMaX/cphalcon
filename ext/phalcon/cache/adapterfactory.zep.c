@@ -32,24 +32,22 @@
 /**
  * Factory to create Cache adapters
  */
-ZEPHIR_INIT_CLASS(Phalcon_Cache_AdapterFactory) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Cache_AdapterFactory)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Cache, AdapterFactory, phalcon, cache_adapterfactory, phalcon_factory_abstractfactory_ce, phalcon_cache_adapterfactory_method_entry, 0);
 
 	/**
 	 * @var SerializerFactory
 	 */
 	zend_declare_property_null(phalcon_cache_adapterfactory_ce, SL("serializerFactory"), ZEND_ACC_PRIVATE);
-
 	return SUCCESS;
-
 }
 
 /**
  * AdapterFactory constructor.
  */
-PHP_METHOD(Phalcon_Cache_AdapterFactory, __construct) {
-
+PHP_METHOD(Phalcon_Cache_AdapterFactory, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval services;
@@ -59,10 +57,18 @@ PHP_METHOD(Phalcon_Cache_AdapterFactory, __construct) {
 	ZVAL_UNDEF(&factory_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&services);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(factory, phalcon_storage_serializerfactory_ce)
+		Z_PARAM_ARRAY(services)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &factory, &services_param);
-
 	if (!factory) {
 		factory = &factory_sub;
 		factory = &__$null;
@@ -79,7 +85,6 @@ PHP_METHOD(Phalcon_Cache_AdapterFactory, __construct) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "init", NULL, 0, &services);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -106,8 +111,8 @@ PHP_METHOD(Phalcon_Cache_AdapterFactory, __construct) {
  *     'storageDir' => ''
  * ]
  */
-PHP_METHOD(Phalcon_Cache_AdapterFactory, newInstance) {
-
+PHP_METHOD(Phalcon_Cache_AdapterFactory, newInstance)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval options, _0;
@@ -120,10 +125,18 @@ PHP_METHOD(Phalcon_Cache_AdapterFactory, newInstance) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(name)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(options)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &name_param, &options_param);
-
 	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be of the type string"));
 		RETURN_MM_NULL();
@@ -132,7 +145,6 @@ PHP_METHOD(Phalcon_Cache_AdapterFactory, newInstance) {
 		zephir_get_strval(&name, name_param);
 	} else {
 		ZEPHIR_INIT_VAR(&name);
-		ZVAL_EMPTY_STRING(&name);
 	}
 	if (!options_param) {
 		ZEPHIR_INIT_VAR(&options);
@@ -153,15 +165,15 @@ PHP_METHOD(Phalcon_Cache_AdapterFactory, newInstance) {
 	ZEPHIR_LAST_CALL_STATUS = zephir_create_instance_params(return_value, &definition, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Returns the available adapters
  */
-PHP_METHOD(Phalcon_Cache_AdapterFactory, getAdapters) {
-
+PHP_METHOD(Phalcon_Cache_AdapterFactory, getAdapters)
+{
 	zval *this_ptr = getThis();
+
 
 
 	zephir_create_array(return_value, 5, 0);
@@ -171,6 +183,5 @@ PHP_METHOD(Phalcon_Cache_AdapterFactory, getAdapters) {
 	add_assoc_stringl_ex(return_value, SL("redis"), SL("Phalcon\\Cache\\Adapter\\Redis"));
 	add_assoc_stringl_ex(return_value, SL("stream"), SL("Phalcon\\Cache\\Adapter\\Stream"));
 	return;
-
 }
 

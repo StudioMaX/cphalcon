@@ -30,19 +30,18 @@
  *
  * Sanitizes a value to an alpha value
  */
-ZEPHIR_INIT_CLASS(Phalcon_Filter_Sanitize_Alpha) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Filter_Sanitize_Alpha)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Filter\\Sanitize, Alpha, phalcon, filter_sanitize_alpha, phalcon_filter_sanitize_alpha_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
  * @var mixed input The text to sanitize
  */
-PHP_METHOD(Phalcon_Filter_Sanitize_Alpha, __invoke) {
-
+PHP_METHOD(Phalcon_Filter_Sanitize_Alpha, __invoke)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *input, input_sub, _0, _1;
@@ -51,10 +50,16 @@ PHP_METHOD(Phalcon_Filter_Sanitize_Alpha, __invoke) {
 	ZVAL_UNDEF(&input_sub);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(input)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &input);
-
 
 
 	ZEPHIR_INIT_VAR(&_0);
@@ -64,6 +69,5 @@ PHP_METHOD(Phalcon_Filter_Sanitize_Alpha, __invoke) {
 	ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", NULL, 50, &_0, &_1, input);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

@@ -53,8 +53,8 @@
  * $connection->addColumn("robots", null, $column);
  *```
  */
-ZEPHIR_INIT_CLASS(Phalcon_Db_Column) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Db_Column)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Db, Column, phalcon, db_column, phalcon_db_column_method_entry, 0);
 
 	/**
@@ -63,50 +63,42 @@ ZEPHIR_INIT_CLASS(Phalcon_Db_Column) {
 	 * @var string|null
 	 */
 	zend_declare_property_null(phalcon_db_column_ce, SL("after"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * Column is autoIncrement?
 	 *
 	 * @var bool
 	 */
 	zend_declare_property_bool(phalcon_db_column_ce, SL("autoIncrement"), 0, ZEND_ACC_PROTECTED);
-
 	/**
 	 * Bind Type
 	 */
 	zend_declare_property_long(phalcon_db_column_ce, SL("bindType"), 2, ZEND_ACC_PROTECTED);
-
 	/**
 	 * Default column value
 	 */
 	zend_declare_property_null(phalcon_db_column_ce, SL("_default"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * Position is first
 	 *
 	 * @var bool
 	 */
 	zend_declare_property_bool(phalcon_db_column_ce, SL("first"), 0, ZEND_ACC_PROTECTED);
-
 	/**
 	 * The column have some numeric type?
 	 */
 	zend_declare_property_bool(phalcon_db_column_ce, SL("isNumeric"), 0, ZEND_ACC_PROTECTED);
-
 	/**
 	 * Column's name
 	 *
 	 * @var string
 	 */
 	zend_declare_property_null(phalcon_db_column_ce, SL("name"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * Column's comment
 	 *
 	 * @var string
 	 */
 	zend_declare_property_null(phalcon_db_column_ce, SL("comment"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * Column not nullable?
 	 *
@@ -115,54 +107,46 @@ ZEPHIR_INIT_CLASS(Phalcon_Db_Column) {
 	 * @var bool
 	 */
 	zend_declare_property_bool(phalcon_db_column_ce, SL("notNull"), 1, ZEND_ACC_PROTECTED);
-
 	/**
 	 * Column is part of the primary key?
 	 */
 	zend_declare_property_bool(phalcon_db_column_ce, SL("primary"), 0, ZEND_ACC_PROTECTED);
-
 	/**
 	 * Integer column number scale
 	 *
 	 * @var int
 	 */
 	zend_declare_property_long(phalcon_db_column_ce, SL("scale"), 0, ZEND_ACC_PROTECTED);
-
 	/**
 	 * Integer column size
 	 *
 	 * @var int | string
 	 */
 	zend_declare_property_long(phalcon_db_column_ce, SL("size"), 0, ZEND_ACC_PROTECTED);
-
 	/**
 	 * Column data type
 	 *
 	 * @var int
 	 */
 	zend_declare_property_null(phalcon_db_column_ce, SL("type"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * Column data type reference
 	 *
 	 * @var int
 	 */
 	zend_declare_property_long(phalcon_db_column_ce, SL("typeReference"), -1, ZEND_ACC_PROTECTED);
-
 	/**
 	 * Column data type values
 	 *
 	 * @var array|string
 	 */
 	zend_declare_property_null(phalcon_db_column_ce, SL("typeValues"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * Integer column unsigned?
 	 *
 	 * @var bool
 	 */
 	zend_declare_property_bool(phalcon_db_column_ce, SL("unsigned"), 0, ZEND_ACC_PROTECTED);
-
 	/**
 	 * Bind Type Blob
 	 */
@@ -335,110 +319,109 @@ ZEPHIR_INIT_CLASS(Phalcon_Db_Column) {
 
 	zend_class_implements(phalcon_db_column_ce, 1, phalcon_db_columninterface_ce);
 	return SUCCESS;
-
 }
 
 /**
  * Default column value
  */
-PHP_METHOD(Phalcon_Db_Column, getDefault) {
-
+PHP_METHOD(Phalcon_Db_Column, getDefault)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "_default");
 
+	RETURN_MEMBER(getThis(), "_default");
 }
 
 /**
  * Column's name
  */
-PHP_METHOD(Phalcon_Db_Column, getName) {
-
+PHP_METHOD(Phalcon_Db_Column, getName)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "name");
 
+	RETURN_MEMBER(getThis(), "name");
 }
 
 /**
  * Column's comment
  */
-PHP_METHOD(Phalcon_Db_Column, getComment) {
-
+PHP_METHOD(Phalcon_Db_Column, getComment)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "comment");
 
+	RETURN_MEMBER(getThis(), "comment");
 }
 
 /**
  * Integer column number scale
  */
-PHP_METHOD(Phalcon_Db_Column, getScale) {
-
+PHP_METHOD(Phalcon_Db_Column, getScale)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "scale");
 
+	RETURN_MEMBER(getThis(), "scale");
 }
 
 /**
  * Integer column size
  */
-PHP_METHOD(Phalcon_Db_Column, getSize) {
-
+PHP_METHOD(Phalcon_Db_Column, getSize)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "size");
 
+	RETURN_MEMBER(getThis(), "size");
 }
 
 /**
  * Column data type
  */
-PHP_METHOD(Phalcon_Db_Column, getType) {
-
+PHP_METHOD(Phalcon_Db_Column, getType)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "type");
 
+	RETURN_MEMBER(getThis(), "type");
 }
 
 /**
  * Column data type reference
  */
-PHP_METHOD(Phalcon_Db_Column, getTypeReference) {
-
+PHP_METHOD(Phalcon_Db_Column, getTypeReference)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "typeReference");
 
+	RETURN_MEMBER(getThis(), "typeReference");
 }
 
 /**
  * Column data type values
  */
-PHP_METHOD(Phalcon_Db_Column, getTypeValues) {
-
+PHP_METHOD(Phalcon_Db_Column, getTypeValues)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "typeValues");
 
+	RETURN_MEMBER(getThis(), "typeValues");
 }
 
 /**
  * Phalcon\Db\Column constructor
  */
-PHP_METHOD(Phalcon_Db_Column, __construct) {
-
+PHP_METHOD(Phalcon_Db_Column, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval definition;
 	zval *name_param = NULL, *definition_param = NULL, __$true, __$false, type, notNull, primary, size, scale, dunsigned, first, after, bindType, isNumeric, autoIncrement, defaultValue, typeReference, typeValues, comment;
@@ -464,10 +447,17 @@ PHP_METHOD(Phalcon_Db_Column, __construct) {
 	ZVAL_UNDEF(&typeValues);
 	ZVAL_UNDEF(&comment);
 	ZVAL_UNDEF(&definition);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(name)
+		Z_PARAM_ARRAY(definition)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &name_param, &definition_param);
-
 	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be of the type string"));
 		RETURN_MM_NULL();
@@ -476,7 +466,6 @@ PHP_METHOD(Phalcon_Db_Column, __construct) {
 		zephir_get_strval(&name, name_param);
 	} else {
 		ZEPHIR_INIT_VAR(&name);
-		ZVAL_EMPTY_STRING(&name);
 	}
 	ZEPHIR_OBS_COPY_OR_DUP(&definition, definition_param);
 
@@ -569,38 +558,37 @@ PHP_METHOD(Phalcon_Db_Column, __construct) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("comment"), &comment);
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Check whether field absolute to position in table
  */
-PHP_METHOD(Phalcon_Db_Column, getAfterPosition) {
-
+PHP_METHOD(Phalcon_Db_Column, getAfterPosition)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "after");
 
+	RETURN_MEMBER(getThis(), "after");
 }
 
 /**
  * Returns the type of bind handling
  */
-PHP_METHOD(Phalcon_Db_Column, getBindType) {
-
+PHP_METHOD(Phalcon_Db_Column, getBindType)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "bindType");
 
+	RETURN_MEMBER(getThis(), "bindType");
 }
 
 /**
  * Check whether column has default value
  */
-PHP_METHOD(Phalcon_Db_Column, hasDefault) {
-
+PHP_METHOD(Phalcon_Db_Column, hasDefault)
+{
 	zval _0, _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -608,6 +596,7 @@ PHP_METHOD(Phalcon_Db_Column, hasDefault) {
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -618,78 +607,77 @@ PHP_METHOD(Phalcon_Db_Column, hasDefault) {
 	}
 	zephir_read_property(&_1, this_ptr, ZEND_STRL("_default"), PH_NOISY_CC | PH_READONLY);
 	RETURN_MM_BOOL(Z_TYPE_P(&_1) != IS_NULL);
-
 }
 
 /**
  * Auto-Increment
  */
-PHP_METHOD(Phalcon_Db_Column, isAutoIncrement) {
-
+PHP_METHOD(Phalcon_Db_Column, isAutoIncrement)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "autoIncrement");
 
+	RETURN_MEMBER(getThis(), "autoIncrement");
 }
 
 /**
  * Check whether column have first position in table
  */
-PHP_METHOD(Phalcon_Db_Column, isFirst) {
-
+PHP_METHOD(Phalcon_Db_Column, isFirst)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "first");
 
+	RETURN_MEMBER(getThis(), "first");
 }
 
 /**
  * Not null
  */
-PHP_METHOD(Phalcon_Db_Column, isNotNull) {
-
+PHP_METHOD(Phalcon_Db_Column, isNotNull)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "notNull");
 
+	RETURN_MEMBER(getThis(), "notNull");
 }
 
 /**
  * Check whether column have an numeric type
  */
-PHP_METHOD(Phalcon_Db_Column, isNumeric) {
-
+PHP_METHOD(Phalcon_Db_Column, isNumeric)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "isNumeric");
 
+	RETURN_MEMBER(getThis(), "isNumeric");
 }
 
 /**
  * Column is part of the primary key?
  */
-PHP_METHOD(Phalcon_Db_Column, isPrimary) {
-
+PHP_METHOD(Phalcon_Db_Column, isPrimary)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "primary");
 
+	RETURN_MEMBER(getThis(), "primary");
 }
 
 /**
  * Returns true if number column is unsigned
  */
-PHP_METHOD(Phalcon_Db_Column, isUnsigned) {
-
+PHP_METHOD(Phalcon_Db_Column, isUnsigned)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "unsigned");
 
+	RETURN_MEMBER(getThis(), "unsigned");
 }
 

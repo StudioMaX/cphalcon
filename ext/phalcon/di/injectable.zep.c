@@ -59,8 +59,8 @@
  * @property \Phalcon\Session\Bag|\Phalcon\Session\BagInterface $persistent
  * @property \Phalcon\Mvc\View|\Phalcon\Mvc\ViewInterface $view
  */
-ZEPHIR_INIT_CLASS(Phalcon_Di_Injectable) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Di_Injectable)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Di, Injectable, phalcon, di_injectable, phalcon_di_injectable_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	/**
@@ -69,17 +69,15 @@ ZEPHIR_INIT_CLASS(Phalcon_Di_Injectable) {
 	 * @var DiInterface
 	 */
 	zend_declare_property_null(phalcon_di_injectable_ce, SL("container"), ZEND_ACC_PROTECTED);
-
 	zend_class_implements(phalcon_di_injectable_ce, 1, phalcon_di_injectionawareinterface_ce);
 	return SUCCESS;
-
 }
 
 /**
  * Magic method __get
  */
-PHP_METHOD(Phalcon_Di_Injectable, __get) {
-
+PHP_METHOD(Phalcon_Di_Injectable, __get)
+{
 	zval _2$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -96,10 +94,16 @@ PHP_METHOD(Phalcon_Di_Injectable, __get) {
 	ZVAL_UNDEF(&_3$$4);
 	ZVAL_UNDEF(&_4$$4);
 	ZVAL_UNDEF(&_2$$4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(propertyName)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &propertyName_param);
-
 	if (UNEXPECTED(Z_TYPE_P(propertyName_param) != IS_STRING && Z_TYPE_P(propertyName_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'propertyName' must be of the type string"));
 		RETURN_MM_NULL();
@@ -108,7 +112,6 @@ PHP_METHOD(Phalcon_Di_Injectable, __get) {
 		zephir_get_strval(&propertyName, propertyName_param);
 	} else {
 		ZEPHIR_INIT_VAR(&propertyName);
-		ZVAL_EMPTY_STRING(&propertyName);
 	}
 
 
@@ -147,14 +150,13 @@ PHP_METHOD(Phalcon_Di_Injectable, __get) {
 	ZEPHIR_CALL_FUNCTION(NULL, "trigger_error", NULL, 7, &_5);
 	zephir_check_call_status();
 	RETURN_MM_NULL();
-
 }
 
 /**
  * Magic method __isset
  */
-PHP_METHOD(Phalcon_Di_Injectable, __isset) {
-
+PHP_METHOD(Phalcon_Di_Injectable, __isset)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, _0;
@@ -163,10 +165,16 @@ PHP_METHOD(Phalcon_Di_Injectable, __isset) {
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(name)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
-
 	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be of the type string"));
 		RETURN_MM_NULL();
@@ -175,7 +183,6 @@ PHP_METHOD(Phalcon_Di_Injectable, __isset) {
 		zephir_get_strval(&name, name_param);
 	} else {
 		ZEPHIR_INIT_VAR(&name);
-		ZVAL_EMPTY_STRING(&name);
 	}
 
 
@@ -184,14 +191,13 @@ PHP_METHOD(Phalcon_Di_Injectable, __isset) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "has", NULL, 0, &name);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Returns the internal dependency injector
  */
-PHP_METHOD(Phalcon_Di_Injectable, getDI) {
-
+PHP_METHOD(Phalcon_Di_Injectable, getDI)
+{
 	zval container, _0, _2$$4, _3$$4, _5$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -203,6 +209,7 @@ PHP_METHOD(Phalcon_Di_Injectable, getDI) {
 	ZVAL_UNDEF(&_2$$4);
 	ZVAL_UNDEF(&_3$$4);
 	ZVAL_UNDEF(&_5$$4);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -226,24 +233,28 @@ PHP_METHOD(Phalcon_Di_Injectable, getDI) {
 		}
 	}
 	RETURN_CCTOR(&container);
-
 }
 
 /**
  * Sets the dependency injector
  */
-PHP_METHOD(Phalcon_Di_Injectable, setDI) {
-
+PHP_METHOD(Phalcon_Di_Injectable, setDI)
+{
 	zval *container, container_sub;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&container_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(container, phalcon_di_diinterface_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &container);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("container"), container);
-
 }
 

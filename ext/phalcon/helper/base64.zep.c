@@ -34,12 +34,11 @@
  *
  * This class offers quick string base64 functions
  */
-ZEPHIR_INIT_CLASS(Phalcon_Helper_Base64) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Helper_Base64)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Helper, Base64, phalcon, helper_base64, phalcon_helper_base64_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -49,8 +48,8 @@ ZEPHIR_INIT_CLASS(Phalcon_Helper_Base64) {
  *
  * @return string
  */
-PHP_METHOD(Phalcon_Helper_Base64, encodeUrl) {
-
+PHP_METHOD(Phalcon_Helper_Base64, encodeUrl)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *input_param = NULL, _0, _1, _2, _3, _4;
@@ -63,10 +62,16 @@ PHP_METHOD(Phalcon_Helper_Base64, encodeUrl) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(input)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &input_param);
-
 	if (UNEXPECTED(Z_TYPE_P(input_param) != IS_STRING && Z_TYPE_P(input_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'input' must be of the type string"));
 		RETURN_MM_NULL();
@@ -75,7 +80,6 @@ PHP_METHOD(Phalcon_Helper_Base64, encodeUrl) {
 		zephir_get_strval(&input, input_param);
 	} else {
 		ZEPHIR_INIT_VAR(&input);
-		ZVAL_EMPTY_STRING(&input);
 	}
 
 
@@ -94,7 +98,6 @@ PHP_METHOD(Phalcon_Helper_Base64, encodeUrl) {
 	ZEPHIR_INIT_VAR(&_4);
 	zephir_fast_str_replace(&_4, &_1, &_2, &_3);
 	RETURN_CCTOR(&_4);
-
 }
 
 /**
@@ -104,8 +107,8 @@ PHP_METHOD(Phalcon_Helper_Base64, encodeUrl) {
  *
  * @return string
  */
-PHP_METHOD(Phalcon_Helper_Base64, decodeUrl) {
-
+PHP_METHOD(Phalcon_Helper_Base64, decodeUrl)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS, remainder = 0;
 	zval *input_param = NULL, data, _3, _4, _5, _0$$3, _1$$3, _2$$3;
@@ -120,10 +123,16 @@ PHP_METHOD(Phalcon_Helper_Base64, decodeUrl) {
 	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(input)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &input_param);
-
 	if (UNEXPECTED(Z_TYPE_P(input_param) != IS_STRING && Z_TYPE_P(input_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'input' must be of the type string"));
 		RETURN_MM_NULL();
@@ -132,7 +141,6 @@ PHP_METHOD(Phalcon_Helper_Base64, decodeUrl) {
 		zephir_get_strval(&input, input_param);
 	} else {
 		ZEPHIR_INIT_VAR(&input);
-		ZVAL_EMPTY_STRING(&input);
 	}
 
 
@@ -158,6 +166,5 @@ PHP_METHOD(Phalcon_Helper_Base64, decodeUrl) {
 		ZVAL_STRING(&data, "");
 	}
 	RETURN_CCTOR(&data);
-
 }
 

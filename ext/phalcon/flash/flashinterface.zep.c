@@ -25,12 +25,11 @@
  *
  * Interface for Phalcon\Flash classes
  */
-ZEPHIR_INIT_CLASS(Phalcon_Flash_FlashInterface) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Flash_FlashInterface)
+{
 	ZEPHIR_REGISTER_INTERFACE(Phalcon\\Flash, FlashInterface, phalcon, flash_flashinterface, phalcon_flash_flashinterface_method_entry);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -39,32 +38,27 @@ ZEPHIR_INIT_CLASS(Phalcon_Flash_FlashInterface) {
  * @return null|string|void
  */
 ZEPHIR_DOC_METHOD(Phalcon_Flash_FlashInterface, error);
-
 /**
  * Outputs a message
  *
  * @return null|string|void
  */
 ZEPHIR_DOC_METHOD(Phalcon_Flash_FlashInterface, message);
-
 /**
  * Shows a HTML notice/information message
  *
  * @return null|string|void
  */
 ZEPHIR_DOC_METHOD(Phalcon_Flash_FlashInterface, notice);
-
 /**
  * Shows a HTML success message
  *
  * @return null|string|void
  */
 ZEPHIR_DOC_METHOD(Phalcon_Flash_FlashInterface, success);
-
 /**
  * Shows a HTML warning message
  *
  * @return null|string|void
  */
 ZEPHIR_DOC_METHOD(Phalcon_Flash_FlashInterface, warning);
-

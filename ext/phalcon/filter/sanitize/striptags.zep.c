@@ -33,19 +33,18 @@
  *
  * Sanitizes a value striptags
  */
-ZEPHIR_INIT_CLASS(Phalcon_Filter_Sanitize_Striptags) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Filter_Sanitize_Striptags)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Filter\\Sanitize, Striptags, phalcon, filter_sanitize_striptags, phalcon_filter_sanitize_striptags_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
  * @var string input The text to sanitize
  */
-PHP_METHOD(Phalcon_Filter_Sanitize_Striptags, __invoke) {
-
+PHP_METHOD(Phalcon_Filter_Sanitize_Striptags, __invoke)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *input_param = NULL;
@@ -53,10 +52,16 @@ PHP_METHOD(Phalcon_Filter_Sanitize_Striptags, __invoke) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&input);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(input)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &input_param);
-
 	if (UNEXPECTED(Z_TYPE_P(input_param) != IS_STRING && Z_TYPE_P(input_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'input' must be of the type string"));
 		RETURN_MM_NULL();
@@ -65,13 +70,11 @@ PHP_METHOD(Phalcon_Filter_Sanitize_Striptags, __invoke) {
 		zephir_get_strval(&input, input_param);
 	} else {
 		ZEPHIR_INIT_VAR(&input);
-		ZVAL_EMPTY_STRING(&input);
 	}
 
 
 	ZEPHIR_RETURN_CALL_FUNCTION("strip_tags", NULL, 261, &input);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

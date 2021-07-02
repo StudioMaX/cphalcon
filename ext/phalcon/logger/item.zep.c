@@ -31,8 +31,8 @@
  * Represents each item in a logging transaction
  *
  */
-ZEPHIR_INIT_CLASS(Phalcon_Logger_Item) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Logger_Item)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Logger, Item, phalcon, logger_item, phalcon_logger_item_method_entry, 0);
 
 	/**
@@ -41,105 +41,99 @@ ZEPHIR_INIT_CLASS(Phalcon_Logger_Item) {
 	 * @var mixed
 	 */
 	zend_declare_property_null(phalcon_logger_item_ce, SL("context"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * Log message
 	 *
 	 * @var string
 	 */
 	zend_declare_property_null(phalcon_logger_item_ce, SL("message"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * Log message
 	 *
 	 * @var string
 	 */
 	zend_declare_property_null(phalcon_logger_item_ce, SL("name"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * Log timestamp
 	 *
 	 * @var integer
 	 */
 	zend_declare_property_null(phalcon_logger_item_ce, SL("time"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * Log type
 	 *
 	 * @var integer
 	 */
 	zend_declare_property_null(phalcon_logger_item_ce, SL("type"), ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
 /**
  * Log Context
  */
-PHP_METHOD(Phalcon_Logger_Item, getContext) {
-
+PHP_METHOD(Phalcon_Logger_Item, getContext)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "context");
-
 }
 
 /**
  * Log message
  */
-PHP_METHOD(Phalcon_Logger_Item, getMessage) {
-
+PHP_METHOD(Phalcon_Logger_Item, getMessage)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "message");
-
 }
 
 /**
  * Log message
  */
-PHP_METHOD(Phalcon_Logger_Item, getName) {
-
+PHP_METHOD(Phalcon_Logger_Item, getName)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "name");
 
+	RETURN_MEMBER(getThis(), "name");
 }
 
 /**
  * Log timestamp
  */
-PHP_METHOD(Phalcon_Logger_Item, getTime) {
-
+PHP_METHOD(Phalcon_Logger_Item, getTime)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "time");
 
+	RETURN_MEMBER(getThis(), "time");
 }
 
 /**
  * Log type
  */
-PHP_METHOD(Phalcon_Logger_Item, getType) {
-
+PHP_METHOD(Phalcon_Logger_Item, getType)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "type");
 
+	RETURN_MEMBER(getThis(), "type");
 }
 
 /**
  * Phalcon\Logger\Item constructor
  * @todo Remove the time or change the signature to an array
  */
-PHP_METHOD(Phalcon_Logger_Item, __construct) {
-
+PHP_METHOD(Phalcon_Logger_Item, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long type, time;
 	zval *message_param = NULL, *name_param = NULL, *type_param = NULL, *time_param = NULL, *context = NULL, context_sub, _0;
@@ -150,10 +144,21 @@ PHP_METHOD(Phalcon_Logger_Item, __construct) {
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&context_sub);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(3, 5)
+		Z_PARAM_STR(message)
+		Z_PARAM_STR(name)
+		Z_PARAM_LONG(type)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_LONG(time)
+		Z_PARAM_ZVAL(context)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 2, &message_param, &name_param, &type_param, &time_param, &context);
-
 	zephir_get_strval(&message, message_param);
 	zephir_get_strval(&name, name_param);
 	type = zephir_get_intval(type_param);
@@ -181,6 +186,5 @@ PHP_METHOD(Phalcon_Logger_Item, __construct) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("context"), context);
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 

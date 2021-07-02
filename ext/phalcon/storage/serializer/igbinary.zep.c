@@ -26,19 +26,18 @@
  * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
-ZEPHIR_INIT_CLASS(Phalcon_Storage_Serializer_Igbinary) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Storage_Serializer_Igbinary)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Storage\\Serializer, Igbinary, phalcon, storage_serializer_igbinary, phalcon_storage_serializer_abstractserializer_ce, phalcon_storage_serializer_igbinary_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
  * Serializes data
  */
-PHP_METHOD(Phalcon_Storage_Serializer_Igbinary, serialize) {
-
+PHP_METHOD(Phalcon_Storage_Serializer_Igbinary, serialize)
+{
 	zval _0, _1, _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -47,6 +46,7 @@ PHP_METHOD(Phalcon_Storage_Serializer_Igbinary, serialize) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -60,14 +60,13 @@ PHP_METHOD(Phalcon_Storage_Serializer_Igbinary, serialize) {
 	ZEPHIR_RETURN_CALL_FUNCTION("igbinary_serialize", NULL, 0, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Unserializes data
  */
-PHP_METHOD(Phalcon_Storage_Serializer_Igbinary, unserialize) {
-
+PHP_METHOD(Phalcon_Storage_Serializer_Igbinary, unserialize)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data, data_sub, __$false, __$null, _0, _1, _2;
@@ -79,10 +78,16 @@ PHP_METHOD(Phalcon_Storage_Serializer_Igbinary, unserialize) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(data)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &data);
-
 
 
 	ZEPHIR_GLOBAL(warning).enable = zend_is_true(&__$false);
@@ -101,6 +106,5 @@ PHP_METHOD(Phalcon_Storage_Serializer_Igbinary, unserialize) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("data"), &__$null);
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 

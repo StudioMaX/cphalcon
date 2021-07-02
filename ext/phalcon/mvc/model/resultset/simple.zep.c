@@ -35,21 +35,17 @@
  * Simple resultsets only contains a complete objects
  * This class builds every complete object as it is required
  */
-ZEPHIR_INIT_CLASS(Phalcon_Mvc_Model_Resultset_Simple) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Mvc_Model_Resultset_Simple)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Mvc\\Model\\Resultset, Simple, phalcon, mvc_model_resultset_simple, phalcon_mvc_model_resultset_ce, phalcon_mvc_model_resultset_simple_method_entry, 0);
 
 	zend_declare_property_null(phalcon_mvc_model_resultset_simple_ce, SL("columnMap"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(phalcon_mvc_model_resultset_simple_ce, SL("model"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var bool
 	 */
 	zend_declare_property_bool(phalcon_mvc_model_resultset_simple_ce, SL("keepSnapshots"), 0, ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
 /**
@@ -58,8 +54,8 @@ ZEPHIR_INIT_CLASS(Phalcon_Mvc_Model_Resultset_Simple) {
  * @param array                                             columnMap
  * @param \Phalcon\Mvc\ModelInterface|Phalcon\Mvc\Model\Row model
  */
-PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, __construct) {
-
+PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -74,10 +70,21 @@ PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, __construct) {
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_BOOL(&__$false, 0);
 	ZVAL_NULL(&__$null);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(3, 5)
+		Z_PARAM_ZVAL(columnMap)
+		Z_PARAM_ZVAL(model)
+		Z_PARAM_ZVAL(result)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(cache, phalcon_cache_adapter_adapterinterface_ce)
+		Z_PARAM_BOOL_OR_NULL(keepSnapshots, is_null_true)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 2, &columnMap, &model, &result, &cache, &keepSnapshots_param);
-
 	if (!cache) {
 		cache = &cache_sub;
 		cache = &__$null;
@@ -99,14 +106,13 @@ PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, __construct) {
 	ZEPHIR_CALL_PARENT(NULL, phalcon_mvc_model_resultset_simple_ce, getThis(), "__construct", &_0, 0, result, cache);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Returns current row in the resultset
  */
-PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, current) {
-
+PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, current)
+{
 	zend_class_entry *_6$$6;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_7 = NULL, *_11 = NULL;
@@ -130,6 +136,7 @@ PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, current) {
 	ZVAL_UNDEF(&_8$$9);
 	ZVAL_UNDEF(&_9$$9);
 	ZVAL_UNDEF(&_10$$9);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -187,7 +194,6 @@ PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, current) {
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("activeRow"), &activeRow);
 	RETURN_CCTOR(&activeRow);
-
 }
 
 /**
@@ -196,8 +202,8 @@ PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, current) {
  * Export the resultset to an array couldn't be faster with a large number
  * of records
  */
-PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, toArray) {
-
+PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, toArray)
+{
 	zend_string *_9$$8, *_22$$17;
 	zend_ulong _8$$8, _21$$17;
 	zval renamedRecords, renamed;
@@ -240,10 +246,17 @@ PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, toArray) {
 	ZVAL_UNDEF(&_30$$25);
 	ZVAL_UNDEF(&renamedRecords);
 	ZVAL_UNDEF(&renamed);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(renameColumns)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &renameColumns_param);
-
 	if (!renameColumns_param) {
 		renameColumns = 1;
 	} else {
@@ -486,14 +499,13 @@ PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, toArray) {
 		RETURN_CTOR(&renamedRecords);
 	}
 	RETURN_CCTOR(&records);
-
 }
 
 /**
  * Serializing a resultset will dump all related rows into a big array
  */
-PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, serialize) {
-
+PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, serialize)
+{
 	zval data;
 	zval container, serializer, _1, _2, _3, _4, _5$$4, _6$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -510,6 +522,7 @@ PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, serialize) {
 	ZVAL_UNDEF(&_5$$4);
 	ZVAL_UNDEF(&_6$$4);
 	ZVAL_UNDEF(&data);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -559,15 +572,14 @@ PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, serialize) {
 	ZEPHIR_RETURN_CALL_FUNCTION("serialize", NULL, 13, &data);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Unserializing a resultset will allow to only works on the rows present in
  * the saved state
  */
-PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, unserialize) {
-
+PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, unserialize)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -590,10 +602,16 @@ PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, unserialize) {
 	ZVAL_UNDEF(&_11);
 	ZVAL_UNDEF(&_3$$4);
 	ZVAL_UNDEF(&_4$$4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(data)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &data);
-
 
 
 	ZEPHIR_CALL_CE_STATIC(&container, phalcon_di_ce, "getdefault", &_0, 0);
@@ -642,6 +660,5 @@ PHP_METHOD(Phalcon_Mvc_Model_Resultset_Simple, unserialize) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("keepSnapshots"), &keepSnapshots);
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 

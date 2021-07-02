@@ -58,63 +58,52 @@
  * $adapter = new \Example\Adapter\Some();
  *```
  */
-ZEPHIR_INIT_CLASS(Phalcon_Loader) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Loader)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon, Loader, phalcon, loader, phalcon_loader_method_entry, 0);
 
 	zend_declare_property_null(phalcon_loader_ce, SL("checkedPath"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var array
 	 */
 	zend_declare_property_null(phalcon_loader_ce, SL("classes"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var array
 	 */
 	zend_declare_property_null(phalcon_loader_ce, SL("directories"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(phalcon_loader_ce, SL("eventsManager"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var array
 	 */
 	zend_declare_property_null(phalcon_loader_ce, SL("extensions"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(phalcon_loader_ce, SL("fileCheckingCallback"), "is_file", ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var array
 	 */
 	zend_declare_property_null(phalcon_loader_ce, SL("files"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var bool
 	 */
 	zend_declare_property_null(phalcon_loader_ce, SL("foundPath"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var array
 	 */
 	zend_declare_property_null(phalcon_loader_ce, SL("namespaces"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var bool
 	 */
 	zend_declare_property_bool(phalcon_loader_ce, SL("registered"), 0, ZEND_ACC_PROTECTED);
-
 	phalcon_loader_ce->create_object = zephir_init_properties_Phalcon_Loader;
 
 	zend_class_implements(phalcon_loader_ce, 1, phalcon_events_eventsawareinterface_ce);
 	return SUCCESS;
-
 }
 
 /**
  * Autoloads the registered classes
  */
-PHP_METHOD(Phalcon_Loader, autoLoad) {
-
+PHP_METHOD(Phalcon_Loader, autoLoad)
+{
 	zend_string *_6;
 	zend_ulong _5;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -202,10 +191,16 @@ PHP_METHOD(Phalcon_Loader, autoLoad) {
 	ZVAL_UNDEF(&_95$$62);
 	ZVAL_UNDEF(&_96$$65);
 	ZVAL_UNDEF(&_98$$66);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(className)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &className_param);
-
 	if (UNEXPECTED(Z_TYPE_P(className_param) != IS_STRING && Z_TYPE_P(className_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'className' must be of the type string"));
 		RETURN_MM_NULL();
@@ -214,7 +209,6 @@ PHP_METHOD(Phalcon_Loader, autoLoad) {
 		zephir_get_strval(&className, className_param);
 	} else {
 		ZEPHIR_INIT_VAR(&className);
-		ZVAL_EMPTY_STRING(&className);
 	}
 
 
@@ -842,110 +836,109 @@ PHP_METHOD(Phalcon_Loader, autoLoad) {
 		zephir_check_call_status();
 	}
 	RETURN_MM_BOOL(0);
-
 }
 
 /**
  * Get the path the loader is checking for a path
  */
-PHP_METHOD(Phalcon_Loader, getCheckedPath) {
-
+PHP_METHOD(Phalcon_Loader, getCheckedPath)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "checkedPath");
 
+	RETURN_MEMBER(getThis(), "checkedPath");
 }
 
 /**
  * Returns the class-map currently registered in the autoloader
  */
-PHP_METHOD(Phalcon_Loader, getClasses) {
-
+PHP_METHOD(Phalcon_Loader, getClasses)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "classes");
 
+	RETURN_MEMBER(getThis(), "classes");
 }
 
 /**
  * Returns the directories currently registered in the autoloader
  */
-PHP_METHOD(Phalcon_Loader, getDirs) {
-
+PHP_METHOD(Phalcon_Loader, getDirs)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "directories");
 
+	RETURN_MEMBER(getThis(), "directories");
 }
 
 /**
  * Returns the internal event manager
  */
-PHP_METHOD(Phalcon_Loader, getEventsManager) {
-
+PHP_METHOD(Phalcon_Loader, getEventsManager)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "eventsManager");
 
+	RETURN_MEMBER(getThis(), "eventsManager");
 }
 
 /**
  * Returns the file extensions registered in the loader
  */
-PHP_METHOD(Phalcon_Loader, getExtensions) {
-
+PHP_METHOD(Phalcon_Loader, getExtensions)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "extensions");
 
+	RETURN_MEMBER(getThis(), "extensions");
 }
 
 /**
  * Returns the files currently registered in the autoloader
  */
-PHP_METHOD(Phalcon_Loader, getFiles) {
-
+PHP_METHOD(Phalcon_Loader, getFiles)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "files");
 
+	RETURN_MEMBER(getThis(), "files");
 }
 
 /**
  * Get the path when a class was found
  */
-PHP_METHOD(Phalcon_Loader, getFoundPath) {
-
+PHP_METHOD(Phalcon_Loader, getFoundPath)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "foundPath");
 
+	RETURN_MEMBER(getThis(), "foundPath");
 }
 
 /**
  * Returns the namespaces currently registered in the autoloader
  */
-PHP_METHOD(Phalcon_Loader, getNamespaces) {
-
+PHP_METHOD(Phalcon_Loader, getNamespaces)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "namespaces");
 
+	RETURN_MEMBER(getThis(), "namespaces");
 }
 
 /**
  * Checks if a file exists and then adds the file by doing virtual require
  */
-PHP_METHOD(Phalcon_Loader, loadFiles) {
-
+PHP_METHOD(Phalcon_Loader, loadFiles)
+{
 	zval filePath, fileCheckingCallback, _0, *_1, _2, _3$$3, _6$$3, _4$$4, _5$$4, _8$$5, _9$$6, _10$$6, _11$$7, _14$$7, _12$$8, _13$$8, _15$$9, _16$$10, _17$$10;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_7 = NULL;
@@ -970,6 +963,7 @@ PHP_METHOD(Phalcon_Loader, loadFiles) {
 	ZVAL_UNDEF(&_15$$9);
 	ZVAL_UNDEF(&_16$$10);
 	ZVAL_UNDEF(&_17$$10);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -1054,14 +1048,13 @@ PHP_METHOD(Phalcon_Loader, loadFiles) {
 	}
 	ZEPHIR_INIT_NVAR(&filePath);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Register the autoload method
  */
-PHP_METHOD(Phalcon_Loader, register) {
-
+PHP_METHOD(Phalcon_Loader, register)
+{
 	zval _1$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -1075,10 +1068,17 @@ PHP_METHOD(Phalcon_Loader, register) {
 	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_1$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(prepend)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &prepend_param);
-
 	if (!prepend_param) {
 		prepend = 0;
 	} else {
@@ -1106,14 +1106,13 @@ PHP_METHOD(Phalcon_Loader, register) {
 		}
 	}
 	RETURN_THIS();
-
 }
 
 /**
  * Register classes and their locations
  */
-PHP_METHOD(Phalcon_Loader, registerClasses) {
-
+PHP_METHOD(Phalcon_Loader, registerClasses)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_bool merge;
 	zval *classes_param = NULL, *merge_param = NULL, _0$$3, _1$$3;
@@ -1123,10 +1122,18 @@ PHP_METHOD(Phalcon_Loader, registerClasses) {
 	ZVAL_UNDEF(&classes);
 	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&_1$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ARRAY(classes)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(merge)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &classes_param, &merge_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&classes, classes_param);
 	if (!merge_param) {
 		merge = 0;
@@ -1144,14 +1151,13 @@ PHP_METHOD(Phalcon_Loader, registerClasses) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("classes"), &classes);
 	}
 	RETURN_THIS();
-
 }
 
 /**
  * Register directories in which "not found" classes could be found
  */
-PHP_METHOD(Phalcon_Loader, registerDirs) {
-
+PHP_METHOD(Phalcon_Loader, registerDirs)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_bool merge;
 	zval *directories_param = NULL, *merge_param = NULL, _0$$3, _1$$3;
@@ -1161,10 +1167,18 @@ PHP_METHOD(Phalcon_Loader, registerDirs) {
 	ZVAL_UNDEF(&directories);
 	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&_1$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ARRAY(directories)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(merge)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &directories_param, &merge_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&directories, directories_param);
 	if (!merge_param) {
 		merge = 0;
@@ -1182,15 +1196,14 @@ PHP_METHOD(Phalcon_Loader, registerDirs) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("directories"), &directories);
 	}
 	RETURN_THIS();
-
 }
 
 /**
  * Registers files that are "non-classes" hence need a "require". This is
  * very useful for including files that only have functions
  */
-PHP_METHOD(Phalcon_Loader, registerFiles) {
-
+PHP_METHOD(Phalcon_Loader, registerFiles)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_bool merge;
 	zval *files_param = NULL, *merge_param = NULL, _0$$3, _1$$3;
@@ -1200,10 +1213,18 @@ PHP_METHOD(Phalcon_Loader, registerFiles) {
 	ZVAL_UNDEF(&files);
 	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&_1$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ARRAY(files)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(merge)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &files_param, &merge_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&files, files_param);
 	if (!merge_param) {
 		merge = 0;
@@ -1221,14 +1242,13 @@ PHP_METHOD(Phalcon_Loader, registerFiles) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("files"), &files);
 	}
 	RETURN_THIS();
-
 }
 
 /**
  * Register namespaces and their related directories
  */
-PHP_METHOD(Phalcon_Loader, registerNamespaces) {
-
+PHP_METHOD(Phalcon_Loader, registerNamespaces)
+{
 	zend_string *_3$$3;
 	zend_ulong _2$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -1253,10 +1273,18 @@ PHP_METHOD(Phalcon_Loader, registerNamespaces) {
 	ZVAL_UNDEF(&_12$$6);
 	ZVAL_UNDEF(&_13$$6);
 	ZVAL_UNDEF(&_10$$7);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ARRAY(namespaces)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(merge)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &namespaces_param, &merge_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&namespaces, namespaces_param);
 	if (!merge_param) {
 		merge = 0;
@@ -1326,49 +1354,58 @@ PHP_METHOD(Phalcon_Loader, registerNamespaces) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("namespaces"), &preparedNamespaces);
 	}
 	RETURN_THIS();
-
 }
 
 /**
  * Sets the events manager
  */
-PHP_METHOD(Phalcon_Loader, setEventsManager) {
-
+PHP_METHOD(Phalcon_Loader, setEventsManager)
+{
 	zval *eventsManager, eventsManager_sub;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&eventsManager_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(eventsManager, phalcon_events_managerinterface_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &eventsManager);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("eventsManager"), eventsManager);
-
 }
 
 /**
  * Sets an array of file extensions that the loader must try in each attempt
  * to locate the file
  */
-PHP_METHOD(Phalcon_Loader, setExtensions) {
-
+PHP_METHOD(Phalcon_Loader, setExtensions)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *extensions_param = NULL;
 	zval extensions;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&extensions);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ARRAY(extensions)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &extensions_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&extensions, extensions_param);
 
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("extensions"), &extensions);
 	RETURN_THIS();
-
 }
 
 /**
@@ -1386,8 +1423,8 @@ PHP_METHOD(Phalcon_Loader, setExtensions) {
  * $loader->setFileCheckingCallback(null);
  * ```
  */
-PHP_METHOD(Phalcon_Loader, setFileCheckingCallback) {
-
+PHP_METHOD(Phalcon_Loader, setFileCheckingCallback)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *callback = NULL, callback_sub, __$null, _0$$4;
 	zval *this_ptr = getThis();
@@ -1395,10 +1432,17 @@ PHP_METHOD(Phalcon_Loader, setFileCheckingCallback) {
 	ZVAL_UNDEF(&callback_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0$$4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(callback)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &callback);
-
 	if (!callback) {
 		callback = &callback_sub;
 		callback = &__$null;
@@ -1417,14 +1461,13 @@ PHP_METHOD(Phalcon_Loader, setFileCheckingCallback) {
 		return;
 	}
 	RETURN_THIS();
-
 }
 
 /**
  * Unregister the autoload method
  */
-PHP_METHOD(Phalcon_Loader, unregister) {
-
+PHP_METHOD(Phalcon_Loader, unregister)
+{
 	zval _1$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval __$true, __$false, _0, _2$$3;
@@ -1436,6 +1479,7 @@ PHP_METHOD(Phalcon_Loader, unregister) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&_1$$3);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -1456,11 +1500,10 @@ PHP_METHOD(Phalcon_Loader, unregister) {
 		}
 	}
 	RETURN_THIS();
-
 }
 
-PHP_METHOD(Phalcon_Loader, prepareNamespace) {
-
+PHP_METHOD(Phalcon_Loader, prepareNamespace)
+{
 	zend_string *_3;
 	zend_ulong _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -1476,10 +1519,16 @@ PHP_METHOD(Phalcon_Loader, prepareNamespace) {
 	ZVAL_UNDEF(&prepared);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_4$$7);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ARRAY(namespaceName)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &namespaceName_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&namespaceName, namespaceName_param);
 
 
@@ -1535,11 +1584,10 @@ PHP_METHOD(Phalcon_Loader, prepareNamespace) {
 	ZEPHIR_INIT_NVAR(&paths);
 	ZEPHIR_INIT_NVAR(&name);
 	RETURN_CCTOR(&prepared);
-
 }
 
-zend_object *zephir_init_properties_Phalcon_Loader(zend_class_entry *class_type TSRMLS_DC) {
-
+zend_object *zephir_init_properties_Phalcon_Loader(zend_class_entry *class_type)
+{
 		zval _5$$5;
 	zval _0, _2, _4, _7, _9, _1$$3, _3$$4, _6$$5, _8$$6, _10$$7;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -1554,6 +1602,7 @@ zend_object *zephir_init_properties_Phalcon_Loader(zend_class_entry *class_type 
 	ZVAL_UNDEF(&_8$$6);
 	ZVAL_UNDEF(&_10$$7);
 	ZVAL_UNDEF(&_5$$5);
+	
 
 		ZEPHIR_MM_GROW();
 	
@@ -1596,6 +1645,5 @@ zend_object *zephir_init_properties_Phalcon_Loader(zend_class_entry *class_type 
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

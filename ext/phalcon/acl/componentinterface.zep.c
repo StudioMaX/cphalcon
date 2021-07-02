@@ -23,26 +23,22 @@
 /**
  * Interface for Phalcon\Acl\Component
  */
-ZEPHIR_INIT_CLASS(Phalcon_Acl_ComponentInterface) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Acl_ComponentInterface)
+{
 	ZEPHIR_REGISTER_INTERFACE(Phalcon\\Acl, ComponentInterface, phalcon, acl_componentinterface, phalcon_acl_componentinterface_method_entry);
 
 	return SUCCESS;
-
 }
 
 /**
  * Returns component description
  */
 ZEPHIR_DOC_METHOD(Phalcon_Acl_ComponentInterface, getDescription);
-
 /**
  * Returns the component name
  */
 ZEPHIR_DOC_METHOD(Phalcon_Acl_ComponentInterface, getName);
-
 /**
  * Magic method __toString
  */
 ZEPHIR_DOC_METHOD(Phalcon_Acl_ComponentInterface, __toString);
-

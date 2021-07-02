@@ -35,33 +35,28 @@
  * @property array  rels
  * @property bool   templated
  */
-ZEPHIR_INIT_CLASS(Phalcon_Html_Link_Link) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Html_Link_Link)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Html\\Link, Link, phalcon, html_link_link, phalcon_html_link_link_method_entry, 0);
 
 	/**
 	 * @var Collection|CollectionInterface
 	 */
 	zend_declare_property_null(phalcon_html_link_link_ce, SL("attributes"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var string
 	 */
 	zend_declare_property_string(phalcon_html_link_link_ce, SL("href"), "", ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var Collection|CollectionInterface
 	 */
 	zend_declare_property_null(phalcon_html_link_link_ce, SL("rels"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var bool
 	 */
 	zend_declare_property_bool(phalcon_html_link_link_ce, SL("templated"), 0, ZEND_ACC_PROTECTED);
-
 	zend_class_implements(phalcon_html_link_link_ce, 1, zephir_get_internal_ce(SL("psr\\link\\linkinterface")));
 	return SUCCESS;
-
 }
 
 /**
@@ -70,8 +65,8 @@ ZEPHIR_INIT_CLASS(Phalcon_Html_Link_Link) {
  * @param string rel
  * @param string href
  */
-PHP_METHOD(Phalcon_Html_Link_Link, __construct) {
-
+PHP_METHOD(Phalcon_Html_Link_Link, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval attributes;
@@ -87,10 +82,19 @@ PHP_METHOD(Phalcon_Html_Link_Link, __construct) {
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&attributes);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 3)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(rel)
+		Z_PARAM_STR(href)
+		Z_PARAM_ARRAY(attributes)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 3, &rel_param, &href_param, &attributes_param);
-
 	if (!rel_param) {
 		ZEPHIR_INIT_VAR(&rel);
 		ZVAL_STRING(&rel, "");
@@ -132,7 +136,6 @@ PHP_METHOD(Phalcon_Html_Link_Link, __construct) {
 		zephir_check_call_status();
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -143,8 +146,8 @@ PHP_METHOD(Phalcon_Html_Link_Link, __construct) {
  *  is either a PHP primitive or an array of PHP strings. If no values are
  *  found an empty array MUST be returned.
  */
-PHP_METHOD(Phalcon_Html_Link_Link, getAttributes) {
-
+PHP_METHOD(Phalcon_Html_Link_Link, getAttributes)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -152,13 +155,13 @@ PHP_METHOD(Phalcon_Html_Link_Link, getAttributes) {
 
 	ZVAL_UNDEF(&_0);
 
+
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("attributes"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "toarray", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -174,13 +177,13 @@ PHP_METHOD(Phalcon_Html_Link_Link, getAttributes) {
  *
  * @return string
  */
-PHP_METHOD(Phalcon_Html_Link_Link, getHref) {
-
+PHP_METHOD(Phalcon_Html_Link_Link, getHref)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "href");
 
+	RETURN_MEMBER(getThis(), "href");
 }
 
 /**
@@ -191,8 +194,8 @@ PHP_METHOD(Phalcon_Html_Link_Link, getHref) {
  *
  * @return string[]
  */
-PHP_METHOD(Phalcon_Html_Link_Link, getRels) {
-
+PHP_METHOD(Phalcon_Html_Link_Link, getRels)
+{
 	zval _0, _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -201,6 +204,7 @@ PHP_METHOD(Phalcon_Html_Link_Link, getRels) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 
+
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("rels"), PH_NOISY_CC | PH_READONLY);
@@ -208,7 +212,6 @@ PHP_METHOD(Phalcon_Html_Link_Link, getRels) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "getkeys", NULL, 0, &_1);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -216,13 +219,13 @@ PHP_METHOD(Phalcon_Html_Link_Link, getRels) {
  *
  * @return bool True if this link object is templated, False otherwise.
  */
-PHP_METHOD(Phalcon_Html_Link_Link, isTemplated) {
-
+PHP_METHOD(Phalcon_Html_Link_Link, isTemplated)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "templated");
 
+	RETURN_MEMBER(getThis(), "templated");
 }
 
 /**
@@ -234,8 +237,8 @@ PHP_METHOD(Phalcon_Html_Link_Link, isTemplated) {
  *
  * @return bool
  */
-PHP_METHOD(Phalcon_Html_Link_Link, hrefIsTemplated) {
-
+PHP_METHOD(Phalcon_Html_Link_Link, hrefIsTemplated)
+{
 	zend_bool _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -248,10 +251,16 @@ PHP_METHOD(Phalcon_Html_Link_Link, hrefIsTemplated) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(href)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &href_param);
-
 	zephir_get_strval(&href, href_param);
 
 
@@ -268,6 +277,5 @@ PHP_METHOD(Phalcon_Html_Link_Link, hrefIsTemplated) {
 		_2 = !ZEPHIR_IS_FALSE_IDENTICAL(&_4);
 	}
 	RETURN_MM_BOOL(_2);
-
 }
 

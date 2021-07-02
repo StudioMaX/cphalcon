@@ -48,29 +48,26 @@
  * $connection = new Mysql($config);
  *```
  */
-ZEPHIR_INIT_CLASS(Phalcon_Db_Adapter_Pdo_Mysql) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Db_Adapter_Pdo_Mysql)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Db\\Adapter\\Pdo, Mysql, phalcon, db_adapter_pdo_mysql, phalcon_db_adapter_pdo_abstractpdo_ce, phalcon_db_adapter_pdo_mysql_method_entry, 0);
 
 	/**
 	 * @var string
 	 */
 	zend_declare_property_string(phalcon_db_adapter_pdo_mysql_ce, SL("dialectType"), "mysql", ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var string
 	 */
 	zend_declare_property_string(phalcon_db_adapter_pdo_mysql_ce, SL("type"), "mysql", ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
 /**
  * Adds a foreign key to a table
  */
-PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, addForeignKey) {
-
+PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, addForeignKey)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *tableName_param = NULL, *schemaName_param = NULL, *reference, reference_sub, foreignKeyCheck, _0, _1, _2, _3, _4;
@@ -86,10 +83,18 @@ PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, addForeignKey) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(3, 3)
+		Z_PARAM_STR(tableName)
+		Z_PARAM_STR(schemaName)
+		Z_PARAM_OBJECT_OF_CLASS(reference, phalcon_db_referenceinterface_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 0, &tableName_param, &schemaName_param, &reference);
-
 	if (UNEXPECTED(Z_TYPE_P(tableName_param) != IS_STRING && Z_TYPE_P(tableName_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'tableName' must be of the type string"));
 		RETURN_MM_NULL();
@@ -98,7 +103,6 @@ PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, addForeignKey) {
 		zephir_get_strval(&tableName, tableName_param);
 	} else {
 		ZEPHIR_INIT_VAR(&tableName);
-		ZVAL_EMPTY_STRING(&tableName);
 	}
 	if (UNEXPECTED(Z_TYPE_P(schemaName_param) != IS_STRING && Z_TYPE_P(schemaName_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'schemaName' must be of the type string"));
@@ -108,7 +112,6 @@ PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, addForeignKey) {
 		zephir_get_strval(&schemaName, schemaName_param);
 	} else {
 		ZEPHIR_INIT_VAR(&schemaName);
-		ZVAL_EMPTY_STRING(&schemaName);
 	}
 
 
@@ -129,7 +132,6 @@ PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, addForeignKey) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "execute", NULL, 0, &_4);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -141,8 +143,8 @@ PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, addForeignKey) {
  * );
  * ```
  */
-PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, describeColumns) {
-
+PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, describeColumns)
+{
 	zend_bool _5$$3, _64$$47;
 	zval definition;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -284,14 +286,21 @@ PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, describeColumns) {
 	ZVAL_UNDEF(&_117$$89);
 	ZVAL_UNDEF(&_119$$90);
 	ZVAL_UNDEF(&definition);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(table)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(schema)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &table_param, &schema_param);
-
 	zephir_get_strval(&table, table_param);
 	if (!schema_param) {
 		ZEPHIR_INIT_VAR(&schema);
-		ZVAL_STRING(&schema, "");
 	} else {
 		zephir_get_strval(&schema, schema_param);
 	}
@@ -887,7 +896,6 @@ PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, describeColumns) {
 	}
 	ZEPHIR_INIT_NVAR(&field);
 	RETURN_CCTOR(&columns);
-
 }
 
 /**
@@ -899,8 +907,8 @@ PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, describeColumns) {
  * );
  * ```
  */
-PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, describeIndexes) {
-
+PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, describeIndexes)
+{
 	zend_string *_25;
 	zend_ulong _24;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -948,10 +956,18 @@ PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, describeIndexes) {
 	ZVAL_UNDEF(&_30$$20);
 	ZVAL_UNDEF(&_31$$20);
 	ZVAL_UNDEF(&_32$$20);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(table)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(schema)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &table_param, &schema_param);
-
 	if (UNEXPECTED(Z_TYPE_P(table_param) != IS_STRING && Z_TYPE_P(table_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'table' must be of the type string"));
 		RETURN_MM_NULL();
@@ -960,11 +976,9 @@ PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, describeIndexes) {
 		zephir_get_strval(&table, table_param);
 	} else {
 		ZEPHIR_INIT_VAR(&table);
-		ZVAL_EMPTY_STRING(&table);
 	}
 	if (!schema_param) {
 		ZEPHIR_INIT_VAR(&schema);
-		ZVAL_STRING(&schema, "");
 	} else {
 	if (UNEXPECTED(Z_TYPE_P(schema_param) != IS_STRING && Z_TYPE_P(schema_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'schema' must be of the type string"));
@@ -974,7 +988,6 @@ PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, describeIndexes) {
 		zephir_get_strval(&schema, schema_param);
 	} else {
 		ZEPHIR_INIT_VAR(&schema);
-		ZVAL_EMPTY_STRING(&schema);
 	}
 	}
 
@@ -1131,7 +1144,6 @@ PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, describeIndexes) {
 	ZEPHIR_INIT_NVAR(&index);
 	ZEPHIR_INIT_NVAR(&name);
 	RETURN_CCTOR(&indexObjects);
-
 }
 
 /**
@@ -1143,8 +1155,8 @@ PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, describeIndexes) {
  * );
  *```
  */
-PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, describeReferences) {
-
+PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, describeReferences)
+{
 	zval _14$$3, _23$$6, _29$$9, _33$$10;
 	zend_string *_27;
 	zend_ulong _26;
@@ -1199,10 +1211,18 @@ PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, describeReferences) {
 	ZVAL_UNDEF(&_23$$6);
 	ZVAL_UNDEF(&_29$$9);
 	ZVAL_UNDEF(&_33$$10);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(table)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(schema)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &table_param, &schema_param);
-
 	if (UNEXPECTED(Z_TYPE_P(table_param) != IS_STRING && Z_TYPE_P(table_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'table' must be of the type string"));
 		RETURN_MM_NULL();
@@ -1211,11 +1231,9 @@ PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, describeReferences) {
 		zephir_get_strval(&table, table_param);
 	} else {
 		ZEPHIR_INIT_VAR(&table);
-		ZVAL_EMPTY_STRING(&table);
 	}
 	if (!schema_param) {
 		ZEPHIR_INIT_VAR(&schema);
-		ZVAL_STRING(&schema, "");
 	} else {
 	if (UNEXPECTED(Z_TYPE_P(schema_param) != IS_STRING && Z_TYPE_P(schema_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'schema' must be of the type string"));
@@ -1225,7 +1243,6 @@ PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, describeReferences) {
 		zephir_get_strval(&schema, schema_param);
 	} else {
 		ZEPHIR_INIT_VAR(&schema);
-		ZVAL_EMPTY_STRING(&schema);
 	}
 	}
 
@@ -1441,20 +1458,19 @@ PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, describeReferences) {
 	ZEPHIR_INIT_NVAR(&arrayReference);
 	ZEPHIR_INIT_NVAR(&name);
 	RETURN_CCTOR(&referenceObjects);
-
 }
 
 /**
  * Returns PDO adapter DSN defaults as a key-value map.
  */
-PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, getDsnDefaults) {
-
+PHP_METHOD(Phalcon_Db_Adapter_Pdo_Mysql, getDsnDefaults)
+{
 	zval *this_ptr = getThis();
+
 
 
 	zephir_create_array(return_value, 1, 0);
 	add_assoc_stringl_ex(return_value, SL("charset"), SL("utf8mb4"));
 	return;
-
 }
 

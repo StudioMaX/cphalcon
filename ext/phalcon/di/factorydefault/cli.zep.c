@@ -34,19 +34,18 @@
  * Thanks to this, the developer does not need to register each service individually.
  * This class is specially suitable for CLI applications
  */
-ZEPHIR_INIT_CLASS(Phalcon_Di_FactoryDefault_Cli) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Di_FactoryDefault_Cli)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Di\\FactoryDefault, Cli, phalcon, di_factorydefault_cli, phalcon_di_factorydefault_ce, phalcon_di_factorydefault_cli_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
  * Phalcon\Di\FactoryDefault\Cli constructor
  */
-PHP_METHOD(Phalcon_Di_FactoryDefault_Cli, __construct) {
-
+PHP_METHOD(Phalcon_Di_FactoryDefault_Cli, __construct)
+{
 	zval _1;
 	zval filter, _2, _3, _4, _5;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -61,6 +60,7 @@ PHP_METHOD(Phalcon_Di_FactoryDefault_Cli, __construct) {
 	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_1);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_CALL_PARENT(NULL, phalcon_di_factorydefault_cli_ce, getThis(), "__construct", &_0, 0);
@@ -71,6 +71,7 @@ PHP_METHOD(Phalcon_Di_FactoryDefault_Cli, __construct) {
 		ZEPHIR_CALL_METHOD(NULL, &filter, "__construct", NULL, 0);
 		zephir_check_call_status();
 	}
+
 	ZEPHIR_INIT_VAR(&_1);
 	zephir_create_array(&_1, 10, 0);
 	ZEPHIR_INIT_VAR(&_2);
@@ -155,6 +156,5 @@ PHP_METHOD(Phalcon_Di_FactoryDefault_Cli, __construct) {
 	zephir_array_update_string(&_1, SL("transactionManager"), &_2, PH_COPY | PH_SEPARATE);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("services"), &_1);
 	ZEPHIR_MM_RESTORE();
-
 }
 

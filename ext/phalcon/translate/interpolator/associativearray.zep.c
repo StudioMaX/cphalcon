@@ -30,20 +30,19 @@
  * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
-ZEPHIR_INIT_CLASS(Phalcon_Translate_Interpolator_AssociativeArray) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Translate_Interpolator_AssociativeArray)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Translate\\Interpolator, AssociativeArray, phalcon, translate_interpolator_associativearray, phalcon_translate_interpolator_associativearray_method_entry, 0);
 
 	zend_class_implements(phalcon_translate_interpolator_associativearray_ce, 1, phalcon_translate_interpolator_interpolatorinterface_ce);
 	return SUCCESS;
-
 }
 
 /**
  * Replaces placeholders by the values passed
  */
-PHP_METHOD(Phalcon_Translate_Interpolator_AssociativeArray, replacePlaceholders) {
-
+PHP_METHOD(Phalcon_Translate_Interpolator_AssociativeArray, replacePlaceholders)
+{
 	zend_string *_3;
 	zend_ulong _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -62,10 +61,18 @@ PHP_METHOD(Phalcon_Translate_Interpolator_AssociativeArray, replacePlaceholders)
 	ZVAL_UNDEF(&_6$$4);
 	ZVAL_UNDEF(&_7$$4);
 	ZVAL_UNDEF(&placeholders);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(translation)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(placeholders)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &translation_param, &placeholders_param);
-
 	if (UNEXPECTED(Z_TYPE_P(translation_param) != IS_STRING && Z_TYPE_P(translation_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'translation' must be of the type string"));
 		RETURN_MM_NULL();
@@ -74,7 +81,6 @@ PHP_METHOD(Phalcon_Translate_Interpolator_AssociativeArray, replacePlaceholders)
 		zephir_get_strval(&translation, translation_param);
 	} else {
 		ZEPHIR_INIT_VAR(&translation);
-		ZVAL_EMPTY_STRING(&translation);
 	}
 	if (!placeholders_param) {
 		ZEPHIR_INIT_VAR(&placeholders);
@@ -127,6 +133,5 @@ PHP_METHOD(Phalcon_Translate_Interpolator_AssociativeArray, replacePlaceholders)
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
 	RETURN_CTOR(&translation);
-
 }
 

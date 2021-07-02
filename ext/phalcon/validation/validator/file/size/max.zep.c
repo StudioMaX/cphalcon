@@ -74,14 +74,12 @@
  * );
  * ```
  */
-ZEPHIR_INIT_CLASS(Phalcon_Validation_Validator_File_Size_Max) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Validation_Validator_File_Size_Max)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Validation\\Validator\\File\\Size, Max, phalcon, validation_validator_file_size_max, phalcon_validation_validator_file_abstractfile_ce, phalcon_validation_validator_file_size_max_method_entry, 0);
 
 	zend_declare_property_string(phalcon_validation_validator_file_size_max_ce, SL("template"), "File :field exceeds the size of :size", ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
 /**
@@ -94,8 +92,8 @@ ZEPHIR_INIT_CLASS(Phalcon_Validation_Validator_File_Size_Max) {
  *     'included' => false
  * ]
  */
-PHP_METHOD(Phalcon_Validation_Validator_File_Size_Max, __construct) {
-
+PHP_METHOD(Phalcon_Validation_Validator_File_Size_Max, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -104,10 +102,17 @@ PHP_METHOD(Phalcon_Validation_Validator_File_Size_Max, __construct) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&options);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(options)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &options_param);
-
 	if (!options_param) {
 		ZEPHIR_INIT_VAR(&options);
 		array_init(&options);
@@ -119,14 +124,13 @@ PHP_METHOD(Phalcon_Validation_Validator_File_Size_Max, __construct) {
 	ZEPHIR_CALL_PARENT(NULL, phalcon_validation_validator_file_size_max_ce, getThis(), "__construct", &_0, 0, &options);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Executes the validation
  */
-PHP_METHOD(Phalcon_Validation_Validator_File_Size_Max, validate) {
-
+PHP_METHOD(Phalcon_Validation_Validator_File_Size_Max, validate)
+{
 	double _9$$5, _10$$6;
 	zend_bool result = 0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -152,10 +156,17 @@ PHP_METHOD(Phalcon_Validation_Validator_File_Size_Max, validate) {
 	ZVAL_UNDEF(&_2$$4);
 	ZVAL_UNDEF(&_8$$5);
 	ZVAL_UNDEF(&_11$$9);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_OBJECT_OF_CLASS(validation, phalcon_validation_ce)
+		Z_PARAM_ZVAL(field)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &validation, &field);
-
 
 
 	ZEPHIR_INIT_VAR(&included);
@@ -217,6 +228,5 @@ PHP_METHOD(Phalcon_Validation_Validator_File_Size_Max, validate) {
 		RETURN_MM_BOOL(0);
 	}
 	RETURN_MM_BOOL(1);
-
 }
 

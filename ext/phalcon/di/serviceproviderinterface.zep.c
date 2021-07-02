@@ -44,16 +44,14 @@
  * }
  * ```
  */
-ZEPHIR_INIT_CLASS(Phalcon_Di_ServiceProviderInterface) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Di_ServiceProviderInterface)
+{
 	ZEPHIR_REGISTER_INTERFACE(Phalcon\\Di, ServiceProviderInterface, phalcon, di_serviceproviderinterface, phalcon_di_serviceproviderinterface_method_entry);
 
 	return SUCCESS;
-
 }
 
 /**
  * Registers a service provider.
  */
 ZEPHIR_DOC_METHOD(Phalcon_Di_ServiceProviderInterface, register);
-

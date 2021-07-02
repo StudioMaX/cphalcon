@@ -54,20 +54,18 @@
  * );
  *```
  */
-ZEPHIR_INIT_CLASS(Phalcon_Config) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Config)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon, Config, phalcon, config, phalcon_collection_ce, phalcon_config_method_entry, 0);
 
 	/**
 	 * @var string
 	 */
 	zend_declare_property_null(phalcon_config_ce, SL("pathDelimiter"), ZEND_ACC_PROTECTED);
-
 	zephir_declare_class_constant_string(phalcon_config_ce, SL("DEFAULT_PATH_DELIMITER"), ".");
 
 	zend_class_implements(phalcon_config_ce, 1, phalcon_config_configinterface_ce);
 	return SUCCESS;
-
 }
 
 /**
@@ -75,14 +73,15 @@ ZEPHIR_INIT_CLASS(Phalcon_Config) {
  *
  * @return string
  */
-PHP_METHOD(Phalcon_Config, getPathDelimiter) {
-
+PHP_METHOD(Phalcon_Config, getPathDelimiter)
+{
 	zval _0, _1$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -94,7 +93,6 @@ PHP_METHOD(Phalcon_Config, getPathDelimiter) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("pathDelimiter"), &_1$$3);
 	}
 	RETURN_MM_MEMBER(getThis(), "pathDelimiter");
-
 }
 
 /**
@@ -112,8 +110,8 @@ PHP_METHOD(Phalcon_Config, getPathDelimiter) {
  * $globalConfig->merge($appConfig);
  *```
  */
-PHP_METHOD(Phalcon_Config, merge) {
-
+PHP_METHOD(Phalcon_Config, merge)
+{
 	zend_bool _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -125,10 +123,16 @@ PHP_METHOD(Phalcon_Config, merge) {
 	ZVAL_UNDEF(&result);
 	ZVAL_UNDEF(&source);
 	ZVAL_UNDEF(&target);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(toMerge)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &toMerge);
-
 
 
 	_0 = Z_TYPE_P(toMerge) == IS_OBJECT;
@@ -157,7 +161,6 @@ PHP_METHOD(Phalcon_Config, merge) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "init", NULL, 0, &result);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
@@ -167,8 +170,8 @@ PHP_METHOD(Phalcon_Config, merge) {
  * echo $config->path("unknown.path", "default", ".");
  *```
  */
-PHP_METHOD(Phalcon_Config, path) {
-
+PHP_METHOD(Phalcon_Config, path)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -186,10 +189,19 @@ PHP_METHOD(Phalcon_Config, path) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2$$5);
 	ZVAL_UNDEF(&_3$$5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_STR(path)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(defaultValue)
+		Z_PARAM_ZVAL(delimiter)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &path_param, &defaultValue, &delimiter);
-
 	zephir_get_strval(&path, path_param);
 	if (!defaultValue) {
 		defaultValue = &defaultValue_sub;
@@ -247,27 +259,32 @@ PHP_METHOD(Phalcon_Config, path) {
 	}
 	RETVAL_ZVAL(defaultValue, 1, 0);
 	RETURN_MM();
-
 }
 
 /**
  * Sets the default path delimiter
  */
-PHP_METHOD(Phalcon_Config, setPathDelimiter) {
-
+PHP_METHOD(Phalcon_Config, setPathDelimiter)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *delimiter_param = NULL;
 	zval delimiter;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&delimiter);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(delimiter)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &delimiter_param);
-
 	if (!delimiter_param) {
 		ZEPHIR_INIT_VAR(&delimiter);
-		ZVAL_STRING(&delimiter, "");
 	} else {
 		zephir_get_strval(&delimiter, delimiter_param);
 	}
@@ -275,7 +292,6 @@ PHP_METHOD(Phalcon_Config, setPathDelimiter) {
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("pathDelimiter"), &delimiter);
 	RETURN_THIS();
-
 }
 
 /**
@@ -287,8 +303,8 @@ PHP_METHOD(Phalcon_Config, setPathDelimiter) {
  * );
  *```
  */
-PHP_METHOD(Phalcon_Config, toArray) {
-
+PHP_METHOD(Phalcon_Config, toArray)
+{
 	zend_bool _5$$3, _7$$5;
 	zend_string *_4;
 	zend_ulong _3;
@@ -306,6 +322,7 @@ PHP_METHOD(Phalcon_Config, toArray) {
 	ZVAL_UNDEF(&_6$$4);
 	ZVAL_UNDEF(&_8$$6);
 	ZVAL_UNDEF(&results);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -366,14 +383,13 @@ PHP_METHOD(Phalcon_Config, toArray) {
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
 	RETURN_CTOR(&results);
-
 }
 
 /**
  * Performs a merge recursively
  */
-PHP_METHOD(Phalcon_Config, internalMerge) {
-
+PHP_METHOD(Phalcon_Config, internalMerge)
+{
 	zend_bool _4$$3, _5$$3, _10$$7, _11$$7;
 	zend_string *_3;
 	zend_ulong _2;
@@ -395,10 +411,17 @@ PHP_METHOD(Phalcon_Config, internalMerge) {
 	ZVAL_UNDEF(&_12$$7);
 	ZVAL_UNDEF(&_13$$8);
 	ZVAL_UNDEF(&_14$$8);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_ARRAY(source)
+		Z_PARAM_ARRAY(target)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &source_param, &target_param);
-
 	zephir_get_arrval(&source, source_param);
 	zephir_get_arrval(&target, target_param);
 
@@ -476,14 +499,13 @@ PHP_METHOD(Phalcon_Config, internalMerge) {
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
 	RETURN_CTOR(&source);
-
 }
 
 /**
  * Sets the collection data
  */
-PHP_METHOD(Phalcon_Config, setData) {
-
+PHP_METHOD(Phalcon_Config, setData)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -496,14 +518,21 @@ PHP_METHOD(Phalcon_Config, setData) {
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_ZVAL(element)
+		Z_PARAM_ZVAL(value)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &element, &value);
-
 	ZEPHIR_SEPARATE_PARAM(element);
 
 
-	zephir_get_strval(&_0, element);
+	zephir_cast_to_string(&_0, element);
 	ZEPHIR_CPY_WRT(element, &_0);
 	zephir_read_property(&_1, this_ptr, ZEND_STRL("insensitive"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_is_true(&_1)) {
@@ -523,6 +552,5 @@ PHP_METHOD(Phalcon_Config, setData) {
 	}
 	zephir_update_property_array(this_ptr, SL("data"), element, &data);
 	ZEPHIR_MM_RESTORE();
-
 }
 

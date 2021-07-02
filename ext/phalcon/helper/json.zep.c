@@ -33,12 +33,11 @@
 /**
  * This class offers a wrapper for JSON methods to serialize and unserialize
  */
-ZEPHIR_INIT_CLASS(Phalcon_Helper_Json) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Helper_Json)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Helper, Json, phalcon, helper_json, phalcon_helper_json_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -67,8 +66,8 @@ ZEPHIR_INIT_CLASS(Phalcon_Helper_Json) {
  * @throws \InvalidArgumentException if the JSON cannot be decoded.
  * @link http://www.php.net/manual/en/function.json-decode.php
  */
-PHP_METHOD(Phalcon_Helper_Json, decode) {
-
+PHP_METHOD(Phalcon_Helper_Json, decode)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long depth, options, ZEPHIR_LAST_CALL_STATUS;
 	zend_bool associative;
@@ -85,10 +84,20 @@ PHP_METHOD(Phalcon_Helper_Json, decode) {
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_5$$3);
 	ZVAL_UNDEF(&_6$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 4)
+		Z_PARAM_STR(data)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(associative)
+		Z_PARAM_LONG(depth)
+		Z_PARAM_LONG(options)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &data_param, &associative_param, &depth_param, &options_param);
-
 	if (UNEXPECTED(Z_TYPE_P(data_param) != IS_STRING && Z_TYPE_P(data_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'data' must be of the type string"));
 		RETURN_MM_NULL();
@@ -97,7 +106,6 @@ PHP_METHOD(Phalcon_Helper_Json, decode) {
 		zephir_get_strval(&data, data_param);
 	} else {
 		ZEPHIR_INIT_VAR(&data);
-		ZVAL_EMPTY_STRING(&data);
 	}
 	if (!associative_param) {
 		associative = 0;
@@ -137,7 +145,6 @@ PHP_METHOD(Phalcon_Helper_Json, decode) {
 		return;
 	}
 	RETURN_CCTOR(&decoded);
-
 }
 
 /**
@@ -165,8 +172,8 @@ PHP_METHOD(Phalcon_Helper_Json, decode) {
  * @throws \InvalidArgumentException if the JSON cannot be encoded.
  * @link http://www.php.net/manual/en/function.json-encode.php
  */
-PHP_METHOD(Phalcon_Helper_Json, encode) {
-
+PHP_METHOD(Phalcon_Helper_Json, encode)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long options, depth, ZEPHIR_LAST_CALL_STATUS;
 	zval *data, data_sub, *options_param = NULL, *depth_param = NULL, encoded, _0, _1, _2, _3$$3, _4$$3, _5$$3;
@@ -180,10 +187,19 @@ PHP_METHOD(Phalcon_Helper_Json, encode) {
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_5$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_ZVAL(data)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_LONG(options)
+		Z_PARAM_LONG(depth)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &data, &options_param, &depth_param);
-
 	if (!options_param) {
 		options = 0;
 	} else {
@@ -216,6 +232,5 @@ PHP_METHOD(Phalcon_Helper_Json, encode) {
 		return;
 	}
 	RETURN_CCTOR(&encoded);
-
 }
 

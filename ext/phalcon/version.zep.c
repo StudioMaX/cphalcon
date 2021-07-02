@@ -31,8 +31,8 @@
 /**
  * This class allows to get the installed version of the framework
  */
-ZEPHIR_INIT_CLASS(Phalcon_Version) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Version)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon, Version, phalcon, version, phalcon_version_method_entry, 0);
 
 	/**
@@ -91,7 +91,6 @@ ZEPHIR_INIT_CLASS(Phalcon_Version) {
 	zephir_declare_class_constant_long(phalcon_version_ce, SL("VERSION_SPECIAL_NUMBER"), 4);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -107,11 +106,12 @@ ZEPHIR_INIT_CLASS(Phalcon_Version) {
  * @todo Remove in v5
  * @deprecated Use getVersion()
  */
-PHP_METHOD(Phalcon_Version, _getVersion) {
-
+PHP_METHOD(Phalcon_Version, _getVersion)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
+
 
 
 	ZEPHIR_MM_GROW();
@@ -119,7 +119,6 @@ PHP_METHOD(Phalcon_Version, _getVersion) {
 	ZEPHIR_RETURN_CALL_STATIC("getversion", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -132,13 +131,14 @@ PHP_METHOD(Phalcon_Version, _getVersion) {
  * D - Special release: 1 = alpha, 2 = beta, 3 = RC, 4 = stable
  * E - Special release version i.e. RC1, Beta2 etc.
  */
-PHP_METHOD(Phalcon_Version, getVersion) {
-
+PHP_METHOD(Phalcon_Version, getVersion)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -159,7 +159,6 @@ PHP_METHOD(Phalcon_Version, getVersion) {
 	ZVAL_LONG(&_0, 0);
 	zephir_array_fast_append(return_value, &_0);
 	RETURN_MM();
-
 }
 
 /**
@@ -167,8 +166,8 @@ PHP_METHOD(Phalcon_Version, getVersion) {
  * @todo Remove in v5.0
  * @deprecated Use getSpecial()
  */
-PHP_METHOD(Phalcon_Version, _getSpecial) {
-
+PHP_METHOD(Phalcon_Version, _getSpecial)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *special_param = NULL, _1;
@@ -176,10 +175,16 @@ PHP_METHOD(Phalcon_Version, _getSpecial) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(special)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &special_param);
-
 	special = zephir_get_intval(special_param);
 
 
@@ -187,14 +192,13 @@ PHP_METHOD(Phalcon_Version, _getSpecial) {
 	ZEPHIR_RETURN_CALL_STATIC("getspecial", &_0, 0, &_1);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Translates a number to a special release.
  */
-PHP_METHOD(Phalcon_Version, getSpecial) {
-
+PHP_METHOD(Phalcon_Version, getSpecial)
+{
 	zval suffix;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *special_param = NULL;
@@ -202,15 +206,20 @@ PHP_METHOD(Phalcon_Version, getSpecial) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&suffix);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(special)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &special_param);
-
 	special = zephir_get_intval(special_param);
 
 
 	ZEPHIR_INIT_VAR(&suffix);
-	ZVAL_STRING(&suffix, "");
 	do {
 		if (special == 1) {
 			ZEPHIR_INIT_NVAR(&suffix);
@@ -230,7 +239,6 @@ PHP_METHOD(Phalcon_Version, getSpecial) {
 	} while(0);
 
 	RETURN_CTOR(&suffix);
-
 }
 
 /**
@@ -240,8 +248,8 @@ PHP_METHOD(Phalcon_Version, getSpecial) {
  * echo Phalcon\Version::get();
  * ```
  */
-PHP_METHOD(Phalcon_Version, get) {
-
+PHP_METHOD(Phalcon_Version, get)
+{
 	zval result;
 	zval version, major, medium, minor, special, specialNumber, suffix, _0, _2$$3, _3$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -260,6 +268,7 @@ PHP_METHOD(Phalcon_Version, get) {
 	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&_3$$4);
 	ZVAL_UNDEF(&result);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -291,7 +300,6 @@ PHP_METHOD(Phalcon_Version, get) {
 		}
 	}
 	RETURN_CTOR(&result);
-
 }
 
 /**
@@ -301,8 +309,8 @@ PHP_METHOD(Phalcon_Version, get) {
  * echo Phalcon\Version::getId();
  * ```
  */
-PHP_METHOD(Phalcon_Version, getId) {
-
+PHP_METHOD(Phalcon_Version, getId)
+{
 	zval version, major, medium, minor, special, specialNumber, _0, _1, _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -317,6 +325,7 @@ PHP_METHOD(Phalcon_Version, getId) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -342,7 +351,6 @@ PHP_METHOD(Phalcon_Version, getId) {
 	zephir_check_call_status();
 	ZEPHIR_CONCAT_VVVVV(return_value, &major, &_1, &_2, &special, &specialNumber);
 	RETURN_MM();
-
 }
 
 /**
@@ -355,8 +363,8 @@ PHP_METHOD(Phalcon_Version, getId) {
  * );
  * ```
  */
-PHP_METHOD(Phalcon_Version, getPart) {
-
+PHP_METHOD(Phalcon_Version, getPart)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zval *part_param = NULL, version, _0$$3, _2$$4;
@@ -366,10 +374,16 @@ PHP_METHOD(Phalcon_Version, getPart) {
 	ZVAL_UNDEF(&version);
 	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&_2$$4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(part)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &part_param);
-
 	part = zephir_get_intval(part_param);
 
 
@@ -391,6 +405,5 @@ PHP_METHOD(Phalcon_Version, getPart) {
 	ZEPHIR_RETURN_CALL_STATIC("get", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

@@ -25,12 +25,11 @@
  *
  * Interface for bindable classes
  */
-ZEPHIR_INIT_CLASS(Phalcon_Mvc_Model_Binder_BindableInterface) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Mvc_Model_Binder_BindableInterface)
+{
 	ZEPHIR_REGISTER_INTERFACE(Phalcon\\Mvc\\Model\\Binder, BindableInterface, phalcon, mvc_model_binder_bindableinterface, phalcon_mvc_model_binder_bindableinterface_method_entry);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -38,4 +37,3 @@ ZEPHIR_INIT_CLASS(Phalcon_Mvc_Model_Binder_BindableInterface) {
  * this class
  */
 ZEPHIR_DOC_METHOD(Phalcon_Mvc_Model_Binder_BindableInterface, getModelName);
-

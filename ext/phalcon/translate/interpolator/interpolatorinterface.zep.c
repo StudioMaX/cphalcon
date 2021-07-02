@@ -25,16 +25,14 @@
  *
  * Interface for Phalcon\Translate interpolators
  */
-ZEPHIR_INIT_CLASS(Phalcon_Translate_Interpolator_InterpolatorInterface) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Translate_Interpolator_InterpolatorInterface)
+{
 	ZEPHIR_REGISTER_INTERFACE(Phalcon\\Translate\\Interpolator, InterpolatorInterface, phalcon, translate_interpolator_interpolatorinterface, phalcon_translate_interpolator_interpolatorinterface_method_entry);
 
 	return SUCCESS;
-
 }
 
 /**
  * Replaces placeholders by the values passed
  */
 ZEPHIR_DOC_METHOD(Phalcon_Translate_Interpolator_InterpolatorInterface, replacePlaceholders);
-

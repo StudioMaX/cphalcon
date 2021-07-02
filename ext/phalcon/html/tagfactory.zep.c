@@ -32,24 +32,22 @@
 /**
  * ServiceLocator implementation for Tag helpers
  */
-ZEPHIR_INIT_CLASS(Phalcon_Html_TagFactory) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Html_TagFactory)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Html, TagFactory, phalcon, html_tagfactory, phalcon_factory_abstractfactory_ce, phalcon_html_tagfactory_method_entry, 0);
 
 	/**
 	 * @var EscaperInterface
 	 */
 	zend_declare_property_null(phalcon_html_tagfactory_ce, SL("escaper"), ZEND_ACC_PRIVATE);
-
 	return SUCCESS;
-
 }
 
 /**
  * TagFactory constructor.
  */
-PHP_METHOD(Phalcon_Html_TagFactory, __construct) {
-
+PHP_METHOD(Phalcon_Html_TagFactory, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval services;
@@ -58,10 +56,18 @@ PHP_METHOD(Phalcon_Html_TagFactory, __construct) {
 
 	ZVAL_UNDEF(&escaper_sub);
 	ZVAL_UNDEF(&services);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_OBJECT_OF_CLASS(escaper, phalcon_escaper_escaperinterface_ce)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(services)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &escaper, &services_param);
-
 	if (!services_param) {
 		ZEPHIR_INIT_VAR(&services);
 		array_init(&services);
@@ -74,7 +80,6 @@ PHP_METHOD(Phalcon_Html_TagFactory, __construct) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "init", NULL, 0, &services);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -83,8 +88,8 @@ PHP_METHOD(Phalcon_Html_TagFactory, __construct) {
  * @return mixed
  * @throws Exception
  */
-PHP_METHOD(Phalcon_Html_TagFactory, newInstance) {
-
+PHP_METHOD(Phalcon_Html_TagFactory, newInstance)
+{
 	zval _2$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -100,10 +105,16 @@ PHP_METHOD(Phalcon_Html_TagFactory, newInstance) {
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_2$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(name)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
-
 	zephir_get_strval(&name, name_param);
 
 
@@ -124,15 +135,15 @@ PHP_METHOD(Phalcon_Html_TagFactory, newInstance) {
 	zephir_read_property(&_4, this_ptr, ZEND_STRL("services"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_fetch(&_5, &_4, &name, PH_NOISY | PH_READONLY, "phalcon/Html/TagFactory.zep", 57);
 	RETURN_CTOR(&_5);
-
 }
 
-PHP_METHOD(Phalcon_Html_TagFactory, getAdapters) {
-
+PHP_METHOD(Phalcon_Html_TagFactory, getAdapters)
+{
 	zval *this_ptr = getThis();
 
 
-	zephir_create_array(return_value, 41, 0);
+
+	zephir_create_array(return_value, 38, 0);
 	add_assoc_stringl_ex(return_value, SL("a"), SL("Phalcon\\Html\\Helper\\Anchor"));
 	add_assoc_stringl_ex(return_value, SL("base"), SL("Phalcon\\Html\\Helper\\Base"));
 	add_assoc_stringl_ex(return_value, SL("body"), SL("Phalcon\\Html\\Helper\\Body"));
@@ -172,6 +183,5 @@ PHP_METHOD(Phalcon_Html_TagFactory, getAdapters) {
 	add_assoc_stringl_ex(return_value, SL("title"), SL("Phalcon\\Html\\Helper\\Title"));
 	add_assoc_stringl_ex(return_value, SL("ul"), SL("Phalcon\\Html\\Helper\\Ul"));
 	return;
-
 }
 

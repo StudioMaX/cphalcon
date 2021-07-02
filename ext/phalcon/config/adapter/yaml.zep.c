@@ -67,19 +67,18 @@
  * echo $config->models->metadata;
  *```
  */
-ZEPHIR_INIT_CLASS(Phalcon_Config_Adapter_Yaml) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Config_Adapter_Yaml)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Config\\Adapter, Yaml, phalcon, config_adapter_yaml, phalcon_config_ce, phalcon_config_adapter_yaml_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
  * Phalcon\Config\Adapter\Yaml constructor
  */
-PHP_METHOD(Phalcon_Config_Adapter_Yaml, __construct) {
-
+PHP_METHOD(Phalcon_Config_Adapter_Yaml, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_7 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS, ndocs;
@@ -98,10 +97,18 @@ PHP_METHOD(Phalcon_Config_Adapter_Yaml, __construct) {
 	ZVAL_UNDEF(&_5$$6);
 	ZVAL_UNDEF(&_6$$6);
 	ZVAL_UNDEF(&callbacks);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(filePath)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY_OR_NULL(callbacks)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &filePath_param, &callbacks_param);
-
 	if (UNEXPECTED(Z_TYPE_P(filePath_param) != IS_STRING && Z_TYPE_P(filePath_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'filePath' must be of the type string"));
 		RETURN_MM_NULL();
@@ -110,11 +117,9 @@ PHP_METHOD(Phalcon_Config_Adapter_Yaml, __construct) {
 		zephir_get_strval(&filePath, filePath_param);
 	} else {
 		ZEPHIR_INIT_VAR(&filePath);
-		ZVAL_EMPTY_STRING(&filePath);
 	}
 	if (!callbacks_param) {
 		ZEPHIR_INIT_VAR(&callbacks);
-		array_init(&callbacks);
 	} else {
 	ZEPHIR_OBS_COPY_OR_DUP(&callbacks, callbacks_param);
 	}
@@ -156,6 +161,5 @@ PHP_METHOD(Phalcon_Config_Adapter_Yaml, __construct) {
 	ZEPHIR_CALL_PARENT(NULL, phalcon_config_adapter_yaml_ce, getThis(), "__construct", &_7, 0, &yamlConfig);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 

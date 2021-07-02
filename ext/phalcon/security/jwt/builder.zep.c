@@ -42,32 +42,27 @@
  *
  * @link https://tools.ietf.org/html/rfc7519
  */
-ZEPHIR_INIT_CLASS(Phalcon_Security_JWT_Builder) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Security_JWT_Builder)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Security\\JWT, Builder, phalcon, security_jwt_builder, phalcon_security_jwt_builder_method_entry, 0);
 
 	/**
 	 * @var CollectionInterface
 	 */
 	zend_declare_property_null(phalcon_security_jwt_builder_ce, SL("claims"), ZEND_ACC_PRIVATE);
-
 	/**
 	 * @var CollectionInterface
 	 */
 	zend_declare_property_null(phalcon_security_jwt_builder_ce, SL("jose"), ZEND_ACC_PRIVATE);
-
 	/**
 	 * @var string
 	 */
 	zend_declare_property_null(phalcon_security_jwt_builder_ce, SL("passphrase"), ZEND_ACC_PRIVATE);
-
 	/**
 	 * @var SignerInterface
 	 */
 	zend_declare_property_null(phalcon_security_jwt_builder_ce, SL("signer"), ZEND_ACC_PRIVATE);
-
 	return SUCCESS;
-
 }
 
 /**
@@ -75,8 +70,8 @@ ZEPHIR_INIT_CLASS(Phalcon_Security_JWT_Builder) {
  *
  * @param SignerInterface $signer
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, __construct) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *signer, signer_sub, _0, _1, _2, _3;
@@ -87,10 +82,16 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, __construct) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(signer, phalcon_security_jwt_signer_signerinterface_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &signer);
-
 
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "init", NULL, 0);
@@ -105,14 +106,13 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, __construct) {
 	ZEPHIR_CALL_METHOD(NULL, &_0, "set", NULL, 0, &_3, &_2);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * @return Builder
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, init) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, init)
+{
 	zval _2;
 	zval _0, _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -122,6 +122,7 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, init) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -144,14 +145,13 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, init) {
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("jose"), &_1);
 	RETURN_THIS();
-
 }
 
 /**
  * @return array|string
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, getAudience) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, getAudience)
+{
 	zval _0, _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -159,6 +159,7 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getAudience) {
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -168,14 +169,13 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getAudience) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "get", NULL, 0, &_1);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * @return array
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, getClaims) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, getClaims)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -183,20 +183,20 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getClaims) {
 
 	ZVAL_UNDEF(&_0);
 
+
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("claims"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "toarray", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * @return string|null
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, getContentType) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, getContentType)
+{
 	zval _0, _1, _2, _3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -206,6 +206,7 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getContentType) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -218,14 +219,13 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getContentType) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "get", NULL, 0, &_1, &_2, &_3);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * @return int|null
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, getExpirationTime) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, getExpirationTime)
+{
 	zval _0, _1, _2, _3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -235,6 +235,7 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getExpirationTime) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -247,14 +248,13 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getExpirationTime) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "get", NULL, 0, &_1, &_2, &_3);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * @return array
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, getHeaders) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, getHeaders)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -262,20 +262,20 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getHeaders) {
 
 	ZVAL_UNDEF(&_0);
 
+
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("jose"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "toarray", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * @return string|null
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, getId) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, getId)
+{
 	zval _0, _1, _2, _3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -285,6 +285,7 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getId) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -297,14 +298,13 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getId) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "get", NULL, 0, &_1, &_2, &_3);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * @return int|null
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, getIssuedAt) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, getIssuedAt)
+{
 	zval _0, _1, _2, _3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -314,6 +314,7 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getIssuedAt) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -326,14 +327,13 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getIssuedAt) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "get", NULL, 0, &_1, &_2, &_3);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * @return string|null
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, getIssuer) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, getIssuer)
+{
 	zval _0, _1, _2, _3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -343,6 +343,7 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getIssuer) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -355,14 +356,13 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getIssuer) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "get", NULL, 0, &_1, &_2, &_3);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * @return int|null
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, getNotBefore) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, getNotBefore)
+{
 	zval _0, _1, _2, _3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -372,6 +372,7 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getNotBefore) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -384,14 +385,13 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getNotBefore) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "get", NULL, 0, &_1, &_2, &_3);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * @return string|null
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, getSubject) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, getSubject)
+{
 	zval _0, _1, _2, _3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -401,6 +401,7 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getSubject) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -413,15 +414,14 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getSubject) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "get", NULL, 0, &_1, &_2, &_3);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * @return Token
  * @throws ValidatorException
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, getToken) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, getToken)
+{
 	zval claims, encodedClaims, encodedHeaders, encodedSignature, headers, signature, signatureHash, _0, _2, _4, _5, _6, _7, _8, _9, _10, _11;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -445,6 +445,7 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getToken) {
 	ZVAL_UNDEF(&_9);
 	ZVAL_UNDEF(&_10);
 	ZVAL_UNDEF(&_11);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -493,19 +494,18 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getToken) {
 	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0, &headers, &claims, &signature);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * @return string
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, getPassphrase) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, getPassphrase)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "passphrase");
 
+	RETURN_MEMBER(getThis(), "passphrase");
 }
 
 /**
@@ -526,8 +526,8 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, getPassphrase) {
  * @return Builder
  * @throws ValidatorException
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, setAudience) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, setAudience)
+{
 	zend_bool _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -537,10 +537,16 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setAudience) {
 	ZVAL_UNDEF(&audience_sub);
 	ZVAL_UNDEF(&aud);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(audience)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &audience);
-
 
 
 	_0 = Z_TYPE_P(audience) != IS_STRING;
@@ -563,7 +569,6 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setAudience) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "setclaim", NULL, 0, &_1, &aud);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -573,8 +578,8 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setAudience) {
  *
  * @return Builder
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, setContentType) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, setContentType)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *contentType_param = NULL, _0, _1;
@@ -584,10 +589,16 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setContentType) {
 	ZVAL_UNDEF(&contentType);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(contentType)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &contentType_param);
-
 	zephir_get_strval(&contentType, contentType_param);
 
 
@@ -597,7 +608,6 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setContentType) {
 	ZEPHIR_CALL_METHOD(NULL, &_0, "set", NULL, 0, &_1, &contentType);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
@@ -614,8 +624,8 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setContentType) {
  * @return Builder
  * @throws ValidatorException
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, setExpirationTime) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, setExpirationTime)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *timestamp_param = NULL, _0, _1, _2;
 	zend_long timestamp, ZEPHIR_LAST_CALL_STATUS;
@@ -624,10 +634,16 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setExpirationTime) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(timestamp)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &timestamp_param);
-
 	timestamp = zephir_get_intval(timestamp_param);
 
 
@@ -643,7 +659,6 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setExpirationTime) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "setclaim", NULL, 0, &_1, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -660,8 +675,8 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setExpirationTime) {
  *
  * @return Builder
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, setId) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, setId)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *id_param = NULL, _0;
@@ -670,10 +685,16 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setId) {
 
 	ZVAL_UNDEF(&id);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(id)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &id_param);
-
 	if (UNEXPECTED(Z_TYPE_P(id_param) != IS_STRING && Z_TYPE_P(id_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'id' must be of the type string"));
 		RETURN_MM_NULL();
@@ -682,7 +703,6 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setId) {
 		zephir_get_strval(&id, id_param);
 	} else {
 		ZEPHIR_INIT_VAR(&id);
-		ZVAL_EMPTY_STRING(&id);
 	}
 
 
@@ -691,7 +711,6 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setId) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "setclaim", NULL, 0, &_0, &id);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -704,8 +723,8 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setId) {
  *
  * @return Builder
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, setIssuedAt) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, setIssuedAt)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *timestamp_param = NULL, _0, _1;
 	zend_long timestamp, ZEPHIR_LAST_CALL_STATUS;
@@ -713,10 +732,16 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setIssuedAt) {
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(timestamp)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &timestamp_param);
-
 	if (UNEXPECTED(Z_TYPE_P(timestamp_param) != IS_LONG)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'timestamp' must be of the type int"));
 		RETURN_MM_NULL();
@@ -730,7 +755,6 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setIssuedAt) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "setclaim", NULL, 0, &_0, &_1);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -743,8 +767,8 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setIssuedAt) {
  *
  * @return Builder
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, setIssuer) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, setIssuer)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *issuer_param = NULL, _0;
@@ -753,10 +777,16 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setIssuer) {
 
 	ZVAL_UNDEF(&issuer);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(issuer)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &issuer_param);
-
 	if (UNEXPECTED(Z_TYPE_P(issuer_param) != IS_STRING && Z_TYPE_P(issuer_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'issuer' must be of the type string"));
 		RETURN_MM_NULL();
@@ -765,7 +795,6 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setIssuer) {
 		zephir_get_strval(&issuer, issuer_param);
 	} else {
 		ZEPHIR_INIT_VAR(&issuer);
-		ZVAL_EMPTY_STRING(&issuer);
 	}
 
 
@@ -774,7 +803,6 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setIssuer) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "setclaim", NULL, 0, &_0, &issuer);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -791,8 +819,8 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setIssuer) {
  * @return Builder
  * @throws ValidatorException
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, setNotBefore) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, setNotBefore)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *timestamp_param = NULL, _0, _1, _2;
 	zend_long timestamp, ZEPHIR_LAST_CALL_STATUS;
@@ -801,10 +829,16 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setNotBefore) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(timestamp)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &timestamp_param);
-
 	if (UNEXPECTED(Z_TYPE_P(timestamp_param) != IS_LONG)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'timestamp' must be of the type int"));
 		RETURN_MM_NULL();
@@ -824,7 +858,6 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setNotBefore) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "setclaim", NULL, 0, &_1, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -840,8 +873,8 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setNotBefore) {
  *
  * @return Builder
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, setSubject) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, setSubject)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *subject_param = NULL, _0;
@@ -850,10 +883,16 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setSubject) {
 
 	ZVAL_UNDEF(&subject);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(subject)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &subject_param);
-
 	if (UNEXPECTED(Z_TYPE_P(subject_param) != IS_STRING && Z_TYPE_P(subject_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'subject' must be of the type string"));
 		RETURN_MM_NULL();
@@ -862,7 +901,6 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setSubject) {
 		zephir_get_strval(&subject, subject_param);
 	} else {
 		ZEPHIR_INIT_VAR(&subject);
-		ZVAL_EMPTY_STRING(&subject);
 	}
 
 
@@ -871,7 +909,6 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setSubject) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "setclaim", NULL, 0, &_0, &subject);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -880,8 +917,8 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setSubject) {
  * @return Builder
  * @throws ValidatorException
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, setPassphrase) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, setPassphrase)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *passphrase_param = NULL, _0, _1, _2, _3;
 	zval passphrase;
@@ -892,10 +929,16 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setPassphrase) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(passphrase)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &passphrase_param);
-
 	if (UNEXPECTED(Z_TYPE_P(passphrase_param) != IS_STRING && Z_TYPE_P(passphrase_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'passphrase' must be of the type string"));
 		RETURN_MM_NULL();
@@ -904,7 +947,6 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setPassphrase) {
 		zephir_get_strval(&passphrase, passphrase_param);
 	} else {
 		ZEPHIR_INIT_VAR(&passphrase);
-		ZVAL_EMPTY_STRING(&passphrase);
 	}
 
 
@@ -921,7 +963,6 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setPassphrase) {
 	}
 	zephir_update_property_zval(this_ptr, ZEND_STRL("passphrase"), &passphrase);
 	RETURN_THIS();
-
 }
 
 /**
@@ -932,8 +973,8 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setPassphrase) {
  *
  * @return Builder
  */
-PHP_METHOD(Phalcon_Security_JWT_Builder, setClaim) {
-
+PHP_METHOD(Phalcon_Security_JWT_Builder, setClaim)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, *value, value_sub, _0;
@@ -943,10 +984,17 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setClaim) {
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&value_sub);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(name)
+		Z_PARAM_ZVAL(value)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &name_param, &value);
-
 	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be of the type string"));
 		RETURN_MM_NULL();
@@ -955,7 +1003,6 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setClaim) {
 		zephir_get_strval(&name, name_param);
 	} else {
 		ZEPHIR_INIT_VAR(&name);
-		ZVAL_EMPTY_STRING(&name);
 	}
 
 
@@ -963,6 +1010,5 @@ PHP_METHOD(Phalcon_Security_JWT_Builder, setClaim) {
 	ZEPHIR_CALL_METHOD(NULL, &_0, "set", NULL, 0, &name, value);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 

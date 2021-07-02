@@ -34,23 +34,21 @@
  * @property string $type
  * @property string $value
  */
-ZEPHIR_INIT_CLASS(Phalcon_Html_Helper_Input_AbstractInput) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Html_Helper_Input_AbstractInput)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Html\\Helper\\Input, AbstractInput, phalcon, html_helper_input_abstractinput, phalcon_html_helper_abstracthelper_ce, phalcon_html_helper_input_abstractinput_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	/**
 	 * @var string
 	 */
 	zend_declare_property_string(phalcon_html_helper_input_abstractinput_ce, SL("type"), "text", ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var array
 	 */
 	zend_declare_property_null(phalcon_html_helper_input_abstractinput_ce, SL("attributes"), ZEND_ACC_PROTECTED);
-
 	phalcon_html_helper_input_abstractinput_ce->create_object = zephir_init_properties_Phalcon_Html_Helper_Input_AbstractInput;
-	return SUCCESS;
 
+	return SUCCESS;
 }
 
 /**
@@ -60,8 +58,8 @@ ZEPHIR_INIT_CLASS(Phalcon_Html_Helper_Input_AbstractInput) {
  *
  * @return AbstractInput
  */
-PHP_METHOD(Phalcon_Html_Helper_Input_AbstractInput, __invoke) {
-
+PHP_METHOD(Phalcon_Html_Helper_Input_AbstractInput, __invoke)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval attributes, _0;
@@ -77,14 +75,22 @@ PHP_METHOD(Phalcon_Html_Helper_Input_AbstractInput, __invoke) {
 	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&attributes);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_STR(name)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(value)
+		Z_PARAM_ARRAY(attributes)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &name_param, &value_param, &attributes_param);
-
 	zephir_get_strval(&name, name_param);
 	if (!value_param) {
 		ZEPHIR_INIT_VAR(&value);
-		ZVAL_STRING(&value, "");
 	} else {
 		zephir_get_strval(&value, value_param);
 	}
@@ -115,7 +121,6 @@ PHP_METHOD(Phalcon_Html_Helper_Input_AbstractInput, __invoke) {
 	zephir_fast_array_merge(&_3, &_4, &attributes);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("attributes"), &_3);
 	RETURN_THIS();
-
 }
 
 /**
@@ -123,8 +128,8 @@ PHP_METHOD(Phalcon_Html_Helper_Input_AbstractInput, __invoke) {
  *
  * @return string
  */
-PHP_METHOD(Phalcon_Html_Helper_Input_AbstractInput, __toString) {
-
+PHP_METHOD(Phalcon_Html_Helper_Input_AbstractInput, __toString)
+{
 	zval _0, _1, _2, _3;
 	zval attributes;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -136,6 +141,7 @@ PHP_METHOD(Phalcon_Html_Helper_Input_AbstractInput, __toString) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -151,7 +157,6 @@ PHP_METHOD(Phalcon_Html_Helper_Input_AbstractInput, __toString) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "rendertag", NULL, 0, &_2, &attributes, &_3);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -161,8 +166,8 @@ PHP_METHOD(Phalcon_Html_Helper_Input_AbstractInput, __toString) {
  *
  * @return AbstractInput
  */
-PHP_METHOD(Phalcon_Html_Helper_Input_AbstractInput, setValue) {
-
+PHP_METHOD(Phalcon_Html_Helper_Input_AbstractInput, setValue)
+{
 	zend_bool _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *value_param = NULL, _1$$3;
@@ -171,13 +176,19 @@ PHP_METHOD(Phalcon_Html_Helper_Input_AbstractInput, setValue) {
 
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&_1$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(value)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &value_param);
-
 	if (!value_param) {
 		ZEPHIR_INIT_VAR(&value);
-		ZVAL_STRING(&value, "");
 	} else {
 		zephir_get_strval(&value, value_param);
 	}
@@ -193,15 +204,15 @@ PHP_METHOD(Phalcon_Html_Helper_Input_AbstractInput, setValue) {
 		zephir_update_property_array(this_ptr, SL("attributes"), &_1$$3, &value);
 	}
 	RETURN_THIS();
-
 }
 
-zend_object *zephir_init_properties_Phalcon_Html_Helper_Input_AbstractInput(zend_class_entry *class_type TSRMLS_DC) {
-
+zend_object *zephir_init_properties_Phalcon_Html_Helper_Input_AbstractInput(zend_class_entry *class_type)
+{
 		zval _0, _1$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
+	
 
 		ZEPHIR_MM_GROW();
 	
@@ -217,6 +228,5 @@ zend_object *zephir_init_properties_Phalcon_Html_Helper_Input_AbstractInput(zend
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

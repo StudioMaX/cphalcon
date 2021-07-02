@@ -74,19 +74,18 @@
  * );
  * ```
  */
-ZEPHIR_INIT_CLASS(Phalcon_Config_Adapter_Ini) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Config_Adapter_Ini)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Config\\Adapter, Ini, phalcon, config_adapter_ini, phalcon_config_ce, phalcon_config_adapter_ini_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
  * Ini constructor.
  */
-PHP_METHOD(Phalcon_Config_Adapter_Ini, __construct) {
-
+PHP_METHOD(Phalcon_Config_Adapter_Ini, __construct)
+{
 	zend_string *_6, *_10$$6, *_23$$12;
 	zend_ulong _5, _9$$6, _22$$12;
 	zval config;
@@ -128,10 +127,18 @@ PHP_METHOD(Phalcon_Config_Adapter_Ini, __construct) {
 	ZVAL_UNDEF(&_29$$15);
 	ZVAL_UNDEF(&_30$$16);
 	ZVAL_UNDEF(&config);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(filePath)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(mode)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &filePath_param, &mode);
-
 	if (UNEXPECTED(Z_TYPE_P(filePath_param) != IS_STRING && Z_TYPE_P(filePath_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'filePath' must be of the type string"));
 		RETURN_MM_NULL();
@@ -140,7 +147,6 @@ PHP_METHOD(Phalcon_Config_Adapter_Ini, __construct) {
 		zephir_get_strval(&filePath, filePath_param);
 	} else {
 		ZEPHIR_INIT_VAR(&filePath);
-		ZVAL_EMPTY_STRING(&filePath);
 	}
 	if (!mode) {
 		mode = &mode_sub;
@@ -198,7 +204,7 @@ PHP_METHOD(Phalcon_Config_Adapter_Ini, __construct) {
 						}
 						ZEPHIR_INIT_NVAR(&lastValue);
 						ZVAL_COPY(&lastValue, _7$$6);
-						zephir_get_strval(&_12$$7, &path);
+						zephir_cast_to_string(&_12$$7, &path);
 						ZEPHIR_CALL_METHOD(&_11$$7, this_ptr, "parseinistring", &_13, 0, &_12$$7, &lastValue);
 						zephir_check_call_status();
 						zephir_array_append(&sections, &_11$$7, PH_SEPARATE, "phalcon/Config/Adapter/Ini.zep", 91);
@@ -216,7 +222,7 @@ PHP_METHOD(Phalcon_Config_Adapter_Ini, __construct) {
 						zephir_check_call_status();
 						ZEPHIR_CALL_METHOD(&lastValue, &directives, "current", NULL, 0);
 						zephir_check_call_status();
-							zephir_get_strval(&_15$$8, &path);
+							zephir_cast_to_string(&_15$$8, &path);
 							ZEPHIR_CALL_METHOD(&_14$$8, this_ptr, "parseinistring", &_13, 0, &_15$$8, &lastValue);
 							zephir_check_call_status();
 							zephir_array_append(&sections, &_14$$8, PH_SEPARATE, "phalcon/Config/Adapter/Ini.zep", 91);
@@ -268,7 +274,7 @@ PHP_METHOD(Phalcon_Config_Adapter_Ini, __construct) {
 							}
 							ZEPHIR_INIT_NVAR(&lastValue);
 							ZVAL_COPY(&lastValue, _20$$12);
-							zephir_get_strval(&_25$$13, &path);
+							zephir_cast_to_string(&_25$$13, &path);
 							ZEPHIR_CALL_METHOD(&_24$$13, this_ptr, "parseinistring", &_13, 0, &_25$$13, &lastValue);
 							zephir_check_call_status();
 							zephir_array_append(&sections, &_24$$13, PH_SEPARATE, "phalcon/Config/Adapter/Ini.zep", 91);
@@ -286,7 +292,7 @@ PHP_METHOD(Phalcon_Config_Adapter_Ini, __construct) {
 							zephir_check_call_status();
 							ZEPHIR_CALL_METHOD(&lastValue, &directives, "current", NULL, 0);
 							zephir_check_call_status();
-								zephir_get_strval(&_27$$14, &path);
+								zephir_cast_to_string(&_27$$14, &path);
 								ZEPHIR_CALL_METHOD(&_26$$14, this_ptr, "parseinistring", &_13, 0, &_27$$14, &lastValue);
 								zephir_check_call_status();
 								zephir_array_append(&sections, &_26$$14, PH_SEPARATE, "phalcon/Config/Adapter/Ini.zep", 91);
@@ -318,15 +324,14 @@ PHP_METHOD(Phalcon_Config_Adapter_Ini, __construct) {
 	ZEPHIR_CALL_PARENT(NULL, phalcon_config_adapter_ini_ce, getThis(), "__construct", &_31, 0, &config);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * We have to cast values manually because parse_ini_file() has a poor
  * implementation.
  */
-PHP_METHOD(Phalcon_Config_Adapter_Ini, cast) {
-
+PHP_METHOD(Phalcon_Config_Adapter_Ini, cast)
+{
 	zend_string *_3$$3;
 	zend_ulong _2$$3;
 	zend_bool _8;
@@ -349,10 +354,16 @@ PHP_METHOD(Phalcon_Config_Adapter_Ini, cast) {
 	ZVAL_UNDEF(&_11$$9);
 	ZVAL_UNDEF(&_12$$9);
 	ZVAL_UNDEF(&_7);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(ini)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &ini);
-
 	ZEPHIR_SEPARATE_PARAM(ini);
 
 
@@ -398,7 +409,7 @@ PHP_METHOD(Phalcon_Config_Adapter_Ini, cast) {
 		RETVAL_ZVAL(ini, 1, 0);
 		RETURN_MM();
 	}
-	zephir_get_strval(&_7, ini);
+	zephir_cast_to_string(&_7, ini);
 	ZEPHIR_CPY_WRT(ini, &_7);
 	ZEPHIR_INIT_VAR(&lowerIni);
 	zephir_fast_strtolower(&lowerIni, ini);
@@ -434,14 +445,13 @@ PHP_METHOD(Phalcon_Config_Adapter_Ini, cast) {
 	}
 	RETVAL_ZVAL(ini, 1, 0);
 	RETURN_MM();
-
 }
 
 /**
  * Build multidimensional array from string
  */
-PHP_METHOD(Phalcon_Config_Adapter_Ini, parseIniString) {
-
+PHP_METHOD(Phalcon_Config_Adapter_Ini, parseIniString)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *path_param = NULL, *value = NULL, value_sub, key, position, _0, _1, _2, _3, _4;
@@ -457,10 +467,17 @@ PHP_METHOD(Phalcon_Config_Adapter_Ini, parseIniString) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(path)
+		Z_PARAM_ZVAL(value)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &path_param, &value);
-
 	if (UNEXPECTED(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be of the type string"));
 		RETURN_MM_NULL();
@@ -469,7 +486,6 @@ PHP_METHOD(Phalcon_Config_Adapter_Ini, parseIniString) {
 		zephir_get_strval(&path, path_param);
 	} else {
 		ZEPHIR_INIT_VAR(&path);
-		ZVAL_EMPTY_STRING(&path);
 	}
 	ZEPHIR_SEPARATE_PARAM(value);
 
@@ -498,6 +514,5 @@ PHP_METHOD(Phalcon_Config_Adapter_Ini, parseIniString) {
 	zephir_check_call_status();
 	zephir_array_update_zval(return_value, &key, &_0, PH_COPY);
 	RETURN_MM();
-
 }
 

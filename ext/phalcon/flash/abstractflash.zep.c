@@ -40,95 +40,86 @@
  * $flash->error("Cannot open the file");
  *```
  */
-ZEPHIR_INIT_CLASS(Phalcon_Flash_AbstractFlash) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Flash_AbstractFlash)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Flash, AbstractFlash, phalcon, flash_abstractflash, phalcon_di_abstractinjectionaware_ce, phalcon_flash_abstractflash_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	/**
 	 * @var bool
 	 */
 	zend_declare_property_bool(phalcon_flash_abstractflash_ce, SL("autoescape"), 1, ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var bool
 	 */
 	zend_declare_property_bool(phalcon_flash_abstractflash_ce, SL("automaticHtml"), 1, ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var array
 	 */
 	zend_declare_property_null(phalcon_flash_abstractflash_ce, SL("cssClasses"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var string
 	 */
 	zend_declare_property_string(phalcon_flash_abstractflash_ce, SL("customTemplate"), "", ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var EscaperInterface | null
 	 */
 	zend_declare_property_null(phalcon_flash_abstractflash_ce, SL("escaperService"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var bool
 	 */
 	zend_declare_property_bool(phalcon_flash_abstractflash_ce, SL("implicitFlush"), 1, ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var array
 	 */
 	zend_declare_property_null(phalcon_flash_abstractflash_ce, SL("messages"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var SessionInterface | null
 	 */
 	zend_declare_property_null(phalcon_flash_abstractflash_ce, SL("sessionService"), ZEND_ACC_PROTECTED);
-
 	phalcon_flash_abstractflash_ce->create_object = zephir_init_properties_Phalcon_Flash_AbstractFlash;
 
 	zend_class_implements(phalcon_flash_abstractflash_ce, 1, phalcon_flash_flashinterface_ce);
 	return SUCCESS;
-
 }
 
 /**
  */
-PHP_METHOD(Phalcon_Flash_AbstractFlash, getAutoescape) {
-
+PHP_METHOD(Phalcon_Flash_AbstractFlash, getAutoescape)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "autoescape");
-
 }
 
 /**
  */
-PHP_METHOD(Phalcon_Flash_AbstractFlash, getCssClasses) {
-
+PHP_METHOD(Phalcon_Flash_AbstractFlash, getCssClasses)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "cssClasses");
-
 }
 
 /**
  */
-PHP_METHOD(Phalcon_Flash_AbstractFlash, getCustomTemplate) {
-
+PHP_METHOD(Phalcon_Flash_AbstractFlash, getCustomTemplate)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "customTemplate");
 
+	RETURN_MEMBER(getThis(), "customTemplate");
 }
 
 /**
  * Phalcon\Flash constructor
  */
-PHP_METHOD(Phalcon_Flash_AbstractFlash, __construct) {
-
+PHP_METHOD(Phalcon_Flash_AbstractFlash, __construct)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *escaper = NULL, escaper_sub, *session = NULL, session_sub, __$null;
@@ -138,10 +129,18 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, __construct) {
 	ZVAL_UNDEF(&session_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(escaper, phalcon_escaper_escaperinterface_ce)
+		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(session, phalcon_session_managerinterface_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &escaper, &session);
-
 	if (!escaper) {
 		escaper = &escaper_sub;
 		escaper = &__$null;
@@ -162,19 +161,19 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, __construct) {
 	add_assoc_stringl_ex(&_0, SL("warning"), SL("warningMessage"));
 	zephir_update_property_zval(this_ptr, ZEND_STRL("cssClasses"), &_0);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Clears accumulated messages when implicit flush is disabled
  */
-PHP_METHOD(Phalcon_Flash_AbstractFlash, clear) {
-
+PHP_METHOD(Phalcon_Flash_AbstractFlash, clear)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -182,7 +181,6 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, clear) {
 	array_init(&_0);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("messages"), &_0);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -194,8 +192,8 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, clear) {
  *
  * @return null|string|void
  */
-PHP_METHOD(Phalcon_Flash_AbstractFlash, error) {
-
+PHP_METHOD(Phalcon_Flash_AbstractFlash, error)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, _0;
@@ -204,10 +202,16 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, error) {
 
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(message)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &message_param);
-
 	zephir_get_strval(&message, message_param);
 
 
@@ -216,14 +220,13 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, error) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "message", NULL, 0, &_0, &message);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Returns the Escaper Service
  */
-PHP_METHOD(Phalcon_Flash_AbstractFlash, getEscaperService) {
-
+PHP_METHOD(Phalcon_Flash_AbstractFlash, getEscaperService)
+{
 	zval container, _0, _1, _6, _7, _2$$4, _3$$4, _5$$4, _8$$5, _9$$5, _10$$6, _11$$6, _12$$6;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -243,6 +246,7 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, getEscaperService) {
 	ZVAL_UNDEF(&_10$$6);
 	ZVAL_UNDEF(&_11$$6);
 	ZVAL_UNDEF(&_12$$6);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -288,7 +292,6 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, getEscaperService) {
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-
 }
 
 /**
@@ -300,8 +303,8 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, getEscaperService) {
  *
  * @return null|string|void
  */
-PHP_METHOD(Phalcon_Flash_AbstractFlash, notice) {
-
+PHP_METHOD(Phalcon_Flash_AbstractFlash, notice)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, _0;
@@ -310,10 +313,16 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, notice) {
 
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(message)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &message_param);
-
 	zephir_get_strval(&message, message_param);
 
 
@@ -322,23 +331,28 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, notice) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "message", NULL, 0, &_0, &message);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Set the autoescape mode in generated HTML
  */
-PHP_METHOD(Phalcon_Flash_AbstractFlash, setAutoescape) {
-
+PHP_METHOD(Phalcon_Flash_AbstractFlash, setAutoescape)
+{
 	zval *autoescape_param = NULL, __$true, __$false;
 	zend_bool autoescape;
 	zval *this_ptr = getThis();
 
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_BOOL(&__$false, 0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_BOOL(autoescape)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &autoescape_param);
-
 	autoescape = zephir_get_boolval(autoescape_param);
 
 
@@ -348,23 +362,28 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, setAutoescape) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("autoescape"), &__$false);
 	}
 	RETURN_THISW();
-
 }
 
 /**
  * Set if the output must be implicitly formatted with HTML
  */
-PHP_METHOD(Phalcon_Flash_AbstractFlash, setAutomaticHtml) {
-
+PHP_METHOD(Phalcon_Flash_AbstractFlash, setAutomaticHtml)
+{
 	zval *automaticHtml_param = NULL, __$true, __$false;
 	zend_bool automaticHtml;
 	zval *this_ptr = getThis();
 
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_BOOL(&__$false, 0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_BOOL(automaticHtml)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &automaticHtml_param);
-
 	automaticHtml = zephir_get_boolval(automaticHtml_param);
 
 
@@ -374,47 +393,57 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, setAutomaticHtml) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("automaticHtml"), &__$false);
 	}
 	RETURN_THISW();
-
 }
 
 /**
  * Set an array with CSS classes to format the messages
  */
-PHP_METHOD(Phalcon_Flash_AbstractFlash, setCssClasses) {
-
+PHP_METHOD(Phalcon_Flash_AbstractFlash, setCssClasses)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *cssClasses_param = NULL;
 	zval cssClasses;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&cssClasses);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ARRAY(cssClasses)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &cssClasses_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&cssClasses, cssClasses_param);
 
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("cssClasses"), &cssClasses);
 	RETURN_THIS();
-
 }
 
 /**
  * Set an custom template for showing the messages
  */
-PHP_METHOD(Phalcon_Flash_AbstractFlash, setCustomTemplate) {
-
+PHP_METHOD(Phalcon_Flash_AbstractFlash, setCustomTemplate)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *customTemplate_param = NULL;
 	zval customTemplate;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&customTemplate);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(customTemplate)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &customTemplate_param);
-
 	if (UNEXPECTED(Z_TYPE_P(customTemplate_param) != IS_STRING && Z_TYPE_P(customTemplate_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'customTemplate' must be of the type string"));
 		RETURN_MM_NULL();
@@ -423,49 +452,58 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, setCustomTemplate) {
 		zephir_get_strval(&customTemplate, customTemplate_param);
 	} else {
 		ZEPHIR_INIT_VAR(&customTemplate);
-		ZVAL_EMPTY_STRING(&customTemplate);
 	}
 
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("customTemplate"), &customTemplate);
 	RETURN_THIS();
-
 }
 
 /**
  * Sets the Escaper Service
  */
-PHP_METHOD(Phalcon_Flash_AbstractFlash, setEscaperService) {
-
+PHP_METHOD(Phalcon_Flash_AbstractFlash, setEscaperService)
+{
 	zval *escaperService, escaperService_sub;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&escaperService_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(escaperService, phalcon_escaper_escaperinterface_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &escaperService);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("escaperService"), escaperService);
 	RETURN_THISW();
-
 }
 
 /**
  * Set whether the output must be implicitly flushed to the output or
  * returned as string
  */
-PHP_METHOD(Phalcon_Flash_AbstractFlash, setImplicitFlush) {
-
+PHP_METHOD(Phalcon_Flash_AbstractFlash, setImplicitFlush)
+{
 	zval *implicitFlush_param = NULL, __$true, __$false;
 	zend_bool implicitFlush;
 	zval *this_ptr = getThis();
 
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_BOOL(&__$false, 0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_BOOL(implicitFlush)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &implicitFlush_param);
-
 	implicitFlush = zephir_get_boolval(implicitFlush_param);
 
 
@@ -475,7 +513,6 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, setImplicitFlush) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("implicitFlush"), &__$false);
 	}
 	RETURN_THISW();
-
 }
 
 /**
@@ -487,8 +524,8 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, setImplicitFlush) {
  *
  * @return null|string|void
  */
-PHP_METHOD(Phalcon_Flash_AbstractFlash, success) {
-
+PHP_METHOD(Phalcon_Flash_AbstractFlash, success)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, _0;
@@ -497,10 +534,16 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, success) {
 
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(message)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &message_param);
-
 	zephir_get_strval(&message, message_param);
 
 
@@ -509,7 +552,6 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, success) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "message", NULL, 0, &_0, &message);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -522,8 +564,8 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, success) {
  * @param string|array message
  * @return null|string|void
  */
-PHP_METHOD(Phalcon_Flash_AbstractFlash, outputMessage) {
-
+PHP_METHOD(Phalcon_Flash_AbstractFlash, outputMessage)
+{
 	zend_bool implicitFlush = 0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL, *_4 = NULL;
@@ -540,10 +582,17 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, outputMessage) {
 	ZVAL_UNDEF(&preparedMsg);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(type)
+		Z_PARAM_ZVAL(message)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &type_param, &message);
-
 	zephir_get_strval(&type, type_param);
 
 
@@ -614,7 +663,6 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, outputMessage) {
 		}
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -626,8 +674,8 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, outputMessage) {
  *
  * @return null|string|void
  */
-PHP_METHOD(Phalcon_Flash_AbstractFlash, warning) {
-
+PHP_METHOD(Phalcon_Flash_AbstractFlash, warning)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, _0;
@@ -636,10 +684,16 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, warning) {
 
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(message)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &message_param);
-
 	zephir_get_strval(&message, message_param);
 
 
@@ -648,11 +702,10 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, warning) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "message", NULL, 0, &_0, &message);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-PHP_METHOD(Phalcon_Flash_AbstractFlash, getTemplate) {
-
+PHP_METHOD(Phalcon_Flash_AbstractFlash, getTemplate)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *cssClassses_param = NULL, _0, _1, _2$$3, _3$$4, _4$$5;
 	zval cssClassses;
@@ -664,10 +717,16 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, getTemplate) {
 	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&_3$$4);
 	ZVAL_UNDEF(&_4$$5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(cssClassses)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &cssClassses_param);
-
 	zephir_get_strval(&cssClassses, cssClassses_param);
 
 
@@ -690,15 +749,14 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, getTemplate) {
 		}
 	}
 	RETURN_MM_MEMBER(getThis(), "customTemplate");
-
 }
 
 /**
  * Returns the message escaped if the autoEscape is true, otherwise the
  * original message is returned
  */
-PHP_METHOD(Phalcon_Flash_AbstractFlash, prepareEscapedMessage) {
-
+PHP_METHOD(Phalcon_Flash_AbstractFlash, prepareEscapedMessage)
+{
 	zend_bool autoEscape = 0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -709,10 +767,16 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, prepareEscapedMessage) {
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&escaper);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(message)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &message_param);
-
 	zephir_get_strval(&message, message_param);
 
 
@@ -727,15 +791,14 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, prepareEscapedMessage) {
 	ZEPHIR_RETURN_CALL_METHOD(&escaper, "escapehtml", NULL, 0, &message);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Prepares the HTML output for the message. If automaticHtml is not set
  * then the original message is returned
  */
-PHP_METHOD(Phalcon_Flash_AbstractFlash, prepareHtmlMessage) {
-
+PHP_METHOD(Phalcon_Flash_AbstractFlash, prepareHtmlMessage)
+{
 	zval _1, _3;
 	zend_bool automaticHtml = 0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -754,10 +817,17 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, prepareHtmlMessage) {
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(type)
+		Z_PARAM_STR(message)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &type_param, &message_param);
-
 	zephir_get_strval(&type, type_param);
 	zephir_get_strval(&message, message_param);
 
@@ -799,17 +869,17 @@ PHP_METHOD(Phalcon_Flash_AbstractFlash, prepareHtmlMessage) {
 	ZEPHIR_INIT_NVAR(&_2);
 	zephir_fast_str_replace(&_2, &_1, &_3, &_4);
 	RETURN_CCTOR(&_2);
-
 }
 
-zend_object *zephir_init_properties_Phalcon_Flash_AbstractFlash(zend_class_entry *class_type TSRMLS_DC) {
-
+zend_object *zephir_init_properties_Phalcon_Flash_AbstractFlash(zend_class_entry *class_type)
+{
 		zval _0, _2, _1$$3, _3$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_3$$4);
+	
 
 		ZEPHIR_MM_GROW();
 	
@@ -831,6 +901,5 @@ zend_object *zephir_init_properties_Phalcon_Flash_AbstractFlash(zend_class_entry
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

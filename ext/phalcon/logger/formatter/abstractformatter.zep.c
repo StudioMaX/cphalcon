@@ -29,8 +29,8 @@
  * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
-ZEPHIR_INIT_CLASS(Phalcon_Logger_Formatter_AbstractFormatter) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Logger_Formatter_AbstractFormatter)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Logger\\Formatter, AbstractFormatter, phalcon, logger_formatter_abstractformatter, phalcon_logger_formatter_abstractformatter_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	/**
@@ -39,45 +39,48 @@ ZEPHIR_INIT_CLASS(Phalcon_Logger_Formatter_AbstractFormatter) {
 	 * @var string
 	 */
 	zend_declare_property_null(phalcon_logger_formatter_abstractformatter_ce, SL("dateFormat"), ZEND_ACC_PROTECTED);
-
 	zend_class_implements(phalcon_logger_formatter_abstractformatter_ce, 1, phalcon_logger_formatter_formatterinterface_ce);
 	return SUCCESS;
-
 }
 
 /**
  * Default date format
  */
-PHP_METHOD(Phalcon_Logger_Formatter_AbstractFormatter, getDateFormat) {
-
+PHP_METHOD(Phalcon_Logger_Formatter_AbstractFormatter, getDateFormat)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "dateFormat");
 
+	RETURN_MEMBER(getThis(), "dateFormat");
 }
 
 /**
  * Default date format
  */
-PHP_METHOD(Phalcon_Logger_Formatter_AbstractFormatter, setDateFormat) {
-
+PHP_METHOD(Phalcon_Logger_Formatter_AbstractFormatter, setDateFormat)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *dateFormat_param = NULL;
 	zval dateFormat;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&dateFormat);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(dateFormat)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &dateFormat_param);
-
 	zephir_get_strval(&dateFormat, dateFormat_param);
 
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("dateFormat"), &dateFormat);
 	RETURN_THIS();
-
 }
 
 /**
@@ -87,8 +90,8 @@ PHP_METHOD(Phalcon_Logger_Formatter_AbstractFormatter, setDateFormat) {
  * @param string $message
  * @param array $context
  */
-PHP_METHOD(Phalcon_Logger_Formatter_AbstractFormatter, interpolate) {
-
+PHP_METHOD(Phalcon_Logger_Formatter_AbstractFormatter, interpolate)
+{
 	zend_string *_4$$3;
 	zend_ulong _3$$3;
 	zend_bool _0;
@@ -108,10 +111,18 @@ PHP_METHOD(Phalcon_Logger_Formatter_AbstractFormatter, interpolate) {
 	ZVAL_UNDEF(&_5$$4);
 	ZVAL_UNDEF(&_6$$5);
 	ZVAL_UNDEF(&replace);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(message)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(context)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &message_param, &context);
-
 	zephir_get_strval(&message, message_param);
 	if (!context) {
 		context = &context_sub;
@@ -169,7 +180,6 @@ PHP_METHOD(Phalcon_Logger_Formatter_AbstractFormatter, interpolate) {
 		RETURN_MM();
 	}
 	RETURN_CTOR(&message);
-
 }
 
 /**
@@ -177,8 +187,8 @@ PHP_METHOD(Phalcon_Logger_Formatter_AbstractFormatter, interpolate) {
  * @todo Not using the set time from the Item since we have interface
  * misalignment which will break semver This will change in the future
  */
-PHP_METHOD(Phalcon_Logger_Formatter_AbstractFormatter, getFormattedDate) {
-
+PHP_METHOD(Phalcon_Logger_Formatter_AbstractFormatter, getFormattedDate)
+{
 	zval date, timezone, _0, _1, _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -190,12 +200,13 @@ PHP_METHOD(Phalcon_Logger_Formatter_AbstractFormatter, getFormattedDate) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_CALL_FUNCTION(&timezone, "date_default_timezone_get", NULL, 109);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&date);
-	object_init_ex(&date, zephir_get_internal_ce(SL("datetimeimmutable")));
+	object_init_ex(&date, php_date_get_immutable_ce());
 	ZEPHIR_INIT_VAR(&_0);
 	object_init_ex(&_0, php_date_get_timezone_ce());
 	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 0, &timezone);
@@ -208,6 +219,5 @@ PHP_METHOD(Phalcon_Logger_Formatter_AbstractFormatter, getFormattedDate) {
 	ZEPHIR_RETURN_CALL_METHOD(&date, "format", NULL, 0, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

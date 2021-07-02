@@ -25,26 +25,22 @@
  *
  * Interface for Phalcon\Mvc\Model\Query\Status
  */
-ZEPHIR_INIT_CLASS(Phalcon_Mvc_Model_Query_StatusInterface) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Mvc_Model_Query_StatusInterface)
+{
 	ZEPHIR_REGISTER_INTERFACE(Phalcon\\Mvc\\Model\\Query, StatusInterface, phalcon, mvc_model_query_statusinterface, phalcon_mvc_model_query_statusinterface_method_entry);
 
 	return SUCCESS;
-
 }
 
 /**
  * Returns the messages produced by an operation failed
  */
 ZEPHIR_DOC_METHOD(Phalcon_Mvc_Model_Query_StatusInterface, getMessages);
-
 /**
  * Returns the model which executed the action
  */
 ZEPHIR_DOC_METHOD(Phalcon_Mvc_Model_Query_StatusInterface, getModel);
-
 /**
  * Allows to check if the executed operation was successful
  */
 ZEPHIR_DOC_METHOD(Phalcon_Mvc_Model_Query_StatusInterface, success);
-

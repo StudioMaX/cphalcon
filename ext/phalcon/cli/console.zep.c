@@ -36,30 +36,28 @@
 /**
  * This component allows to create CLI applications using Phalcon
  */
-ZEPHIR_INIT_CLASS(Phalcon_Cli_Console) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Cli_Console)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Cli, Console, phalcon, cli_console, phalcon_application_abstractapplication_ce, phalcon_cli_console_method_entry, 0);
 
 	/**
 	 * @var array
 	 */
 	zend_declare_property_null(phalcon_cli_console_ce, SL("arguments"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var array
 	 */
 	zend_declare_property_null(phalcon_cli_console_ce, SL("options"), ZEND_ACC_PROTECTED);
-
 	phalcon_cli_console_ce->create_object = zephir_init_properties_Phalcon_Cli_Console;
-	return SUCCESS;
 
+	return SUCCESS;
 }
 
 /**
  * Handle the whole command-line tasks
  */
-PHP_METHOD(Phalcon_Cli_Console, handle) {
-
+PHP_METHOD(Phalcon_Cli_Console, handle)
+{
 	zend_bool _9;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -106,13 +104,19 @@ PHP_METHOD(Phalcon_Cli_Console, handle) {
 	ZVAL_UNDEF(&_24$$20);
 	ZVAL_UNDEF(&_25$$20);
 	ZVAL_UNDEF(&_26$$22);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY_OR_NULL(arguments)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &arguments_param);
-
 	if (!arguments_param) {
 		ZEPHIR_INIT_VAR(&arguments);
-		array_init(&arguments);
 	} else {
 		zephir_get_arrval(&arguments, arguments_param);
 	}
@@ -279,14 +283,13 @@ PHP_METHOD(Phalcon_Cli_Console, handle) {
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(&task);
-
 }
 
 /**
  * Set an specific argument
  */
-PHP_METHOD(Phalcon_Cli_Console, setArgument) {
-
+PHP_METHOD(Phalcon_Cli_Console, setArgument)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_6 = NULL, *_44 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -346,13 +349,21 @@ PHP_METHOD(Phalcon_Cli_Console, setArgument) {
 	ZVAL_UNDEF(&_45$$24);
 	ZVAL_UNDEF(&_46$$25);
 	ZVAL_UNDEF(&_47$$26);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 3)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY_OR_NULL(arguments)
+		Z_PARAM_BOOL(str)
+		Z_PARAM_BOOL(shift)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 3, &arguments_param, &str_param, &shift_param);
-
 	if (!arguments_param) {
 		ZEPHIR_INIT_VAR(&arguments);
-		array_init(&arguments);
 	} else {
 	ZEPHIR_OBS_COPY_OR_DUP(&arguments, arguments_param);
 	}
@@ -545,11 +556,10 @@ PHP_METHOD(Phalcon_Cli_Console, setArgument) {
 	}
 	zephir_update_property_zval(this_ptr, ZEND_STRL("options"), &opts);
 	RETURN_THIS();
-
 }
 
-zend_object *zephir_init_properties_Phalcon_Cli_Console(zend_class_entry *class_type TSRMLS_DC) {
-
+zend_object *zephir_init_properties_Phalcon_Cli_Console(zend_class_entry *class_type)
+{
 		zval _0, _2, _4, _1$$3, _3$$4, _5$$5;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
@@ -558,6 +568,7 @@ zend_object *zephir_init_properties_Phalcon_Cli_Console(zend_class_entry *class_
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_3$$4);
 	ZVAL_UNDEF(&_5$$5);
+	
 
 		ZEPHIR_MM_GROW();
 	
@@ -585,6 +596,5 @@ zend_object *zephir_init_properties_Phalcon_Cli_Console(zend_class_entry *class_
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

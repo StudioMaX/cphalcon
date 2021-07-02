@@ -26,8 +26,8 @@
  * Interface for the repository of current state
  * Phalcon\Paginator\AdapterInterface::paginate()
  */
-ZEPHIR_INIT_CLASS(Phalcon_Paginator_RepositoryInterface) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Paginator_RepositoryInterface)
+{
 	ZEPHIR_REGISTER_INTERFACE(Phalcon\\Paginator, RepositoryInterface, phalcon, paginator_repositoryinterface, phalcon_paginator_repositoryinterface_method_entry);
 
 	zephir_declare_class_constant_string(phalcon_paginator_repositoryinterface_ce, SL("PROPERTY_CURRENT_PAGE"), "current");
@@ -47,61 +47,49 @@ ZEPHIR_INIT_CLASS(Phalcon_Paginator_RepositoryInterface) {
 	zephir_declare_class_constant_string(phalcon_paginator_repositoryinterface_ce, SL("PROPERTY_TOTAL_ITEMS"), "total_items");
 
 	return SUCCESS;
-
 }
 
 /**
  * Gets the aliases for properties repository
  */
 ZEPHIR_DOC_METHOD(Phalcon_Paginator_RepositoryInterface, getAliases);
-
 /**
  * Gets number of the current page
  */
 ZEPHIR_DOC_METHOD(Phalcon_Paginator_RepositoryInterface, getCurrent);
-
 /**
  * Gets number of the first page
  */
 ZEPHIR_DOC_METHOD(Phalcon_Paginator_RepositoryInterface, getFirst);
-
 /**
  * Gets the items on the current page
  */
 ZEPHIR_DOC_METHOD(Phalcon_Paginator_RepositoryInterface, getItems);
-
 /**
  * Gets number of the last page
  */
 ZEPHIR_DOC_METHOD(Phalcon_Paginator_RepositoryInterface, getLast);
-
 /**
  * Gets current rows limit
  */
 ZEPHIR_DOC_METHOD(Phalcon_Paginator_RepositoryInterface, getLimit);
-
 /**
  * Gets number of the next page
  */
 ZEPHIR_DOC_METHOD(Phalcon_Paginator_RepositoryInterface, getNext);
-
 /**
  * Gets number of the previous page
  */
 ZEPHIR_DOC_METHOD(Phalcon_Paginator_RepositoryInterface, getPrevious);
-
 /**
  * Gets the total number of items
  */
 ZEPHIR_DOC_METHOD(Phalcon_Paginator_RepositoryInterface, getTotalItems);
-
 /**
  * Sets the aliases for properties repository
  */
 ZEPHIR_DOC_METHOD(Phalcon_Paginator_RepositoryInterface, setAliases);
-
 /**
  * Sets values for properties of the repository
  */
 ZEPHIR_DOC_METHOD(Phalcon_Paginator_RepositoryInterface, setProperties);
-

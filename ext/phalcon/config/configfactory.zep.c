@@ -45,19 +45,18 @@
  * $config = (new ConfigFactory())->load($options);
  *```
  */
-ZEPHIR_INIT_CLASS(Phalcon_Config_ConfigFactory) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Config_ConfigFactory)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Config, ConfigFactory, phalcon, config_configfactory, phalcon_factory_abstractfactory_ce, phalcon_config_configfactory_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
  * ConfigFactory constructor.
  */
-PHP_METHOD(Phalcon_Config_ConfigFactory, __construct) {
-
+PHP_METHOD(Phalcon_Config_ConfigFactory, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *services_param = NULL;
@@ -65,10 +64,17 @@ PHP_METHOD(Phalcon_Config_ConfigFactory, __construct) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&services);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(services)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &services_param);
-
 	if (!services_param) {
 		ZEPHIR_INIT_VAR(&services);
 		array_init(&services);
@@ -80,7 +86,6 @@ PHP_METHOD(Phalcon_Config_ConfigFactory, __construct) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "init", NULL, 0, &services);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -93,8 +98,8 @@ PHP_METHOD(Phalcon_Config_ConfigFactory, __construct) {
  *      'callbacks' => null
  * ]
  */
-PHP_METHOD(Phalcon_Config_ConfigFactory, load) {
-
+PHP_METHOD(Phalcon_Config_ConfigFactory, load)
+{
 	zend_bool _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_11 = NULL;
@@ -122,10 +127,16 @@ PHP_METHOD(Phalcon_Config_ConfigFactory, load) {
 	ZVAL_UNDEF(&_13$$10);
 	ZVAL_UNDEF(&_14$$11);
 	ZVAL_UNDEF(&_15$$11);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(config)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &config);
-
 	ZEPHIR_SEPARATE_PARAM(config);
 
 
@@ -203,14 +214,13 @@ PHP_METHOD(Phalcon_Config_ConfigFactory, load) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "newinstance", NULL, 0, &adapter, &first, &second);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Returns a new Config instance
  */
-PHP_METHOD(Phalcon_Config_ConfigFactory, newInstance) {
-
+PHP_METHOD(Phalcon_Config_ConfigFactory, newInstance)
+{
 	zend_bool _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -226,10 +236,19 @@ PHP_METHOD(Phalcon_Config_ConfigFactory, newInstance) {
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_STR(name)
+		Z_PARAM_STR(fileName)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(params)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &name_param, &fileName_param, &params);
-
 	zephir_get_strval(&name, name_param);
 	zephir_get_strval(&fileName, fileName_param);
 	if (!params) {
@@ -257,15 +276,15 @@ PHP_METHOD(Phalcon_Config_ConfigFactory, newInstance) {
 	ZEPHIR_LAST_CALL_STATUS = zephir_create_instance_params(return_value, &definition, &options);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Returns the adapters for the factory
  */
-PHP_METHOD(Phalcon_Config_ConfigFactory, getAdapters) {
-
+PHP_METHOD(Phalcon_Config_ConfigFactory, getAdapters)
+{
 	zval *this_ptr = getThis();
+
 
 
 	zephir_create_array(return_value, 5, 0);
@@ -275,6 +294,5 @@ PHP_METHOD(Phalcon_Config_ConfigFactory, getAdapters) {
 	add_assoc_stringl_ex(return_value, SL("php"), SL("Phalcon\\Config\\Adapter\\Php"));
 	add_assoc_stringl_ex(return_value, SL("yaml"), SL("Phalcon\\Config\\Adapter\\Yaml"));
 	return;
-
 }
 

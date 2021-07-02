@@ -27,19 +27,18 @@
  * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
-ZEPHIR_INIT_CLASS(Phalcon_Storage_Serializer_Base64) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Storage_Serializer_Base64)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Storage\\Serializer, Base64, phalcon, storage_serializer_base64, phalcon_storage_serializer_abstractserializer_ce, phalcon_storage_serializer_base64_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
  * Serializes data
  */
-PHP_METHOD(Phalcon_Storage_Serializer_Base64, serialize) {
-
+PHP_METHOD(Phalcon_Storage_Serializer_Base64, serialize)
+{
 	zval _0, _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -47,6 +46,7 @@ PHP_METHOD(Phalcon_Storage_Serializer_Base64, serialize) {
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -60,14 +60,13 @@ PHP_METHOD(Phalcon_Storage_Serializer_Base64, serialize) {
 	ZEPHIR_RETURN_CALL_FUNCTION("base64_encode", NULL, 190, &_1);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Unserializes data
  */
-PHP_METHOD(Phalcon_Storage_Serializer_Base64, unserialize) {
-
+PHP_METHOD(Phalcon_Storage_Serializer_Base64, unserialize)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data, data_sub, _0;
@@ -75,10 +74,16 @@ PHP_METHOD(Phalcon_Storage_Serializer_Base64, unserialize) {
 
 	ZVAL_UNDEF(&data_sub);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(data)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &data);
-
 
 
 	if (Z_TYPE_P(data) != IS_STRING) {
@@ -89,6 +94,5 @@ PHP_METHOD(Phalcon_Storage_Serializer_Base64, unserialize) {
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("data"), &_0);
 	ZEPHIR_MM_RESTORE();
-
 }
 

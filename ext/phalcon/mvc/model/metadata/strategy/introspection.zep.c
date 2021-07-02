@@ -34,20 +34,19 @@
  *
  * Queries the table meta-data in order to introspect the model's metadata
  */
-ZEPHIR_INIT_CLASS(Phalcon_Mvc_Model_MetaData_Strategy_Introspection) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Mvc_Model_MetaData_Strategy_Introspection)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Mvc\\Model\\MetaData\\Strategy, Introspection, phalcon, mvc_model_metadata_strategy_introspection, phalcon_mvc_model_metadata_strategy_introspection_method_entry, 0);
 
 	zend_class_implements(phalcon_mvc_model_metadata_strategy_introspection_ce, 1, phalcon_mvc_model_metadata_strategy_strategyinterface_ce);
 	return SUCCESS;
-
 }
 
 /**
  * Read the model's column map, this can't be inferred
  */
-PHP_METHOD(Phalcon_Mvc_Model_MetaData_Strategy_Introspection, getColumnMaps) {
-
+PHP_METHOD(Phalcon_Mvc_Model_MetaData_Strategy_Introspection, getColumnMaps)
+{
 	zend_string *_3$$3;
 	zend_ulong _2$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -63,10 +62,17 @@ PHP_METHOD(Phalcon_Mvc_Model_MetaData_Strategy_Introspection, getColumnMaps) {
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&userName);
 	ZVAL_UNDEF(&_1$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_OBJECT_OF_CLASS(model, phalcon_mvc_modelinterface_ce)
+		Z_PARAM_OBJECT_OF_CLASS(container, phalcon_di_diinterface_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &model, &container);
-
 
 
 	ZEPHIR_INIT_VAR(&orderedColumnMap);
@@ -122,14 +128,13 @@ PHP_METHOD(Phalcon_Mvc_Model_MetaData_Strategy_Introspection, getColumnMaps) {
 	zephir_array_fast_append(return_value, &orderedColumnMap);
 	zephir_array_fast_append(return_value, &reversedColumnMap);
 	RETURN_MM();
-
 }
 
 /**
  * The meta-data is obtained by reading the column descriptions from the database information schema
  */
-PHP_METHOD(Phalcon_Mvc_Model_MetaData_Strategy_Introspection, getMetaData) {
-
+PHP_METHOD(Phalcon_Mvc_Model_MetaData_Strategy_Introspection, getMetaData)
+{
 	zend_bool _17$$9, _26$$17;
 	zval completeTable;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -185,10 +190,17 @@ PHP_METHOD(Phalcon_Mvc_Model_MetaData_Strategy_Introspection, getMetaData) {
 	ZVAL_UNDEF(&_27$$17);
 	ZVAL_UNDEF(&_28$$23);
 	ZVAL_UNDEF(&completeTable);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_OBJECT_OF_CLASS(model, phalcon_mvc_modelinterface_ce)
+		Z_PARAM_OBJECT_OF_CLASS(container, phalcon_di_diinterface_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &model, &container);
-
 
 
 	ZEPHIR_CALL_METHOD(&schema, model, "getschema", NULL, 0);
@@ -392,6 +404,5 @@ PHP_METHOD(Phalcon_Mvc_Model_MetaData_Strategy_Introspection, getMetaData) {
 	zephir_array_update_long(return_value, 12, &defaultValues, PH_COPY ZEPHIR_DEBUG_PARAMS_DUMMY);
 	zephir_array_update_long(return_value, 13, &emptyStringValues, PH_COPY ZEPHIR_DEBUG_PARAMS_DUMMY);
 	RETURN_MM();
-
 }
 

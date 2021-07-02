@@ -79,25 +79,21 @@
  * $application->main();
  *```
  */
-ZEPHIR_INIT_CLASS(Phalcon_Mvc_Application) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Mvc_Application)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Mvc, Application, phalcon, mvc_application, phalcon_application_abstractapplication_ce, phalcon_mvc_application_method_entry, 0);
 
 	zend_declare_property_bool(phalcon_mvc_application_ce, SL("implicitView"), 1, ZEND_ACC_PROTECTED);
-
 	zend_declare_property_bool(phalcon_mvc_application_ce, SL("sendCookies"), 1, ZEND_ACC_PROTECTED);
-
 	zend_declare_property_bool(phalcon_mvc_application_ce, SL("sendHeaders"), 1, ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
 /**
  * Handles a MVC request
  */
-PHP_METHOD(Phalcon_Mvc_Application, handle) {
-
+PHP_METHOD(Phalcon_Mvc_Application, handle)
+{
 	zval _21$$21;
 	zend_class_entry *_10$$8;
 	zend_bool returnedResponse = 0, _14$$7, _17$$12, _35$$31, _37$$31;
@@ -167,10 +163,16 @@ PHP_METHOD(Phalcon_Mvc_Application, handle) {
 	ZVAL_UNDEF(&_43$$40);
 	ZVAL_UNDEF(&_44$$41);
 	ZVAL_UNDEF(&_21$$21);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(uri)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &uri_param);
-
 	if (UNEXPECTED(Z_TYPE_P(uri_param) != IS_STRING && Z_TYPE_P(uri_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'uri' must be of the type string"));
 		RETURN_MM_NULL();
@@ -179,7 +181,6 @@ PHP_METHOD(Phalcon_Mvc_Application, handle) {
 		zephir_get_strval(&uri, uri_param);
 	} else {
 		ZEPHIR_INIT_VAR(&uri);
-		ZVAL_EMPTY_STRING(&uri);
 	}
 
 
@@ -475,23 +476,28 @@ PHP_METHOD(Phalcon_Mvc_Application, handle) {
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(&response);
-
 }
 
 /**
  * Enables or disables sending cookies by each request handling
  */
-PHP_METHOD(Phalcon_Mvc_Application, sendCookiesOnHandleRequest) {
-
+PHP_METHOD(Phalcon_Mvc_Application, sendCookiesOnHandleRequest)
+{
 	zval *sendCookies_param = NULL, __$true, __$false;
 	zend_bool sendCookies;
 	zval *this_ptr = getThis();
 
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_BOOL(&__$false, 0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_BOOL(sendCookies)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &sendCookies_param);
-
 	sendCookies = zephir_get_boolval(sendCookies_param);
 
 
@@ -501,23 +507,28 @@ PHP_METHOD(Phalcon_Mvc_Application, sendCookiesOnHandleRequest) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("sendCookies"), &__$false);
 	}
 	RETURN_THISW();
-
 }
 
 /**
  * Enables or disables sending headers by each request handling
  */
-PHP_METHOD(Phalcon_Mvc_Application, sendHeadersOnHandleRequest) {
-
+PHP_METHOD(Phalcon_Mvc_Application, sendHeadersOnHandleRequest)
+{
 	zval *sendHeaders_param = NULL, __$true, __$false;
 	zend_bool sendHeaders;
 	zval *this_ptr = getThis();
 
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_BOOL(&__$false, 0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_BOOL(sendHeaders)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &sendHeaders_param);
-
 	sendHeaders = zephir_get_boolval(sendHeaders_param);
 
 
@@ -527,24 +538,29 @@ PHP_METHOD(Phalcon_Mvc_Application, sendHeadersOnHandleRequest) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("sendHeaders"), &__$false);
 	}
 	RETURN_THISW();
-
 }
 
 /**
  * By default. The view is implicitly buffering all the output
  * You can full disable the view component using this method
  */
-PHP_METHOD(Phalcon_Mvc_Application, useImplicitView) {
-
+PHP_METHOD(Phalcon_Mvc_Application, useImplicitView)
+{
 	zval *implicitView_param = NULL, __$true, __$false;
 	zend_bool implicitView;
 	zval *this_ptr = getThis();
 
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_BOOL(&__$false, 0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_BOOL(implicitView)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &implicitView_param);
-
 	implicitView = zephir_get_boolval(implicitView_param);
 
 
@@ -554,6 +570,5 @@ PHP_METHOD(Phalcon_Mvc_Application, useImplicitView) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("implicitView"), &__$false);
 	}
 	RETURN_THISW();
-
 }
 

@@ -25,39 +25,24 @@
  *
  * Interface for Phalcon\Collection class
  */
-ZEPHIR_INIT_CLASS(Phalcon_Collection_CollectionInterface) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Collection_CollectionInterface)
+{
 	ZEPHIR_REGISTER_INTERFACE(Phalcon\\Collection, CollectionInterface, phalcon, collection_collectioninterface, phalcon_collection_collectioninterface_method_entry);
 
 	return SUCCESS;
-
 }
 
 ZEPHIR_DOC_METHOD(Phalcon_Collection_CollectionInterface, __get);
-
 ZEPHIR_DOC_METHOD(Phalcon_Collection_CollectionInterface, __isset);
-
 ZEPHIR_DOC_METHOD(Phalcon_Collection_CollectionInterface, __set);
-
 ZEPHIR_DOC_METHOD(Phalcon_Collection_CollectionInterface, __unset);
-
 ZEPHIR_DOC_METHOD(Phalcon_Collection_CollectionInterface, clear);
-
 ZEPHIR_DOC_METHOD(Phalcon_Collection_CollectionInterface, get);
-
 ZEPHIR_DOC_METHOD(Phalcon_Collection_CollectionInterface, getKeys);
-
 ZEPHIR_DOC_METHOD(Phalcon_Collection_CollectionInterface, getValues);
-
 ZEPHIR_DOC_METHOD(Phalcon_Collection_CollectionInterface, has);
-
 ZEPHIR_DOC_METHOD(Phalcon_Collection_CollectionInterface, init);
-
 ZEPHIR_DOC_METHOD(Phalcon_Collection_CollectionInterface, remove);
-
 ZEPHIR_DOC_METHOD(Phalcon_Collection_CollectionInterface, set);
-
 ZEPHIR_DOC_METHOD(Phalcon_Collection_CollectionInterface, toArray);
-
 ZEPHIR_DOC_METHOD(Phalcon_Collection_CollectionInterface, toJson);
-

@@ -37,29 +37,26 @@
  * a wrapper around the most common operations, including serialization of
  * the entire stream to a string.
  */
-ZEPHIR_INIT_CLASS(Phalcon_Http_Message_Stream_Input) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Http_Message_Stream_Input)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Http\\Message\\Stream, Input, phalcon, http_message_stream_input, phalcon_http_message_stream_ce, phalcon_http_message_stream_input_method_entry, 0);
 
 	/**
 	 * @var string
 	 */
 	zend_declare_property_string(phalcon_http_message_stream_input_ce, SL("data"), "", ZEND_ACC_PRIVATE);
-
 	/**
 	 * @var bool
 	 */
 	zend_declare_property_bool(phalcon_http_message_stream_input_ce, SL("eof"), 0, ZEND_ACC_PRIVATE);
-
 	return SUCCESS;
-
 }
 
 /**
  * Input constructor.
  */
-PHP_METHOD(Phalcon_Http_Message_Stream_Input, __construct) {
-
+PHP_METHOD(Phalcon_Http_Message_Stream_Input, __construct)
+{
 	zval _1, _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -68,6 +65,7 @@ PHP_METHOD(Phalcon_Http_Message_Stream_Input, __construct) {
 
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -78,7 +76,6 @@ PHP_METHOD(Phalcon_Http_Message_Stream_Input, __construct) {
 	ZEPHIR_CALL_PARENT(NULL, phalcon_http_message_stream_input_ce, getThis(), "__construct", &_0, 0, &_1, &_2);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -94,14 +91,15 @@ PHP_METHOD(Phalcon_Http_Message_Stream_Input, __construct) {
  *
  * @see http://php.net/manual/en/language.oop5.magic.php#object.tostring
  */
-PHP_METHOD(Phalcon_Http_Message_Stream_Input, __toString) {
-
+PHP_METHOD(Phalcon_Http_Message_Stream_Input, __toString)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -112,7 +110,6 @@ PHP_METHOD(Phalcon_Http_Message_Stream_Input, __toString) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "getcontents", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM_MEMBER(getThis(), "data");
-
 }
 
 /**
@@ -125,8 +122,8 @@ PHP_METHOD(Phalcon_Http_Message_Stream_Input, __toString) {
  *
  * @return string
  */
-PHP_METHOD(Phalcon_Http_Message_Stream_Input, getContents) {
-
+PHP_METHOD(Phalcon_Http_Message_Stream_Input, getContents)
+{
 	zend_bool _3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *length_param = NULL, __$true, __$false, data, _0, _1, _2, _4;
@@ -140,10 +137,17 @@ PHP_METHOD(Phalcon_Http_Message_Stream_Input, getContents) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_LONG(length)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &length_param);
-
 	if (!length_param) {
 		length = -1;
 	} else {
@@ -174,19 +178,18 @@ PHP_METHOD(Phalcon_Http_Message_Stream_Input, getContents) {
 		}
 	}
 	RETURN_MM_MEMBER(getThis(), "data");
-
 }
 
 /**
  * Returns whether or not the stream is writeable.
  */
-PHP_METHOD(Phalcon_Http_Message_Stream_Input, isWritable) {
-
+PHP_METHOD(Phalcon_Http_Message_Stream_Input, isWritable)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_BOOL(0);
 
+	RETURN_BOOL(0);
 }
 
 /**
@@ -196,8 +199,8 @@ PHP_METHOD(Phalcon_Http_Message_Stream_Input, isWritable) {
  *
  * @return string
  */
-PHP_METHOD(Phalcon_Http_Message_Stream_Input, read) {
-
+PHP_METHOD(Phalcon_Http_Message_Stream_Input, read)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -210,10 +213,16 @@ PHP_METHOD(Phalcon_Http_Message_Stream_Input, read) {
 	ZVAL_UNDEF(&data);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(length)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &length);
-
 
 
 	ZEPHIR_CALL_PARENT(&data, phalcon_http_message_stream_input_ce, getThis(), "read", &_0, 0, length);
@@ -232,6 +241,5 @@ PHP_METHOD(Phalcon_Http_Message_Stream_Input, read) {
 		}
 	}
 	RETURN_CCTOR(&data);
-
 }
 

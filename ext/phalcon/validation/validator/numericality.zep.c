@@ -63,14 +63,12 @@
  * );
  * ```
  */
-ZEPHIR_INIT_CLASS(Phalcon_Validation_Validator_Numericality) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Validation_Validator_Numericality)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Validation\\Validator, Numericality, phalcon, validation_validator_numericality, phalcon_validation_abstractvalidator_ce, phalcon_validation_validator_numericality_method_entry, 0);
 
 	zend_declare_property_string(phalcon_validation_validator_numericality_ce, SL("template"), "Field :field does not have a valid numeric format", ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
 /**
@@ -82,8 +80,8 @@ ZEPHIR_INIT_CLASS(Phalcon_Validation_Validator_Numericality) {
  *     'allowEmpty' => false
  * ]
  */
-PHP_METHOD(Phalcon_Validation_Validator_Numericality, __construct) {
-
+PHP_METHOD(Phalcon_Validation_Validator_Numericality, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -92,10 +90,17 @@ PHP_METHOD(Phalcon_Validation_Validator_Numericality, __construct) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&options);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(options)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &options_param);
-
 	if (!options_param) {
 		ZEPHIR_INIT_VAR(&options);
 		array_init(&options);
@@ -107,14 +112,13 @@ PHP_METHOD(Phalcon_Validation_Validator_Numericality, __construct) {
 	ZEPHIR_CALL_PARENT(NULL, phalcon_validation_validator_numericality_ce, getThis(), "__construct", &_0, 0, &options);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Executes the validation
  */
-PHP_METHOD(Phalcon_Validation_Validator_Numericality, validate) {
-
+PHP_METHOD(Phalcon_Validation_Validator_Numericality, validate)
+{
 	zval pattern, _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -131,15 +135,22 @@ PHP_METHOD(Phalcon_Validation_Validator_Numericality, validate) {
 	ZVAL_UNDEF(&_5$$3);
 	ZVAL_UNDEF(&pattern);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_OBJECT_OF_CLASS(validation, phalcon_validation_ce)
+		Z_PARAM_ZVAL(field)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &validation, &field);
 
 
-
 	ZEPHIR_CALL_METHOD(&value, validation, "getvalue", NULL, 0, field);
 	zephir_check_call_status();
-	zephir_get_strval(&_0, &value);
+	zephir_cast_to_string(&_0, &value);
 	ZEPHIR_CPY_WRT(&value, &_0);
 	ZEPHIR_INIT_VAR(&_1);
 	ZEPHIR_INIT_VAR(&_2);
@@ -161,6 +172,5 @@ PHP_METHOD(Phalcon_Validation_Validator_Numericality, validate) {
 		RETURN_MM_BOOL(0);
 	}
 	RETURN_MM_BOOL(1);
-
 }
 

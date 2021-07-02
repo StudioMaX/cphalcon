@@ -32,97 +32,95 @@
  * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
-ZEPHIR_INIT_CLASS(Phalcon_Storage_Adapter_AbstractAdapter) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Storage_Adapter_AbstractAdapter)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Storage\\Adapter, AbstractAdapter, phalcon, storage_adapter_abstractadapter, phalcon_storage_adapter_abstractadapter_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	/**
 	 * @var mixed
 	 */
 	zend_declare_property_null(phalcon_storage_adapter_abstractadapter_ce, SL("adapter"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * Name of the default serializer class
 	 *
 	 * @var string
 	 */
 	zend_declare_property_string(phalcon_storage_adapter_abstractadapter_ce, SL("defaultSerializer"), "Php", ZEND_ACC_PROTECTED);
-
 	/**
 	 * Name of the default TTL (time to live)
 	 *
 	 * @var int
 	 */
 	zend_declare_property_long(phalcon_storage_adapter_abstractadapter_ce, SL("lifetime"), 3600, ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var string
 	 */
 	zend_declare_property_string(phalcon_storage_adapter_abstractadapter_ce, SL("prefix"), "", ZEND_ACC_PROTECTED);
-
 	/**
 	 * Serializer
 	 *
 	 * @var SerializerInterface
 	 */
 	zend_declare_property_null(phalcon_storage_adapter_abstractadapter_ce, SL("serializer"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * Serializer Factory
 	 *
 	 * @var SerializerFactory
 	 */
 	zend_declare_property_null(phalcon_storage_adapter_abstractadapter_ce, SL("serializerFactory"), ZEND_ACC_PROTECTED);
-
 	zend_class_implements(phalcon_storage_adapter_abstractadapter_ce, 1, phalcon_storage_adapter_adapterinterface_ce);
 	return SUCCESS;
-
 }
 
 /**
  * Name of the default serializer class
  */
-PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getDefaultSerializer) {
-
+PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getDefaultSerializer)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "defaultSerializer");
 
+	RETURN_MEMBER(getThis(), "defaultSerializer");
 }
 
 /**
  * Name of the default serializer class
  */
-PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, setDefaultSerializer) {
-
+PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, setDefaultSerializer)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *defaultSerializer_param = NULL;
 	zval defaultSerializer;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&defaultSerializer);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(defaultSerializer)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &defaultSerializer_param);
-
 	zephir_get_strval(&defaultSerializer, defaultSerializer_param);
 
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("defaultSerializer"), &defaultSerializer);
 	RETURN_THIS();
-
 }
 
 /**
  */
-PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getPrefix) {
-
+PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getPrefix)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "prefix");
 
+	RETURN_MEMBER(getThis(), "prefix");
 }
 
 /**
@@ -135,8 +133,8 @@ PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getPrefix) {
  *     'prefix' => ''
  * ]
  */
-PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, __construct) {
-
+PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
@@ -152,10 +150,18 @@ PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, __construct) {
 	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_6$$3);
 	ZVAL_UNDEF(&options);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_OBJECT_OF_CLASS(factory, phalcon_storage_serializerfactory_ce)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(options)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &factory, &options_param);
-
 	if (!options_param) {
 		ZEPHIR_INIT_VAR(&options);
 		array_init(&options);
@@ -183,70 +189,69 @@ PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, __construct) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("prefix"), &_6$$3);
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Flushes/clears the cache
  */
-PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, clear) {
-
+PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, clear)
+{
 }
 
 /**
  * Decrements a stored number
  */
-PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, decrement) {
-
+PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, decrement)
+{
 }
 
 /**
  * Deletes data from the adapter
  */
-PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, delete) {
-
+PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, delete)
+{
 }
 
 /**
  * Reads data from the adapter
  */
-PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, get) {
-
+PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, get)
+{
 }
 
 /**
  * Returns the adapter - connects to the storage if not connected
  */
-PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getAdapter) {
-
+PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getAdapter)
+{
 }
 
 /**
  * Returns all the keys stored
  */
-PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getKeys) {
-
+PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getKeys)
+{
 }
 
 /**
  * Checks if an element exists in the cache
  */
-PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, has) {
-
+PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, has)
+{
 }
 
 /**
  * Increments a stored number
  */
-PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, increment) {
-
+PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, increment)
+{
 }
 
 /**
  * Stores data in the adapter
  */
-PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, set) {
-
+PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, set)
+{
 }
 
 /**
@@ -257,8 +262,8 @@ PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, set) {
  *
  * @return array
  */
-PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getFilteredKeys) {
-
+PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getFilteredKeys)
+{
 	zval results;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_5 = NULL;
@@ -277,10 +282,17 @@ PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getFilteredKeys) {
 	ZVAL_UNDEF(&_6$$5);
 	ZVAL_UNDEF(&prefix);
 	ZVAL_UNDEF(&results);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_ZVAL(keys)
+		Z_PARAM_STR(prefix)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &keys, &prefix_param);
-
 	ZEPHIR_SEPARATE_PARAM(keys);
 	if (UNEXPECTED(Z_TYPE_P(prefix_param) != IS_STRING && Z_TYPE_P(prefix_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'prefix' must be of the type string"));
@@ -290,7 +302,6 @@ PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getFilteredKeys) {
 		zephir_get_strval(&prefix, prefix_param);
 	} else {
 		ZEPHIR_INIT_VAR(&prefix);
-		ZVAL_EMPTY_STRING(&prefix);
 	}
 
 
@@ -341,14 +352,13 @@ PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getFilteredKeys) {
 	}
 	ZEPHIR_INIT_NVAR(&key);
 	RETURN_CTOR(&results);
-
 }
 
 /**
  * Returns the key requested, prefixed
  */
-PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getPrefixedKey) {
-
+PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getPrefixedKey)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *key = NULL, key_sub, _1;
@@ -357,26 +367,31 @@ PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getPrefixedKey) {
 	ZVAL_UNDEF(&key_sub);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(key)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &key);
-
 	ZEPHIR_SEPARATE_PARAM(key);
 
 
-	zephir_get_strval(&_0, key);
+	zephir_cast_to_string(&_0, key);
 	ZEPHIR_CPY_WRT(key, &_0);
 	zephir_read_property(&_1, this_ptr, ZEND_STRL("prefix"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CONCAT_VV(return_value, &_1, key);
 	RETURN_MM();
-
 }
 
 /**
  * Returns serialized data
  */
-PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getSerializedData) {
-
+PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getSerializedData)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *content = NULL, content_sub, _0, _1$$3, _2$$3;
@@ -386,10 +401,16 @@ PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getSerializedData) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(content)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &content);
-
 	ZEPHIR_SEPARATE_PARAM(content);
 
 
@@ -404,7 +425,6 @@ PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getSerializedData) {
 	}
 	RETVAL_ZVAL(content, 1, 0);
 	RETURN_MM();
-
 }
 
 /**
@@ -415,8 +435,8 @@ PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getSerializedData) {
  * @return int
  * @throws Exception
  */
-PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getTtl) {
-
+PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getTtl)
+{
 	zend_bool _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -427,10 +447,16 @@ PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getTtl) {
 	ZVAL_UNDEF(&dateTime);
 	ZVAL_UNDEF(&_1$$4);
 	ZVAL_UNDEF(&_2$$4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(ttl)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &ttl);
-
 
 
 	if (Z_TYPE_P(ttl) == IS_NULL) {
@@ -438,7 +464,7 @@ PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getTtl) {
 	}
 	_0 = Z_TYPE_P(ttl) == IS_OBJECT;
 	if (_0) {
-		_0 = zephir_instance_of_ev(ttl, zephir_get_internal_ce(SL("dateinterval")));
+		_0 = zephir_instance_of_ev(ttl, php_date_get_interval_ce());
 	}
 	if (_0) {
 		ZEPHIR_INIT_VAR(&dateTime);
@@ -454,14 +480,13 @@ PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getTtl) {
 		RETURN_MM();
 	}
 	RETURN_MM_LONG(zephir_get_intval(ttl));
-
 }
 
 /**
  * Returns unserialized data
  */
-PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getUnserializedData) {
-
+PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getUnserializedData)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *content = NULL, content_sub, *defaultValue = NULL, defaultValue_sub, __$null, _0, _1$$4, _2$$4;
@@ -473,10 +498,18 @@ PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getUnserializedData) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$4);
 	ZVAL_UNDEF(&_2$$4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ZVAL(content)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(defaultValue)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &content, &defaultValue);
-
 	ZEPHIR_SEPARATE_PARAM(content);
 	if (!defaultValue) {
 		defaultValue = &defaultValue_sub;
@@ -499,14 +532,13 @@ PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, getUnserializedData) {
 	}
 	RETVAL_ZVAL(content, 1, 0);
 	RETURN_MM();
-
 }
 
 /**
  * Initializes the serializer
  */
-PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, initSerializer) {
-
+PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, initSerializer)
+{
 	zend_bool _1;
 	zval _0, _2, _3$$3, _4$$3, _5$$3;
 	zval className;
@@ -520,6 +552,7 @@ PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, initSerializer) {
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_5$$3);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -541,6 +574,5 @@ PHP_METHOD(Phalcon_Storage_Adapter_AbstractAdapter, initSerializer) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("serializer"), &_5$$3);
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 

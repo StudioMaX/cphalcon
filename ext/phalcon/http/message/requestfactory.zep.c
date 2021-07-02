@@ -35,13 +35,12 @@
 /**
  * PSR-17 RequestFactory
  */
-ZEPHIR_INIT_CLASS(Phalcon_Http_Message_RequestFactory) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Http_Message_RequestFactory)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Http\\Message, RequestFactory, phalcon, http_message_requestfactory, phalcon_http_message_requestfactory_method_entry, ZEND_ACC_FINAL_CLASS);
 
 	zend_class_implements(phalcon_http_message_requestfactory_ce, 1, zephir_get_internal_ce(SL("psr\\http\\message\\requestfactoryinterface")));
 	return SUCCESS;
-
 }
 
 /**
@@ -52,8 +51,8 @@ ZEPHIR_INIT_CLASS(Phalcon_Http_Message_RequestFactory) {
  *
  * @return RequestInterface
  */
-PHP_METHOD(Phalcon_Http_Message_RequestFactory, createRequest) {
-
+PHP_METHOD(Phalcon_Http_Message_RequestFactory, createRequest)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *method_param = NULL, *uri, uri_sub;
@@ -62,10 +61,17 @@ PHP_METHOD(Phalcon_Http_Message_RequestFactory, createRequest) {
 
 	ZVAL_UNDEF(&method);
 	ZVAL_UNDEF(&uri_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(method)
+		Z_PARAM_ZVAL(uri)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &method_param, &uri);
-
 	if (UNEXPECTED(Z_TYPE_P(method_param) != IS_STRING && Z_TYPE_P(method_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'method' must be of the type string"));
 		RETURN_MM_NULL();
@@ -74,7 +80,6 @@ PHP_METHOD(Phalcon_Http_Message_RequestFactory, createRequest) {
 		zephir_get_strval(&method, method_param);
 	} else {
 		ZEPHIR_INIT_VAR(&method);
-		ZVAL_EMPTY_STRING(&method);
 	}
 
 
@@ -82,6 +87,5 @@ PHP_METHOD(Phalcon_Http_Message_RequestFactory, createRequest) {
 	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 305, &method, uri);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

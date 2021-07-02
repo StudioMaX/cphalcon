@@ -77,14 +77,12 @@
  * );
  * ```
  */
-ZEPHIR_INIT_CLASS(Phalcon_Validation_Validator_File_MimeType) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Validation_Validator_File_MimeType)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Validation\\Validator\\File, MimeType, phalcon, validation_validator_file_mimetype, phalcon_validation_validator_file_abstractfile_ce, phalcon_validation_validator_file_mimetype_method_entry, 0);
 
 	zend_declare_property_string(phalcon_validation_validator_file_mimetype_ce, SL("template"), "File :field must be of type: :types", ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
 /**
@@ -94,8 +92,8 @@ ZEPHIR_INIT_CLASS(Phalcon_Validation_Validator_File_MimeType) {
  * @param mixed $field
  * @return bool
  */
-PHP_METHOD(Phalcon_Validation_Validator_File_MimeType, validate) {
-
+PHP_METHOD(Phalcon_Validation_Validator_File_MimeType, validate)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *validation, validation_sub, *field, field_sub, fieldTypes, mime, replacePairs, tmp, types, value, _0, _1, _2$$6, _3$$6, _4$$8, _5$$8;
@@ -115,10 +113,17 @@ PHP_METHOD(Phalcon_Validation_Validator_File_MimeType, validate) {
 	ZVAL_UNDEF(&_3$$6);
 	ZVAL_UNDEF(&_4$$8);
 	ZVAL_UNDEF(&_5$$8);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_OBJECT_OF_CLASS(validation, phalcon_validation_ce)
+		Z_PARAM_ZVAL(field)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &validation, &field);
-
 
 
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "checkupload", NULL, 0, validation, field);
@@ -166,6 +171,5 @@ PHP_METHOD(Phalcon_Validation_Validator_File_MimeType, validate) {
 		RETURN_MM_BOOL(0);
 	}
 	RETURN_MM_BOOL(1);
-
 }
 

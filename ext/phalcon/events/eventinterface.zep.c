@@ -25,46 +25,38 @@
  *
  * Interface for Phalcon\Events\Event class
  */
-ZEPHIR_INIT_CLASS(Phalcon_Events_EventInterface) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Events_EventInterface)
+{
 	ZEPHIR_REGISTER_INTERFACE(Phalcon\\Events, EventInterface, phalcon, events_eventinterface, phalcon_events_eventinterface_method_entry);
 
 	return SUCCESS;
-
 }
 
 /**
  * Gets event data
  */
 ZEPHIR_DOC_METHOD(Phalcon_Events_EventInterface, getData);
-
 /**
  * Gets event type
  */
 ZEPHIR_DOC_METHOD(Phalcon_Events_EventInterface, getType);
-
 /**
  * Check whether the event is cancelable
  */
 ZEPHIR_DOC_METHOD(Phalcon_Events_EventInterface, isCancelable);
-
 /**
  * Check whether the event is currently stopped
  */
 ZEPHIR_DOC_METHOD(Phalcon_Events_EventInterface, isStopped);
-
 /**
  * Sets event data
  */
 ZEPHIR_DOC_METHOD(Phalcon_Events_EventInterface, setData);
-
 /**
  * Sets event type
  */
 ZEPHIR_DOC_METHOD(Phalcon_Events_EventInterface, setType);
-
 /**
  * Stops the event preventing propagation
  */
 ZEPHIR_DOC_METHOD(Phalcon_Events_EventInterface, stop);
-

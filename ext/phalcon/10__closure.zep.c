@@ -17,16 +17,15 @@
 #include "kernel/object.h"
 
 
-ZEPHIR_INIT_CLASS(phalcon_10__closure) {
-
+ZEPHIR_INIT_CLASS(phalcon_10__closure)
+{
 	ZEPHIR_REGISTER_CLASS(phalcon, 10__closure, phalcon, 10__closure, phalcon_10__closure_method_entry, ZEND_ACC_FINAL_CLASS);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(phalcon_10__closure, __invoke) {
-
+PHP_METHOD(phalcon_10__closure, __invoke)
+{
 	zend_bool _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *element, element_sub, _0, _2;
@@ -35,10 +34,16 @@ PHP_METHOD(phalcon_10__closure, __invoke) {
 	ZVAL_UNDEF(&element_sub);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(element)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &element);
-
 
 
 	ZEPHIR_OBS_VAR(&_0);
@@ -50,6 +55,5 @@ PHP_METHOD(phalcon_10__closure, __invoke) {
 		_1 = !(zephir_instance_of_ev(&_2, phalcon_validation_abstractcombinedfieldsvalidator_ce));
 	}
 	RETURN_MM_BOOL(_1);
-
 }
 

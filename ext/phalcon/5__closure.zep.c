@@ -16,26 +16,30 @@
 #include "kernel/object.h"
 
 
-ZEPHIR_INIT_CLASS(phalcon_5__closure) {
-
+ZEPHIR_INIT_CLASS(phalcon_5__closure)
+{
 	ZEPHIR_REGISTER_CLASS(phalcon, 5__closure, phalcon, 5__closure, phalcon_5__closure_method_entry, ZEND_ACC_FINAL_CLASS);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(phalcon_5__closure, __invoke) {
-
+PHP_METHOD(phalcon_5__closure, __invoke)
+{
 	zval *file, file_sub;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&file_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(file)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &file);
 
 
-
 	RETURN_BOOL(1);
-
 }
 

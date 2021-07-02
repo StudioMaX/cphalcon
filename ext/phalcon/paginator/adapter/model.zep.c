@@ -94,19 +94,18 @@
  * $paginate = $paginator->paginate();
  *```
  */
-ZEPHIR_INIT_CLASS(Phalcon_Paginator_Adapter_Model) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Paginator_Adapter_Model)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Paginator\\Adapter, Model, phalcon, paginator_adapter_model, phalcon_paginator_adapter_abstractadapter_ce, phalcon_paginator_adapter_model_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
  * Returns a slice of the resultset to show in the pagination
  */
-PHP_METHOD(Phalcon_Paginator_Adapter_Model, paginate) {
-
+PHP_METHOD(Phalcon_Paginator_Adapter_Model, paginate)
+{
 	zval _8, _15, _12$$6;
 	zval config, items, pageItems, modelClass, parameters, _0, _1, _2, _3, _5, _6, _7, _9, _16, _10$$6, _11$$6, _13$$6, _14$$6;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -135,6 +134,7 @@ PHP_METHOD(Phalcon_Paginator_Adapter_Model, paginate) {
 	ZVAL_UNDEF(&_8);
 	ZVAL_UNDEF(&_15);
 	ZVAL_UNDEF(&_12$$6);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -228,6 +228,5 @@ PHP_METHOD(Phalcon_Paginator_Adapter_Model, paginate) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getrepository", NULL, 0, &_15);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

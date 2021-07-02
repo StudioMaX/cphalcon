@@ -23,21 +23,18 @@
 /**
  * This is a base class for combined fields validators
  */
-ZEPHIR_INIT_CLASS(Phalcon_Validation_ValidatorCompositeInterface) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Validation_ValidatorCompositeInterface)
+{
 	ZEPHIR_REGISTER_INTERFACE(Phalcon\\Validation, ValidatorCompositeInterface, phalcon, validation_validatorcompositeinterface, phalcon_validation_validatorcompositeinterface_method_entry);
 
 	return SUCCESS;
-
 }
 
 /**
  * Executes the validation
  */
 ZEPHIR_DOC_METHOD(Phalcon_Validation_ValidatorCompositeInterface, getValidators);
-
 /**
  * Executes the validation
  */
 ZEPHIR_DOC_METHOD(Phalcon_Validation_ValidatorCompositeInterface, validate);
-

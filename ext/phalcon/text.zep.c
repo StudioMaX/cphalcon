@@ -32,8 +32,8 @@
 /**
  * Provides utilities to work with texts
  */
-ZEPHIR_INIT_CLASS(Phalcon_Text) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Text)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon, Text, phalcon, text, phalcon_text_method_entry, 0);
 
 	zephir_declare_class_constant_long(phalcon_text_ce, SL("RANDOM_ALNUM"), 0);
@@ -49,7 +49,6 @@ ZEPHIR_INIT_CLASS(Phalcon_Text) {
 	zephir_declare_class_constant_long(phalcon_text_ce, SL("RANDOM_NUMERIC"), 3);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -61,8 +60,8 @@ ZEPHIR_INIT_CLASS(Phalcon_Text) {
  * echo Phalcon\Text::camelize("co_co-bon_go", "_-"); // CoCoBonGo
  * ```
  */
-PHP_METHOD(Phalcon_Text, camelize) {
-
+PHP_METHOD(Phalcon_Text, camelize)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -73,10 +72,18 @@ PHP_METHOD(Phalcon_Text, camelize) {
 	ZVAL_UNDEF(&text);
 	ZVAL_UNDEF(&delimiter_sub);
 	ZVAL_NULL(&__$null);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(text)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(delimiter)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &text_param, &delimiter);
-
 	if (UNEXPECTED(Z_TYPE_P(text_param) != IS_STRING && Z_TYPE_P(text_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'text' must be of the type string"));
 		RETURN_MM_NULL();
@@ -85,7 +92,6 @@ PHP_METHOD(Phalcon_Text, camelize) {
 		zephir_get_strval(&text, text_param);
 	} else {
 		ZEPHIR_INIT_VAR(&text);
-		ZVAL_EMPTY_STRING(&text);
 	}
 	if (!delimiter) {
 		delimiter = &delimiter_sub;
@@ -96,7 +102,6 @@ PHP_METHOD(Phalcon_Text, camelize) {
 	ZEPHIR_RETURN_CALL_CE_STATIC(phalcon_helper_str_ce, "camelize", &_0, 0, &text, delimiter);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -121,8 +126,8 @@ PHP_METHOD(Phalcon_Text, camelize) {
  * @param string b
  * @param string ...N
  */
-PHP_METHOD(Phalcon_Text, concat) {
-
+PHP_METHOD(Phalcon_Text, concat)
+{
 	zval args, _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -130,6 +135,7 @@ PHP_METHOD(Phalcon_Text, concat) {
 
 	ZVAL_UNDEF(&args);
 	ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -140,7 +146,6 @@ PHP_METHOD(Phalcon_Text, concat) {
 	ZEPHIR_CALL_USER_FUNC_ARRAY(return_value, &_0, &args);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -164,8 +169,8 @@ PHP_METHOD(Phalcon_Text, concat) {
  * );
  * ```
  */
-PHP_METHOD(Phalcon_Text, dynamic) {
-
+PHP_METHOD(Phalcon_Text, dynamic)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -177,10 +182,20 @@ PHP_METHOD(Phalcon_Text, dynamic) {
 	ZVAL_UNDEF(&leftDelimiter);
 	ZVAL_UNDEF(&rightDelimiter);
 	ZVAL_UNDEF(&separator);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 4)
+		Z_PARAM_STR(text)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(leftDelimiter)
+		Z_PARAM_STR(rightDelimiter)
+		Z_PARAM_STR(separator)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &text_param, &leftDelimiter_param, &rightDelimiter_param, &separator_param);
-
 	if (UNEXPECTED(Z_TYPE_P(text_param) != IS_STRING && Z_TYPE_P(text_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'text' must be of the type string"));
 		RETURN_MM_NULL();
@@ -189,7 +204,6 @@ PHP_METHOD(Phalcon_Text, dynamic) {
 		zephir_get_strval(&text, text_param);
 	} else {
 		ZEPHIR_INIT_VAR(&text);
-		ZVAL_EMPTY_STRING(&text);
 	}
 	if (!leftDelimiter_param) {
 		ZEPHIR_INIT_VAR(&leftDelimiter);
@@ -203,7 +217,6 @@ PHP_METHOD(Phalcon_Text, dynamic) {
 		zephir_get_strval(&leftDelimiter, leftDelimiter_param);
 	} else {
 		ZEPHIR_INIT_VAR(&leftDelimiter);
-		ZVAL_EMPTY_STRING(&leftDelimiter);
 	}
 	}
 	if (!rightDelimiter_param) {
@@ -218,7 +231,6 @@ PHP_METHOD(Phalcon_Text, dynamic) {
 		zephir_get_strval(&rightDelimiter, rightDelimiter_param);
 	} else {
 		ZEPHIR_INIT_VAR(&rightDelimiter);
-		ZVAL_EMPTY_STRING(&rightDelimiter);
 	}
 	}
 	if (!separator_param) {
@@ -233,7 +245,6 @@ PHP_METHOD(Phalcon_Text, dynamic) {
 		zephir_get_strval(&separator, separator_param);
 	} else {
 		ZEPHIR_INIT_VAR(&separator);
-		ZVAL_EMPTY_STRING(&separator);
 	}
 	}
 
@@ -241,7 +252,6 @@ PHP_METHOD(Phalcon_Text, dynamic) {
 	ZEPHIR_RETURN_CALL_CE_STATIC(phalcon_helper_str_ce, "dynamic", &_0, 0, &text, &leftDelimiter, &rightDelimiter, &separator);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -253,8 +263,8 @@ PHP_METHOD(Phalcon_Text, dynamic) {
  * echo Phalcon\Text::endsWith("Hello", "LLO"); // true
  * ```
  */
-PHP_METHOD(Phalcon_Text, endsWith) {
-
+PHP_METHOD(Phalcon_Text, endsWith)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -266,10 +276,19 @@ PHP_METHOD(Phalcon_Text, endsWith) {
 	ZVAL_UNDEF(&text);
 	ZVAL_UNDEF(&end);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_STR(text)
+		Z_PARAM_STR(end)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(ignoreCase)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &text_param, &end_param, &ignoreCase_param);
-
 	zephir_get_strval(&text, text_param);
 	zephir_get_strval(&end, end_param);
 	if (!ignoreCase_param) {
@@ -287,7 +306,6 @@ PHP_METHOD(Phalcon_Text, endsWith) {
 	ZEPHIR_RETURN_CALL_CE_STATIC(phalcon_helper_str_ce, "endswith", &_0, 287, &text, &end, &_1);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -298,8 +316,8 @@ PHP_METHOD(Phalcon_Text, endsWith) {
  * echo Phalcon\Text::humanize("five_cats"); // "five cats"
  * ```
  */
-PHP_METHOD(Phalcon_Text, humanize) {
-
+PHP_METHOD(Phalcon_Text, humanize)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -308,10 +326,16 @@ PHP_METHOD(Phalcon_Text, humanize) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&text);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(text)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &text_param);
-
 	if (UNEXPECTED(Z_TYPE_P(text_param) != IS_STRING && Z_TYPE_P(text_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'text' must be of the type string"));
 		RETURN_MM_NULL();
@@ -320,14 +344,12 @@ PHP_METHOD(Phalcon_Text, humanize) {
 		zephir_get_strval(&text, text_param);
 	} else {
 		ZEPHIR_INIT_VAR(&text);
-		ZVAL_EMPTY_STRING(&text);
 	}
 
 
 	ZEPHIR_RETURN_CALL_CE_STATIC(phalcon_helper_str_ce, "humanize", &_0, 0, &text);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -339,8 +361,8 @@ PHP_METHOD(Phalcon_Text, humanize) {
  * echo Phalcon\Text::increment("a_1"); // "a_2"
  * ```
  */
-PHP_METHOD(Phalcon_Text, increment) {
-
+PHP_METHOD(Phalcon_Text, increment)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -350,10 +372,18 @@ PHP_METHOD(Phalcon_Text, increment) {
 
 	ZVAL_UNDEF(&text);
 	ZVAL_UNDEF(&separator);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(text)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(separator)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &text_param, &separator_param);
-
 	zephir_get_strval(&text, text_param);
 	if (!separator_param) {
 		ZEPHIR_INIT_VAR(&separator);
@@ -366,7 +396,6 @@ PHP_METHOD(Phalcon_Text, increment) {
 	ZEPHIR_RETURN_CALL_CE_STATIC(phalcon_helper_str_ce, "increment", &_0, 0, &text, &separator);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -377,8 +406,8 @@ PHP_METHOD(Phalcon_Text, increment) {
  * echo Phalcon\Text::lower("HELLO"); // hello
  * ```
  */
-PHP_METHOD(Phalcon_Text, lower) {
-
+PHP_METHOD(Phalcon_Text, lower)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -388,10 +417,18 @@ PHP_METHOD(Phalcon_Text, lower) {
 
 	ZVAL_UNDEF(&text);
 	ZVAL_UNDEF(&encoding);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(text)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(encoding)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &text_param, &encoding_param);
-
 	if (UNEXPECTED(Z_TYPE_P(text_param) != IS_STRING && Z_TYPE_P(text_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'text' must be of the type string"));
 		RETURN_MM_NULL();
@@ -400,7 +437,6 @@ PHP_METHOD(Phalcon_Text, lower) {
 		zephir_get_strval(&text, text_param);
 	} else {
 		ZEPHIR_INIT_VAR(&text);
-		ZVAL_EMPTY_STRING(&text);
 	}
 	if (!encoding_param) {
 		ZEPHIR_INIT_VAR(&encoding);
@@ -414,7 +450,6 @@ PHP_METHOD(Phalcon_Text, lower) {
 		zephir_get_strval(&encoding, encoding_param);
 	} else {
 		ZEPHIR_INIT_VAR(&encoding);
-		ZVAL_EMPTY_STRING(&encoding);
 	}
 	}
 
@@ -422,7 +457,6 @@ PHP_METHOD(Phalcon_Text, lower) {
 	ZEPHIR_RETURN_CALL_CE_STATIC(phalcon_helper_str_ce, "lower", &_0, 0, &text, &encoding);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -434,8 +468,8 @@ PHP_METHOD(Phalcon_Text, lower) {
  * echo Phalcon\Text::startsWith("Hello", "he"); // true
  * ```
  */
-PHP_METHOD(Phalcon_Text, startsWith) {
-
+PHP_METHOD(Phalcon_Text, startsWith)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -447,10 +481,19 @@ PHP_METHOD(Phalcon_Text, startsWith) {
 	ZVAL_UNDEF(&text);
 	ZVAL_UNDEF(&start);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_STR(text)
+		Z_PARAM_STR(start)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(ignoreCase)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &text_param, &start_param, &ignoreCase_param);
-
 	zephir_get_strval(&text, text_param);
 	zephir_get_strval(&start, start_param);
 	if (!ignoreCase_param) {
@@ -468,7 +511,6 @@ PHP_METHOD(Phalcon_Text, startsWith) {
 	ZEPHIR_RETURN_CALL_CE_STATIC(phalcon_helper_str_ce, "startswith", &_0, 17, &text, &start, &_1);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -482,8 +524,8 @@ PHP_METHOD(Phalcon_Text, startsWith) {
  * echo Text::random(Text::RANDOM_ALNUM);
  * ```
  */
-PHP_METHOD(Phalcon_Text, random) {
-
+PHP_METHOD(Phalcon_Text, random)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_0 = NULL;
 	long length;
@@ -493,10 +535,18 @@ PHP_METHOD(Phalcon_Text, random) {
 
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_LONG(type)
+		Z_PARAM_LONG(length)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &type_param, &length_param);
-
 	if (!type_param) {
 		type = 0;
 	} else {
@@ -514,7 +564,6 @@ PHP_METHOD(Phalcon_Text, random) {
 	ZEPHIR_RETURN_CALL_CE_STATIC(phalcon_helper_str_ce, "random", &_0, 0, &_1, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -528,8 +577,8 @@ PHP_METHOD(Phalcon_Text, random) {
  * echo Phalcon\Text::reduceSlashes("http://foo.bar///baz/buz");
  * ```
  */
-PHP_METHOD(Phalcon_Text, reduceSlashes) {
-
+PHP_METHOD(Phalcon_Text, reduceSlashes)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -538,10 +587,16 @@ PHP_METHOD(Phalcon_Text, reduceSlashes) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&text);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(text)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &text_param);
-
 	if (UNEXPECTED(Z_TYPE_P(text_param) != IS_STRING && Z_TYPE_P(text_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'text' must be of the type string"));
 		RETURN_MM_NULL();
@@ -550,14 +605,12 @@ PHP_METHOD(Phalcon_Text, reduceSlashes) {
 		zephir_get_strval(&text, text_param);
 	} else {
 		ZEPHIR_INIT_VAR(&text);
-		ZVAL_EMPTY_STRING(&text);
 	}
 
 
 	ZEPHIR_RETURN_CALL_CE_STATIC(phalcon_helper_str_ce, "reduceslashes", &_0, 0, &text);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -568,8 +621,8 @@ PHP_METHOD(Phalcon_Text, reduceSlashes) {
  * echo Phalcon\Text::uncamelize("CocoBongo", "-"); // coco-bongo
  * ```
  */
-PHP_METHOD(Phalcon_Text, uncamelize) {
-
+PHP_METHOD(Phalcon_Text, uncamelize)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -580,10 +633,18 @@ PHP_METHOD(Phalcon_Text, uncamelize) {
 	ZVAL_UNDEF(&text);
 	ZVAL_UNDEF(&delimiter_sub);
 	ZVAL_NULL(&__$null);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(text)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(delimiter)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &text_param, &delimiter);
-
 	if (UNEXPECTED(Z_TYPE_P(text_param) != IS_STRING && Z_TYPE_P(text_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'text' must be of the type string"));
 		RETURN_MM_NULL();
@@ -592,7 +653,6 @@ PHP_METHOD(Phalcon_Text, uncamelize) {
 		zephir_get_strval(&text, text_param);
 	} else {
 		ZEPHIR_INIT_VAR(&text);
-		ZVAL_EMPTY_STRING(&text);
 	}
 	if (!delimiter) {
 		delimiter = &delimiter_sub;
@@ -603,7 +663,6 @@ PHP_METHOD(Phalcon_Text, uncamelize) {
 	ZEPHIR_RETURN_CALL_CE_STATIC(phalcon_helper_str_ce, "uncamelize", &_0, 0, &text, delimiter);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -614,8 +673,8 @@ PHP_METHOD(Phalcon_Text, uncamelize) {
  * echo Phalcon\Text::underscore("Awesome Phalcon"); // "Awesome_Phalcon"
  * ```
  */
-PHP_METHOD(Phalcon_Text, underscore) {
-
+PHP_METHOD(Phalcon_Text, underscore)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -624,10 +683,16 @@ PHP_METHOD(Phalcon_Text, underscore) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&text);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(text)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &text_param);
-
 	if (UNEXPECTED(Z_TYPE_P(text_param) != IS_STRING && Z_TYPE_P(text_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'text' must be of the type string"));
 		RETURN_MM_NULL();
@@ -636,14 +701,12 @@ PHP_METHOD(Phalcon_Text, underscore) {
 		zephir_get_strval(&text, text_param);
 	} else {
 		ZEPHIR_INIT_VAR(&text);
-		ZVAL_EMPTY_STRING(&text);
 	}
 
 
 	ZEPHIR_RETURN_CALL_CE_STATIC(phalcon_helper_str_ce, "underscore", &_0, 0, &text);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -654,8 +717,8 @@ PHP_METHOD(Phalcon_Text, underscore) {
  * echo Phalcon\Text::upper("hello"); // HELLO
  * ```
  */
-PHP_METHOD(Phalcon_Text, upper) {
-
+PHP_METHOD(Phalcon_Text, upper)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -665,10 +728,18 @@ PHP_METHOD(Phalcon_Text, upper) {
 
 	ZVAL_UNDEF(&text);
 	ZVAL_UNDEF(&encoding);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(text)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(encoding)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &text_param, &encoding_param);
-
 	if (UNEXPECTED(Z_TYPE_P(text_param) != IS_STRING && Z_TYPE_P(text_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'text' must be of the type string"));
 		RETURN_MM_NULL();
@@ -677,7 +748,6 @@ PHP_METHOD(Phalcon_Text, upper) {
 		zephir_get_strval(&text, text_param);
 	} else {
 		ZEPHIR_INIT_VAR(&text);
-		ZVAL_EMPTY_STRING(&text);
 	}
 	if (!encoding_param) {
 		ZEPHIR_INIT_VAR(&encoding);
@@ -691,7 +761,6 @@ PHP_METHOD(Phalcon_Text, upper) {
 		zephir_get_strval(&encoding, encoding_param);
 	} else {
 		ZEPHIR_INIT_VAR(&encoding);
-		ZVAL_EMPTY_STRING(&encoding);
 	}
 	}
 
@@ -699,6 +768,5 @@ PHP_METHOD(Phalcon_Text, upper) {
 	ZEPHIR_RETURN_CALL_CE_STATIC(phalcon_helper_str_ce, "upper", &_0, 0, &text, &encoding);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

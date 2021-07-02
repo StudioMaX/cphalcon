@@ -33,8 +33,8 @@
  * This component offers caching capabilities for your application.
  * Phalcon\Cache implements PSR-16.
  */
-ZEPHIR_INIT_CLASS(Phalcon_Cache) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Cache)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon, Cache, phalcon, cache, phalcon_cache_method_entry, 0);
 
 	/**
@@ -43,22 +43,20 @@ ZEPHIR_INIT_CLASS(Phalcon_Cache) {
 	 * @var AdapterInterface
 	 */
 	zend_declare_property_null(phalcon_cache_ce, SL("adapter"), ZEND_ACC_PROTECTED);
-
 	zend_class_implements(phalcon_cache_ce, 1, zephir_get_internal_ce(SL("psr\\simplecache\\cacheinterface")));
 	return SUCCESS;
-
 }
 
 /**
  * The adapter
  */
-PHP_METHOD(Phalcon_Cache, getAdapter) {
-
+PHP_METHOD(Phalcon_Cache, getAdapter)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "adapter");
 
+	RETURN_MEMBER(getThis(), "adapter");
 }
 
 /**
@@ -66,19 +64,24 @@ PHP_METHOD(Phalcon_Cache, getAdapter) {
  *
  * @param AdapterInterface  adapter The cache adapter
  */
-PHP_METHOD(Phalcon_Cache, __construct) {
-
+PHP_METHOD(Phalcon_Cache, __construct)
+{
 	zval *adapter, adapter_sub;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&adapter_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(adapter, phalcon_cache_adapter_adapterinterface_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &adapter);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("adapter"), adapter);
-
 }
 
 /**
@@ -86,8 +89,8 @@ PHP_METHOD(Phalcon_Cache, __construct) {
  *
  * @return bool True on success and false on failure.
  */
-PHP_METHOD(Phalcon_Cache, clear) {
-
+PHP_METHOD(Phalcon_Cache, clear)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -95,13 +98,13 @@ PHP_METHOD(Phalcon_Cache, clear) {
 
 	ZVAL_UNDEF(&_0);
 
+
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("adapter"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "clear", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -113,8 +116,8 @@ PHP_METHOD(Phalcon_Cache, clear) {
  *
  * @throws InvalidArgumentException MUST be thrown if the $key string is not a legal value.
  */
-PHP_METHOD(Phalcon_Cache, delete) {
-
+PHP_METHOD(Phalcon_Cache, delete)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key, key_sub, _0;
@@ -122,10 +125,16 @@ PHP_METHOD(Phalcon_Cache, delete) {
 
 	ZVAL_UNDEF(&key_sub);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(key)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &key);
-
 
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "checkkey", NULL, 0, key);
@@ -134,7 +143,6 @@ PHP_METHOD(Phalcon_Cache, delete) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "delete", NULL, 0, key);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -146,8 +154,8 @@ PHP_METHOD(Phalcon_Cache, delete) {
  *
  * @throws InvalidArgumentException MUST be thrown if $keys is neither an array nor a Traversable, or if any of the $keys are not a legal value.
  */
-PHP_METHOD(Phalcon_Cache, deleteMultiple) {
-
+PHP_METHOD(Phalcon_Cache, deleteMultiple)
+{
 	zend_bool result = 0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -161,10 +169,16 @@ PHP_METHOD(Phalcon_Cache, deleteMultiple) {
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_4$$5);
 	ZVAL_UNDEF(&_5$$5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(keys)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &keys);
-
 
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "checkkeys", NULL, 0, keys);
@@ -206,7 +220,6 @@ PHP_METHOD(Phalcon_Cache, deleteMultiple) {
 	}
 	ZEPHIR_INIT_NVAR(&key);
 	RETURN_MM_BOOL(result);
-
 }
 
 /**
@@ -219,8 +232,8 @@ PHP_METHOD(Phalcon_Cache, deleteMultiple) {
  *
  * @throws InvalidArgumentException MUST be thrown if the $key string is not a legal value.
  */
-PHP_METHOD(Phalcon_Cache, get) {
-
+PHP_METHOD(Phalcon_Cache, get)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key, key_sub, *defaultValue = NULL, defaultValue_sub, __$null, _0;
@@ -230,10 +243,18 @@ PHP_METHOD(Phalcon_Cache, get) {
 	ZVAL_UNDEF(&defaultValue_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ZVAL(key)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(defaultValue)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &key, &defaultValue);
-
 	if (!defaultValue) {
 		defaultValue = &defaultValue_sub;
 		defaultValue = &__$null;
@@ -246,7 +267,6 @@ PHP_METHOD(Phalcon_Cache, get) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "get", NULL, 0, key, defaultValue);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -259,8 +279,8 @@ PHP_METHOD(Phalcon_Cache, get) {
  *
  * @throws InvalidArgumentException MUST be thrown if $keys is neither an array nor a Traversable, or if any of the $keys are not a legal value.
  */
-PHP_METHOD(Phalcon_Cache, getMultiple) {
-
+PHP_METHOD(Phalcon_Cache, getMultiple)
+{
 	zval results;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL;
@@ -276,10 +296,18 @@ PHP_METHOD(Phalcon_Cache, getMultiple) {
 	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&_4$$4);
 	ZVAL_UNDEF(&results);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ZVAL(keys)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(defaultValue)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &keys, &defaultValue);
-
 	if (!defaultValue) {
 		defaultValue = &defaultValue_sub;
 		defaultValue = &__$null;
@@ -320,7 +348,6 @@ PHP_METHOD(Phalcon_Cache, getMultiple) {
 	}
 	ZEPHIR_INIT_NVAR(&element);
 	RETURN_CTOR(&results);
-
 }
 
 /**
@@ -332,8 +359,8 @@ PHP_METHOD(Phalcon_Cache, getMultiple) {
  *
  * @throws InvalidArgumentException MUST be thrown if the $key string is not a legal value.
  */
-PHP_METHOD(Phalcon_Cache, has) {
-
+PHP_METHOD(Phalcon_Cache, has)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key, key_sub, _0;
@@ -341,10 +368,16 @@ PHP_METHOD(Phalcon_Cache, has) {
 
 	ZVAL_UNDEF(&key_sub);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(key)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &key);
-
 
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "checkkey", NULL, 0, key);
@@ -353,7 +386,6 @@ PHP_METHOD(Phalcon_Cache, has) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "has", NULL, 0, key);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -369,8 +401,8 @@ PHP_METHOD(Phalcon_Cache, has) {
  *
  * @throws InvalidArgumentException MUST be thrown if the $key string is not a legal value.
  */
-PHP_METHOD(Phalcon_Cache, set) {
-
+PHP_METHOD(Phalcon_Cache, set)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key, key_sub, *value, value_sub, *ttl = NULL, ttl_sub, __$null, _0;
@@ -381,10 +413,19 @@ PHP_METHOD(Phalcon_Cache, set) {
 	ZVAL_UNDEF(&ttl_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_ZVAL(key)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(ttl)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &key, &value, &ttl);
-
 	if (!ttl) {
 		ttl = &ttl_sub;
 		ttl = &__$null;
@@ -397,7 +438,6 @@ PHP_METHOD(Phalcon_Cache, set) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "set", NULL, 0, key, value, ttl);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -412,8 +452,8 @@ PHP_METHOD(Phalcon_Cache, set) {
  *
  * @throws InvalidArgumentException MUST be thrown if $values is neither an array nor a Traversable, or if any of the $values are not a legal value.
  */
-PHP_METHOD(Phalcon_Cache, setMultiple) {
-
+PHP_METHOD(Phalcon_Cache, setMultiple)
+{
 	zend_string *_3;
 	zend_ulong _2;
 	zend_bool result = 0;
@@ -431,10 +471,18 @@ PHP_METHOD(Phalcon_Cache, setMultiple) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_6$$5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ZVAL(values)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(ttl)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &values, &ttl);
-
 	if (!ttl) {
 		ttl = &ttl_sub;
 		ttl = &__$null;
@@ -487,14 +535,13 @@ PHP_METHOD(Phalcon_Cache, setMultiple) {
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
 	RETURN_MM_BOOL(result);
-
 }
 
 /**
  * Checks the key. If it contains invalid characters an exception is thrown
  */
-PHP_METHOD(Phalcon_Cache, checkKey) {
-
+PHP_METHOD(Phalcon_Cache, checkKey)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *key = NULL, key_sub, _1, _2, _3, _4;
@@ -506,14 +553,20 @@ PHP_METHOD(Phalcon_Cache, checkKey) {
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(key)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &key);
-
 	ZEPHIR_SEPARATE_PARAM(key);
 
 
-	zephir_get_strval(&_0, key);
+	zephir_cast_to_string(&_0, key);
 	ZEPHIR_CPY_WRT(key, &_0);
 	ZEPHIR_INIT_VAR(&_1);
 	ZEPHIR_INIT_VAR(&_2);
@@ -527,22 +580,27 @@ PHP_METHOD(Phalcon_Cache, checkKey) {
 		return;
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Checks the key. If it contains invalid characters an exception is thrown
  */
-PHP_METHOD(Phalcon_Cache, checkKeys) {
-
+PHP_METHOD(Phalcon_Cache, checkKeys)
+{
 	zend_bool _0;
 	zval *keys, keys_sub;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&keys_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(keys)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &keys);
-
 
 
 	_0 = Z_TYPE_P(keys) == IS_ARRAY;
@@ -553,6 +611,5 @@ PHP_METHOD(Phalcon_Cache, checkKeys) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(phalcon_cache_exception_invalidargumentexception_ce, "The keys need to be an array or instance of Traversable", "phalcon/Cache.zep", 223);
 		return;
 	}
-
 }
 

@@ -23,46 +23,38 @@
 /**
  * Interface for custom Phalcon\Assets resources
  */
-ZEPHIR_INIT_CLASS(Phalcon_Assets_AssetInterface) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Assets_AssetInterface)
+{
 	ZEPHIR_REGISTER_INTERFACE(Phalcon\\Assets, AssetInterface, phalcon, assets_assetinterface, phalcon_assets_assetinterface_method_entry);
 
 	return SUCCESS;
-
 }
 
 /**
  * Gets the asset's key.
  */
 ZEPHIR_DOC_METHOD(Phalcon_Assets_AssetInterface, getAssetKey);
-
 /**
  * Gets extra HTML attributes.
  */
 ZEPHIR_DOC_METHOD(Phalcon_Assets_AssetInterface, getAttributes);
-
 /**
  * Gets if the asset must be filtered or not.
  */
 ZEPHIR_DOC_METHOD(Phalcon_Assets_AssetInterface, getFilter);
-
 /**
  * Gets the asset's type.
  */
 ZEPHIR_DOC_METHOD(Phalcon_Assets_AssetInterface, getType);
-
 /**
  * Sets extra HTML attributes.
  */
 ZEPHIR_DOC_METHOD(Phalcon_Assets_AssetInterface, setAttributes);
-
 /**
  * Sets if the asset must be filtered or not.
  */
 ZEPHIR_DOC_METHOD(Phalcon_Assets_AssetInterface, setFilter);
-
 /**
  * Sets the asset's type.
  */
 ZEPHIR_DOC_METHOD(Phalcon_Assets_AssetInterface, setType);
-

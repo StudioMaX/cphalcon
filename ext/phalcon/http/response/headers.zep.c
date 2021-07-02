@@ -34,24 +34,22 @@
  *
  * This class is a bag to manage the response headers
  */
-ZEPHIR_INIT_CLASS(Phalcon_Http_Response_Headers) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Http_Response_Headers)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Http\\Response, Headers, phalcon, http_response_headers, phalcon_http_response_headers_method_entry, 0);
 
 	zend_declare_property_null(phalcon_http_response_headers_ce, SL("headers"), ZEND_ACC_PROTECTED);
-
 	phalcon_http_response_headers_ce->create_object = zephir_init_properties_Phalcon_Http_Response_Headers;
 
 	zend_class_implements(phalcon_http_response_headers_ce, 1, phalcon_http_response_headersinterface_ce);
 	return SUCCESS;
-
 }
 
 /**
  * Gets a header value from the internal bag
  */
-PHP_METHOD(Phalcon_Http_Response_Headers, get) {
-
+PHP_METHOD(Phalcon_Http_Response_Headers, get)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *name_param = NULL, headers, headerValue, _0;
 	zval name;
@@ -61,10 +59,16 @@ PHP_METHOD(Phalcon_Http_Response_Headers, get) {
 	ZVAL_UNDEF(&headers);
 	ZVAL_UNDEF(&headerValue);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(name)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
-
 	zephir_get_strval(&name, name_param);
 
 
@@ -74,14 +78,13 @@ PHP_METHOD(Phalcon_Http_Response_Headers, get) {
 		RETURN_MM_BOOL(0);
 	}
 	RETURN_CTOR(&headerValue);
-
 }
 
 /**
  * Checks if a header exists
  */
-PHP_METHOD(Phalcon_Http_Response_Headers, has) {
-
+PHP_METHOD(Phalcon_Http_Response_Headers, has)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *name_param = NULL, _0;
 	zval name;
@@ -89,23 +92,28 @@ PHP_METHOD(Phalcon_Http_Response_Headers, has) {
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(name)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
-
 	zephir_get_strval(&name, name_param);
 
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("headers"), PH_NOISY_CC | PH_READONLY);
 	RETURN_MM_BOOL(zephir_array_isset(&_0, &name));
-
 }
 
 /**
  * Removes a header to be sent at the end of the request
  */
-PHP_METHOD(Phalcon_Http_Response_Headers, remove) {
-
+PHP_METHOD(Phalcon_Http_Response_Headers, remove)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *header_param = NULL, headers, _0;
 	zval header;
@@ -114,10 +122,16 @@ PHP_METHOD(Phalcon_Http_Response_Headers, remove) {
 	ZVAL_UNDEF(&header);
 	ZVAL_UNDEF(&headers);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(header)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &header_param);
-
 	zephir_get_strval(&header, header_param);
 
 
@@ -126,19 +140,19 @@ PHP_METHOD(Phalcon_Http_Response_Headers, remove) {
 	zephir_array_unset(&headers, &header, PH_SEPARATE);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("headers"), &headers);
 	RETURN_THIS();
-
 }
 
 /**
  * Reset set headers
  */
-PHP_METHOD(Phalcon_Http_Response_Headers, reset) {
-
+PHP_METHOD(Phalcon_Http_Response_Headers, reset)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -146,14 +160,13 @@ PHP_METHOD(Phalcon_Http_Response_Headers, reset) {
 	array_init(&_0);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("headers"), &_0);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Sends the headers to the client
  */
-PHP_METHOD(Phalcon_Http_Response_Headers, send) {
-
+PHP_METHOD(Phalcon_Http_Response_Headers, send)
+{
 	zend_bool _8$$6, _14$$11;
 	zend_string *_5;
 	zend_ulong _4;
@@ -179,6 +192,7 @@ PHP_METHOD(Phalcon_Http_Response_Headers, send) {
 	ZVAL_UNDEF(&_16$$11);
 	ZVAL_UNDEF(&_17$$11);
 	ZVAL_UNDEF(&_18$$13);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -269,14 +283,13 @@ PHP_METHOD(Phalcon_Http_Response_Headers, send) {
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&header);
 	RETURN_MM_BOOL(1);
-
 }
 
 /**
  * Sets a header to be sent at the end of the request
  */
-PHP_METHOD(Phalcon_Http_Response_Headers, set) {
-
+PHP_METHOD(Phalcon_Http_Response_Headers, set)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *name_param = NULL, *value_param = NULL;
 	zval name, value;
@@ -284,24 +297,30 @@ PHP_METHOD(Phalcon_Http_Response_Headers, set) {
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&value);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(name)
+		Z_PARAM_STR(value)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &name_param, &value_param);
-
 	zephir_get_strval(&name, name_param);
 	zephir_get_strval(&value, value_param);
 
 
 	zephir_update_property_array(this_ptr, SL("headers"), &name, &value);
 	RETURN_THIS();
-
 }
 
 /**
  * Sets a raw header to be sent at the end of the request
  */
-PHP_METHOD(Phalcon_Http_Response_Headers, setRaw) {
-
+PHP_METHOD(Phalcon_Http_Response_Headers, setRaw)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *header_param = NULL, __$null;
 	zval header;
@@ -309,36 +328,42 @@ PHP_METHOD(Phalcon_Http_Response_Headers, setRaw) {
 
 	ZVAL_UNDEF(&header);
 	ZVAL_NULL(&__$null);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(header)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &header_param);
-
 	zephir_get_strval(&header, header_param);
 
 
 	zephir_update_property_array(this_ptr, SL("headers"), &header, &__$null);
 	RETURN_THIS();
-
 }
 
 /**
  * Returns the current headers as an array
  */
-PHP_METHOD(Phalcon_Http_Response_Headers, toArray) {
-
+PHP_METHOD(Phalcon_Http_Response_Headers, toArray)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "headers");
 
+	RETURN_MEMBER(getThis(), "headers");
 }
 
-zend_object *zephir_init_properties_Phalcon_Http_Response_Headers(zend_class_entry *class_type TSRMLS_DC) {
-
+zend_object *zephir_init_properties_Phalcon_Http_Response_Headers(zend_class_entry *class_type)
+{
 		zval _0, _1$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
+	
 
 		ZEPHIR_MM_GROW();
 	
@@ -354,6 +379,5 @@ zend_object *zephir_init_properties_Phalcon_Http_Response_Headers(zend_class_ent
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

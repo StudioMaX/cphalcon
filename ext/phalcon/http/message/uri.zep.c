@@ -38,8 +38,8 @@
 /**
  * PSR-7 Uri
  */
-ZEPHIR_INIT_CLASS(Phalcon_Http_Message_Uri) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Http_Message_Uri)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Http\\Message, Uri, phalcon, http_message_uri, phalcon_http_message_abstractcommon_ce, phalcon_http_message_uri_method_entry, ZEND_ACC_FINAL_CLASS);
 
 	/**
@@ -48,7 +48,6 @@ ZEPHIR_INIT_CLASS(Phalcon_Http_Message_Uri) {
 	 * @return string
 	 */
 	zend_declare_property_string(phalcon_http_message_uri_ce, SL("fragment"), "", ZEND_ACC_PROTECTED);
-
 	/**
 	 * Retrieve the host component of the URI.
 	 *
@@ -62,19 +61,16 @@ ZEPHIR_INIT_CLASS(Phalcon_Http_Message_Uri) {
 	 * @return string
 	 */
 	zend_declare_property_string(phalcon_http_message_uri_ce, SL("host"), "", ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var string
 	 */
 	zend_declare_property_string(phalcon_http_message_uri_ce, SL("pass"), "", ZEND_ACC_PROTECTED);
-
 	/**
 	 * Returns the path of the URL
 	 *
 	 * @return string
 	 */
 	zend_declare_property_string(phalcon_http_message_uri_ce, SL("path"), "", ZEND_ACC_PROTECTED);
-
 	/**
 	 * Retrieve the port component of the URI.
 	 *
@@ -91,14 +87,12 @@ ZEPHIR_INIT_CLASS(Phalcon_Http_Message_Uri) {
 	 * @return int|null
 	 */
 	zend_declare_property_null(phalcon_http_message_uri_ce, SL("port"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * Returns the query of the URL
 	 *
 	 * @return string
 	 */
 	zend_declare_property_string(phalcon_http_message_uri_ce, SL("query"), "", ZEND_ACC_PROTECTED);
-
 	/**
 	 * Retrieve the scheme component of the URI.
 	 *
@@ -115,27 +109,24 @@ ZEPHIR_INIT_CLASS(Phalcon_Http_Message_Uri) {
 	 * @return string
 	 */
 	zend_declare_property_string(phalcon_http_message_uri_ce, SL("scheme"), "https", ZEND_ACC_PROTECTED);
-
 	/**
 	 * @var string
 	 */
 	zend_declare_property_string(phalcon_http_message_uri_ce, SL("user"), "", ZEND_ACC_PROTECTED);
-
 	zend_class_implements(phalcon_http_message_uri_ce, 1, zephir_get_internal_ce(SL("psr\\http\\message\\uriinterface")));
 	return SUCCESS;
-
 }
 
 /**
  * Returns the fragment of the URL
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, getFragment) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, getFragment)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "fragment");
 
+	RETURN_MEMBER(getThis(), "fragment");
 }
 
 /**
@@ -148,25 +139,25 @@ PHP_METHOD(Phalcon_Http_Message_Uri, getFragment) {
  * Section 3.2.2.
  *
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, getHost) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, getHost)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "host");
 
+	RETURN_MEMBER(getThis(), "host");
 }
 
 /**
  * Returns the path of the URL
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, getPath) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, getPath)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "path");
 
+	RETURN_MEMBER(getThis(), "path");
 }
 
 /**
@@ -184,25 +175,25 @@ PHP_METHOD(Phalcon_Http_Message_Uri, getPath) {
  * the standard port for that scheme, but SHOULD return null.
  *
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, getPort) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, getPort)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "port");
 
+	RETURN_MEMBER(getThis(), "port");
 }
 
 /**
  * Returns the query of the URL
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, getQuery) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, getQuery)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "query");
 
+	RETURN_MEMBER(getThis(), "query");
 }
 
 /**
@@ -218,13 +209,13 @@ PHP_METHOD(Phalcon_Http_Message_Uri, getQuery) {
  * added.
  *
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, getScheme) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, getScheme)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "scheme");
 
+	RETURN_MEMBER(getThis(), "scheme");
 }
 
 /**
@@ -232,8 +223,8 @@ PHP_METHOD(Phalcon_Http_Message_Uri, getScheme) {
  *
  * @param string $uri
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, __construct) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -263,10 +254,17 @@ PHP_METHOD(Phalcon_Http_Message_Uri, __construct) {
 	ZVAL_UNDEF(&_18$$3);
 	ZVAL_UNDEF(&_19$$3);
 	ZVAL_UNDEF(&_20$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(uri)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &uri_param);
-
 	if (!uri_param) {
 		ZEPHIR_INIT_VAR(&uri);
 		ZVAL_STRING(&uri, "");
@@ -279,7 +277,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, __construct) {
 		zephir_get_strval(&uri, uri_param);
 	} else {
 		ZEPHIR_INIT_VAR(&uri);
-		ZVAL_EMPTY_STRING(&uri);
 	}
 	}
 
@@ -366,7 +363,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, __construct) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("user"), &_20$$3);
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -379,8 +375,8 @@ PHP_METHOD(Phalcon_Http_Message_Uri, __construct) {
  *
  * @return string
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, __toString) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, __toString)
+{
 	zend_bool _2, _3;
 	zval authority, path, uri, _0, _1, _4, _6, _7, _8, _9, _10, _11, _12, _13, _5$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -402,6 +398,7 @@ PHP_METHOD(Phalcon_Http_Message_Uri, __toString) {
 	ZVAL_UNDEF(&_12);
 	ZVAL_UNDEF(&_13);
 	ZVAL_UNDEF(&_5$$3);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -450,7 +447,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, __toString) {
 	ZEPHIR_INIT_VAR(&uri);
 	ZEPHIR_CONCAT_VVVVV(&uri, &_6, &_9, &path, &_10, &_12);
 	RETURN_CCTOR(&uri);
-
 }
 
 /**
@@ -458,8 +454,8 @@ PHP_METHOD(Phalcon_Http_Message_Uri, __toString) {
  *
  * @return string
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, getAuthority) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, getAuthority)
+{
 	zval authority, userInfo, _0, _1, _2, _4, _3$$4, _5$$5, _6$$5;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -474,6 +470,7 @@ PHP_METHOD(Phalcon_Http_Message_Uri, getAuthority) {
 	ZVAL_UNDEF(&_3$$4);
 	ZVAL_UNDEF(&_5$$5);
 	ZVAL_UNDEF(&_6$$5);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -502,7 +499,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, getAuthority) {
 		zephir_concat_self(&authority, &_6$$5);
 	}
 	RETURN_CCTOR(&authority);
-
 }
 
 /**
@@ -520,8 +516,8 @@ PHP_METHOD(Phalcon_Http_Message_Uri, getAuthority) {
  *
  * @return string The URI user information, in "username[:password]" format.
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, getUserInfo) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, getUserInfo)
+{
 	zval _0, _1$$3, _2$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
@@ -529,6 +525,7 @@ PHP_METHOD(Phalcon_Http_Message_Uri, getUserInfo) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$3);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -541,7 +538,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, getUserInfo) {
 		RETURN_MM();
 	}
 	RETURN_MM_MEMBER(getThis(), "user");
-
 }
 
 /**
@@ -559,8 +555,8 @@ PHP_METHOD(Phalcon_Http_Message_Uri, getUserInfo) {
  *
  * @return Uri
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, withFragment) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, withFragment)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *fragment = NULL, fragment_sub, _0, _1;
@@ -569,10 +565,16 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withFragment) {
 	ZVAL_UNDEF(&fragment_sub);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(fragment)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &fragment);
-
 	ZEPHIR_SEPARATE_PARAM(fragment);
 
 
@@ -586,7 +588,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withFragment) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "cloneinstance", NULL, 21, fragment, &_1);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -612,8 +613,8 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withFragment) {
  * @return Uri
  * @throws InvalidArgumentException for invalid paths.
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, withPath) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, withPath)
+{
 	zend_bool _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -627,10 +628,16 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withPath) {
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(path)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &path);
-
 	ZEPHIR_SEPARATE_PARAM(path);
 
 
@@ -660,7 +667,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withPath) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "cloneinstance", NULL, 21, path, &_6);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -680,8 +686,8 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withPath) {
  * @return Uri
  * @throws InvalidArgumentException for invalid ports.
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, withPort) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, withPort)
+{
 	zend_bool _1$$3, _2$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -691,10 +697,16 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withPort) {
 	ZVAL_UNDEF(&port_sub);
 	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&_3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(port)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &port);
-
 	ZEPHIR_SEPARATE_PARAM(port);
 
 
@@ -720,7 +732,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withPort) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "cloneinstance", NULL, 21, port, &_3);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -739,8 +750,8 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withPort) {
  * @return Uri
  * @throws InvalidArgumentException for invalid query strings.
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, withQuery) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, withQuery)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *query = NULL, query_sub, _0, _1, _2, _3;
@@ -751,10 +762,16 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withQuery) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(query)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &query);
-
 	ZEPHIR_SEPARATE_PARAM(query);
 
 
@@ -776,7 +793,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withQuery) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "cloneinstance", NULL, 21, query, &_3);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -796,8 +812,8 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withQuery) {
  * @throws InvalidArgumentException for invalid schemes.
  * @throws InvalidArgumentException for unsupported schemes.
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, withScheme) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, withScheme)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *scheme = NULL, scheme_sub, _0, _1;
@@ -806,10 +822,16 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withScheme) {
 	ZVAL_UNDEF(&scheme_sub);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(scheme)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &scheme);
-
 	ZEPHIR_SEPARATE_PARAM(scheme);
 
 
@@ -823,7 +845,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withScheme) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "processwith", NULL, 358, scheme, &_1);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -834,8 +855,8 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withScheme) {
  *
  * @return Uri
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, withUserInfo) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, withUserInfo)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *user = NULL, user_sub, *password = NULL, password_sub, __$null, newInstance, _0, _2, _1$$4;
@@ -848,10 +869,18 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withUserInfo) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_1$$4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ZVAL(user)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(password)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &user, &password);
-
 	ZEPHIR_SEPARATE_PARAM(user);
 	if (!password) {
 		password = &password_sub;
@@ -881,7 +910,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withUserInfo) {
 	zephir_check_call_status();
 	zephir_update_property_zval(&newInstance, ZEND_STRL("pass"), password);
 	RETURN_CCTOR(&newInstance);
-
 }
 
 /**
@@ -898,8 +926,8 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withUserInfo) {
  * @throws InvalidArgumentException for invalid hostnames.
  *
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, withHost) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, withHost)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *host, host_sub, _0;
@@ -907,10 +935,16 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withHost) {
 
 	ZVAL_UNDEF(&host_sub);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(host)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &host);
-
 
 
 	ZEPHIR_INIT_VAR(&_0);
@@ -918,7 +952,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withHost) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "processwith", NULL, 358, host, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -931,8 +964,8 @@ PHP_METHOD(Phalcon_Http_Message_Uri, withHost) {
  *
  * @return string
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, checkValue) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, checkValue)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *value_param = NULL, *prefix_param = NULL, *suffix_param = NULL, _0;
 	zval value, prefix, suffix, _1$$3;
@@ -943,10 +976,19 @@ PHP_METHOD(Phalcon_Http_Message_Uri, checkValue) {
 	ZVAL_UNDEF(&suffix);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_STR(value)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(prefix)
+		Z_PARAM_STR(suffix)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &value_param, &prefix_param, &suffix_param);
-
 	if (UNEXPECTED(Z_TYPE_P(value_param) != IS_STRING && Z_TYPE_P(value_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'value' must be of the type string"));
 		RETURN_MM_NULL();
@@ -955,7 +997,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, checkValue) {
 		zephir_get_strval(&value, value_param);
 	} else {
 		ZEPHIR_INIT_VAR(&value);
-		ZVAL_EMPTY_STRING(&value);
 	}
 	if (!prefix_param) {
 		ZEPHIR_INIT_VAR(&prefix);
@@ -969,7 +1010,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, checkValue) {
 		zephir_get_strval(&prefix, prefix_param);
 	} else {
 		ZEPHIR_INIT_VAR(&prefix);
-		ZVAL_EMPTY_STRING(&prefix);
 	}
 	}
 	if (!suffix_param) {
@@ -984,7 +1024,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, checkValue) {
 		zephir_get_strval(&suffix, suffix_param);
 	} else {
 		ZEPHIR_INIT_VAR(&suffix);
-		ZVAL_EMPTY_STRING(&suffix);
 	}
 	}
 
@@ -997,7 +1036,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, checkValue) {
 		ZEPHIR_CPY_WRT(&value, &_1$$3);
 	}
 	RETURN_CTOR(&value);
-
 }
 
 /**
@@ -1017,8 +1055,8 @@ PHP_METHOD(Phalcon_Http_Message_Uri, checkValue) {
  *
  * @return string
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, filterFragment) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, filterFragment)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *fragment_param = NULL;
@@ -1026,10 +1064,16 @@ PHP_METHOD(Phalcon_Http_Message_Uri, filterFragment) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&fragment);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(fragment)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &fragment_param);
-
 	if (UNEXPECTED(Z_TYPE_P(fragment_param) != IS_STRING && Z_TYPE_P(fragment_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'fragment' must be of the type string"));
 		RETURN_MM_NULL();
@@ -1038,14 +1082,12 @@ PHP_METHOD(Phalcon_Http_Message_Uri, filterFragment) {
 		zephir_get_strval(&fragment, fragment_param);
 	} else {
 		ZEPHIR_INIT_VAR(&fragment);
-		ZVAL_EMPTY_STRING(&fragment);
 	}
 
 
 	ZEPHIR_RETURN_CALL_FUNCTION("rawurlencode", NULL, 249, &fragment);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -1075,8 +1117,8 @@ PHP_METHOD(Phalcon_Http_Message_Uri, filterFragment) {
  *
  * @return string The URI path.
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, filterPath) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, filterPath)
+{
 	zend_string *_5;
 	zend_ulong _4;
 	zend_bool _1;
@@ -1097,10 +1139,16 @@ PHP_METHOD(Phalcon_Http_Message_Uri, filterPath) {
 	ZVAL_UNDEF(&_10);
 	ZVAL_UNDEF(&_6$$4);
 	ZVAL_UNDEF(&_8$$5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(path)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &path_param);
-
 	if (UNEXPECTED(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be of the type string"));
 		RETURN_MM_NULL();
@@ -1109,7 +1157,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, filterPath) {
 		zephir_get_strval(&path, path_param);
 	} else {
 		ZEPHIR_INIT_VAR(&path);
-		ZVAL_EMPTY_STRING(&path);
 	}
 
 
@@ -1170,7 +1217,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, filterPath) {
 	zephir_fast_trim(&_9, &path, &_10, ZEPHIR_TRIM_LEFT);
 	ZEPHIR_CONCAT_SV(return_value, "/", &_9);
 	RETURN_MM();
-
 }
 
 /**
@@ -1180,8 +1226,8 @@ PHP_METHOD(Phalcon_Http_Message_Uri, filterPath) {
  *
  * @return int|null
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, filterPort) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, filterPort)
+{
 	zend_long _0$$3;
 	zval ports;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -1190,10 +1236,16 @@ PHP_METHOD(Phalcon_Http_Message_Uri, filterPort) {
 
 	ZVAL_UNDEF(&port_sub);
 	ZVAL_UNDEF(&ports);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(port)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &port);
-
 	ZEPHIR_SEPARATE_PARAM(port);
 
 
@@ -1212,7 +1264,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, filterPort) {
 	}
 	RETVAL_ZVAL(port, 1, 0);
 	RETURN_MM();
-
 }
 
 /**
@@ -1236,8 +1287,8 @@ PHP_METHOD(Phalcon_Http_Message_Uri, filterPort) {
  *
  * @return string The URI query string.
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, filterQuery) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, filterQuery)
+{
 	zend_string *_6;
 	zend_ulong _5;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -1272,10 +1323,16 @@ PHP_METHOD(Phalcon_Http_Message_Uri, filterQuery) {
 	ZVAL_UNDEF(&_24$$6);
 	ZVAL_UNDEF(&_18$$7);
 	ZVAL_UNDEF(&_19$$7);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(query)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &query_param);
-
 	zephir_get_strval(&query, query_param);
 
 
@@ -1363,7 +1420,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, filterQuery) {
 	ZEPHIR_INIT_NVAR(&index);
 	zephir_fast_join_str(return_value, SL("&"), &parts);
 	RETURN_MM();
-
 }
 
 /**
@@ -1373,8 +1429,8 @@ PHP_METHOD(Phalcon_Http_Message_Uri, filterQuery) {
  *
  * @return string
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, filterScheme) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, filterScheme)
+{
 	zval schemes;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -1393,10 +1449,16 @@ PHP_METHOD(Phalcon_Http_Message_Uri, filterScheme) {
 	ZVAL_UNDEF(&_6$$4);
 	ZVAL_UNDEF(&_7$$4);
 	ZVAL_UNDEF(&schemes);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(scheme)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &scheme_param);
-
 	if (UNEXPECTED(Z_TYPE_P(scheme_param) != IS_STRING && Z_TYPE_P(scheme_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'scheme' must be of the type string"));
 		RETURN_MM_NULL();
@@ -1405,7 +1467,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, filterScheme) {
 		zephir_get_strval(&scheme, scheme_param);
 	} else {
 		ZEPHIR_INIT_VAR(&scheme);
-		ZVAL_EMPTY_STRING(&scheme);
 	}
 
 
@@ -1442,7 +1503,6 @@ PHP_METHOD(Phalcon_Http_Message_Uri, filterScheme) {
 		return;
 	}
 	RETURN_CTOR(&scheme);
-
 }
 
 /**
@@ -1450,8 +1510,8 @@ PHP_METHOD(Phalcon_Http_Message_Uri, filterScheme) {
  *
  * @return array
  */
-PHP_METHOD(Phalcon_Http_Message_Uri, splitQueryValue) {
-
+PHP_METHOD(Phalcon_Http_Message_Uri, splitQueryValue)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *element_param = NULL, __$null, data;
 	zval element;
@@ -1460,10 +1520,16 @@ PHP_METHOD(Phalcon_Http_Message_Uri, splitQueryValue) {
 	ZVAL_UNDEF(&element);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&data);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(element)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &element_param);
-
 	zephir_get_strval(&element, element_param);
 
 
@@ -1473,6 +1539,5 @@ PHP_METHOD(Phalcon_Http_Message_Uri, splitQueryValue) {
 		zephir_array_append(&data, &__$null, PH_SEPARATE, "phalcon/Http/Message/Uri.zep", 644);
 	}
 	RETURN_CCTOR(&data);
-
 }
 

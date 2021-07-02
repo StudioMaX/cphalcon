@@ -101,16 +101,13 @@
  * );
  * ```
  */
-ZEPHIR_INIT_CLASS(Phalcon_Validation_Validator_Uniqueness) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Validation_Validator_Uniqueness)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Validation\\Validator, Uniqueness, phalcon, validation_validator_uniqueness, phalcon_validation_abstractcombinedfieldsvalidator_ce, phalcon_validation_validator_uniqueness_method_entry, 0);
 
 	zend_declare_property_string(phalcon_validation_validator_uniqueness_ce, SL("template"), "Field :field must be unique", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(phalcon_validation_validator_uniqueness_ce, SL("columnMap"), ZEND_ACC_PRIVATE);
-
 	return SUCCESS;
-
 }
 
 /**
@@ -125,8 +122,8 @@ ZEPHIR_INIT_CLASS(Phalcon_Validation_Validator_Uniqueness) {
  *     'except' => null
  * ]
  */
-PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, __construct) {
-
+PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -135,10 +132,17 @@ PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, __construct) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&options);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(options)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &options_param);
-
 	if (!options_param) {
 		ZEPHIR_INIT_VAR(&options);
 		array_init(&options);
@@ -150,14 +154,13 @@ PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, __construct) {
 	ZEPHIR_CALL_PARENT(NULL, phalcon_validation_validator_uniqueness_ce, getThis(), "__construct", &_0, 0, &options);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Executes the validation
  */
-PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, validate) {
-
+PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, validate)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *validation, validation_sub, *field, field_sub, _0, _1$$3;
@@ -167,10 +170,17 @@ PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, validate) {
 	ZVAL_UNDEF(&field_sub);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_OBJECT_OF_CLASS(validation, phalcon_validation_ce)
+		Z_PARAM_ZVAL(field)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &validation, &field);
-
 
 
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "isuniqueness", NULL, 0, validation, field);
@@ -183,14 +193,13 @@ PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, validate) {
 		RETURN_MM_BOOL(0);
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
 /**
  * The column map is used in the case to get real column name
  */
-PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, getColumnNameReal) {
-
+PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, getColumnNameReal)
+{
 	zend_bool _0, _7;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -209,10 +218,17 @@ PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, getColumnNameReal) {
 	ZVAL_UNDEF(&_9$$4);
 	ZVAL_UNDEF(&_10$$4);
 	ZVAL_UNDEF(&field);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_ZVAL(record)
+		Z_PARAM_STR(field)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &record, &field_param);
-
 	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be of the type string"));
 		RETURN_MM_NULL();
@@ -221,7 +237,6 @@ PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, getColumnNameReal) {
 		zephir_get_strval(&field, field_param);
 	} else {
 		ZEPHIR_INIT_VAR(&field);
-		ZVAL_EMPTY_STRING(&field);
 	}
 
 
@@ -254,11 +269,10 @@ PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, getColumnNameReal) {
 		RETURN_CTOR(&_10$$4);
 	}
 	RETURN_CTOR(&field);
-
 }
 
-PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, isUniqueness) {
-
+PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, isUniqueness)
+{
 	zend_class_entry *_9;
 	zend_bool isModel = 0, _7;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -281,10 +295,17 @@ PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, isUniqueness) {
 	ZVAL_UNDEF(&_3$$4);
 	ZVAL_UNDEF(&_5$$5);
 	ZVAL_UNDEF(&_6$$6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_OBJECT_OF_CLASS(validation, phalcon_validation_ce)
+		Z_PARAM_ZVAL(field)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &validation, &field);
-
 	ZEPHIR_SEPARATE_PARAM(field);
 
 
@@ -368,14 +389,13 @@ PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, isUniqueness) {
 	ZEPHIR_CALL_CE_STATIC(&_8, _9, "count", NULL, 0, &params);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_LONG(&_8, 0));
-
 }
 
 /**
  * Uniqueness method used for model
  */
-PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, isUniquenessModel) {
-
+PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, isUniquenessModel)
+{
 	zval _24$$10, _26$$11, _36$$15, _38$$16, _49$$20, _51$$21, _63$$26, _65$$27, _75$$31, _77$$32, _101$$41, _103$$42, _113$$46, _115$$47, _126$$51, _128$$52, _140$$57, _142$$58, _152$$62, _154$$63;
 	zend_string *_18$$7, *_95$$38;
 	zend_ulong _17$$7, _94$$38;
@@ -555,10 +575,18 @@ PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, isUniquenessModel) {
 	ZVAL_UNDEF(&_142$$58);
 	ZVAL_UNDEF(&_152$$62);
 	ZVAL_UNDEF(&_154$$63);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(3, 3)
+		Z_PARAM_ZVAL(record)
+		Z_PARAM_ARRAY(field)
+		Z_PARAM_ARRAY(values)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 0, &record, &field_param, &values_param);
-
 	zephir_get_arrval(&field, field_param);
 	zephir_get_arrval(&values, values_param);
 
@@ -1458,6 +1486,5 @@ PHP_METHOD(Phalcon_Validation_Validator_Uniqueness, isUniquenessModel) {
 	zephir_fast_join_str(&_0, SL(" AND "), &_177);
 	zephir_array_update_string(&params, SL("conditions"), &_0, PH_COPY | PH_SEPARATE);
 	RETURN_CCTOR(&params);
-
 }
 

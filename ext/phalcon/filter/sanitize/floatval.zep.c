@@ -32,19 +32,18 @@
  *
  * Sanitizes a value to float
  */
-ZEPHIR_INIT_CLASS(Phalcon_Filter_Sanitize_FloatVal) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Filter_Sanitize_FloatVal)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Filter\\Sanitize, FloatVal, phalcon, filter_sanitize_floatval, phalcon_filter_sanitize_floatval_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
  * @var mixed input The text to sanitize
  */
-PHP_METHOD(Phalcon_Filter_Sanitize_FloatVal, __invoke) {
-
+PHP_METHOD(Phalcon_Filter_Sanitize_FloatVal, __invoke)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -55,10 +54,16 @@ PHP_METHOD(Phalcon_Filter_Sanitize_FloatVal, __invoke) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(input)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &input);
-
 
 
 	ZEPHIR_INIT_VAR(&_0);
@@ -68,6 +73,5 @@ PHP_METHOD(Phalcon_Filter_Sanitize_FloatVal, __invoke) {
 	ZEPHIR_CALL_FUNCTION(&_2, "filter_var", NULL, 257, input, &_1, &_0);
 	zephir_check_call_status();
 	RETURN_MM_DOUBLE(zephir_get_doubleval(&_2));
-
 }
 

@@ -32,12 +32,11 @@
 /**
  * This class offers quick array functions throughout the framework
  */
-ZEPHIR_INIT_CLASS(Phalcon_Helper_Arr) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Helper_Arr)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Helper, Arr, phalcon, helper_arr, phalcon_helper_arr_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -49,8 +48,8 @@ ZEPHIR_INIT_CLASS(Phalcon_Helper_Arr) {
  *
  * @return array
  */
-PHP_METHOD(Phalcon_Helper_Arr, blackList) {
-
+PHP_METHOD(Phalcon_Helper_Arr, blackList)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *collection_param = NULL, *blackList_param = NULL, _0, _1, _2;
@@ -62,10 +61,17 @@ PHP_METHOD(Phalcon_Helper_Arr, blackList) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_ARRAY(collection)
+		Z_PARAM_ARRAY(blackList)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &collection_param, &blackList_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 	ZEPHIR_OBS_COPY_OR_DUP(&blackList, blackList_param);
 
@@ -81,7 +87,6 @@ PHP_METHOD(Phalcon_Helper_Arr, blackList) {
 	ZEPHIR_RETURN_CALL_FUNCTION("array_diff_key", NULL, 269, &collection, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -93,8 +98,8 @@ PHP_METHOD(Phalcon_Helper_Arr, blackList) {
  *
  * @return array
  */
-PHP_METHOD(Phalcon_Helper_Arr, chunk) {
-
+PHP_METHOD(Phalcon_Helper_Arr, chunk)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_bool preserveKeys;
 	zend_long size, ZEPHIR_LAST_CALL_STATUS;
@@ -105,10 +110,19 @@ PHP_METHOD(Phalcon_Helper_Arr, chunk) {
 	ZVAL_UNDEF(&collection);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_ARRAY(collection)
+		Z_PARAM_LONG(size)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(preserveKeys)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &collection_param, &size_param, &preserveKeys_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 	size = zephir_get_intval(size_param);
 	if (!preserveKeys_param) {
@@ -123,7 +137,6 @@ PHP_METHOD(Phalcon_Helper_Arr, chunk) {
 	ZEPHIR_RETURN_CALL_FUNCTION("array_chunk", NULL, 270, &collection, &_0, &_1);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -134,8 +147,8 @@ PHP_METHOD(Phalcon_Helper_Arr, chunk) {
  *
  * @return array
  */
-PHP_METHOD(Phalcon_Helper_Arr, filter) {
-
+PHP_METHOD(Phalcon_Helper_Arr, filter)
+{
 	zend_bool _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -146,10 +159,18 @@ PHP_METHOD(Phalcon_Helper_Arr, filter) {
 	ZVAL_UNDEF(&collection);
 	ZVAL_UNDEF(&method_sub);
 	ZVAL_NULL(&__$null);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ARRAY(collection)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(method)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &collection_param, &method);
-
 	zephir_get_arrval(&collection, collection_param);
 	if (!method) {
 		method = &method_sub;
@@ -167,7 +188,6 @@ PHP_METHOD(Phalcon_Helper_Arr, filter) {
 	ZEPHIR_RETURN_CALL_FUNCTION("array_filter", NULL, 268, &collection, method);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -179,8 +199,8 @@ PHP_METHOD(Phalcon_Helper_Arr, filter) {
  *
  * @return mixed
  */
-PHP_METHOD(Phalcon_Helper_Arr, first) {
-
+PHP_METHOD(Phalcon_Helper_Arr, first)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -192,10 +212,18 @@ PHP_METHOD(Phalcon_Helper_Arr, first) {
 	ZVAL_UNDEF(&method_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&filtered);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ARRAY(collection)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(method)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &collection_param, &method);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 	if (!method) {
 		method = &method_sub;
@@ -210,7 +238,6 @@ PHP_METHOD(Phalcon_Helper_Arr, first) {
 	ZEPHIR_UNREF(&filtered);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -222,8 +249,8 @@ PHP_METHOD(Phalcon_Helper_Arr, first) {
  *
  * @return mixed
  */
-PHP_METHOD(Phalcon_Helper_Arr, firstKey) {
-
+PHP_METHOD(Phalcon_Helper_Arr, firstKey)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -235,10 +262,18 @@ PHP_METHOD(Phalcon_Helper_Arr, firstKey) {
 	ZVAL_UNDEF(&method_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&filtered);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ARRAY(collection)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(method)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &collection_param, &method);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 	if (!method) {
 		method = &method_sub;
@@ -255,7 +290,6 @@ PHP_METHOD(Phalcon_Helper_Arr, firstKey) {
 	ZEPHIR_RETURN_CALL_FUNCTION("key", NULL, 273, &filtered);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -266,8 +300,8 @@ PHP_METHOD(Phalcon_Helper_Arr, firstKey) {
  *
  * @return array
  */
-PHP_METHOD(Phalcon_Helper_Arr, flatten) {
-
+PHP_METHOD(Phalcon_Helper_Arr, flatten)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_4 = NULL, *_8 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -290,10 +324,18 @@ PHP_METHOD(Phalcon_Helper_Arr, flatten) {
 	ZVAL_UNDEF(&_11$$11);
 	ZVAL_UNDEF(&_12$$12);
 	ZVAL_UNDEF(&_13$$12);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ARRAY(collection)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(deep)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &collection_param, &deep_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 	if (!deep_param) {
 		deep = 0;
@@ -364,14 +406,13 @@ PHP_METHOD(Phalcon_Helper_Arr, flatten) {
 	}
 	ZEPHIR_INIT_NVAR(&item);
 	RETURN_CCTOR(&data);
-
 }
 
 /**
  * Helper method to get an array element or a default
  */
-PHP_METHOD(Phalcon_Helper_Arr, get) {
-
+PHP_METHOD(Phalcon_Helper_Arr, get)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval cast;
@@ -385,10 +426,20 @@ PHP_METHOD(Phalcon_Helper_Arr, get) {
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&cast);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 4)
+		Z_PARAM_ARRAY(collection)
+		Z_PARAM_ZVAL(index)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(defaultValue)
+		Z_PARAM_STR_OR_NULL(cast)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 2, &collection_param, &index, &defaultValue, &cast_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 	if (!defaultValue) {
 		defaultValue = &defaultValue_sub;
@@ -396,7 +447,6 @@ PHP_METHOD(Phalcon_Helper_Arr, get) {
 	}
 	if (!cast_param) {
 		ZEPHIR_INIT_VAR(&cast);
-		ZVAL_STRING(&cast, "");
 	} else {
 	if (UNEXPECTED(Z_TYPE_P(cast_param) != IS_STRING && Z_TYPE_P(cast_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'cast' must be of the type string"));
@@ -406,7 +456,6 @@ PHP_METHOD(Phalcon_Helper_Arr, get) {
 		zephir_get_strval(&cast, cast_param);
 	} else {
 		ZEPHIR_INIT_VAR(&cast);
-		ZVAL_EMPTY_STRING(&cast);
 	}
 	}
 
@@ -423,7 +472,6 @@ PHP_METHOD(Phalcon_Helper_Arr, get) {
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(&value);
-
 }
 
 /**
@@ -434,8 +482,8 @@ PHP_METHOD(Phalcon_Helper_Arr, get) {
  *
  * @return array
  */
-PHP_METHOD(Phalcon_Helper_Arr, group) {
-
+PHP_METHOD(Phalcon_Helper_Arr, group)
+{
 	zend_bool _2$$3, _3$$3, _5$$7, _6$$7;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_4 = NULL;
@@ -450,10 +498,17 @@ PHP_METHOD(Phalcon_Helper_Arr, group) {
 	ZVAL_UNDEF(&element);
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_ARRAY(collection)
+		Z_PARAM_ZVAL(method)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &collection_param, &method);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 
 
@@ -471,7 +526,7 @@ PHP_METHOD(Phalcon_Helper_Arr, group) {
 			}
 			_3$$3 = _2$$3;
 			if (!(_3$$3)) {
-				_3$$3 = (zephir_function_exists(method)  == SUCCESS);
+				_3$$3 = (zephir_function_exists(method) == SUCCESS);
 			}
 			if (_3$$3) {
 				ZEPHIR_CALL_FUNCTION(&key, "call_user_func", &_4, 275, method, &element);
@@ -504,7 +559,7 @@ PHP_METHOD(Phalcon_Helper_Arr, group) {
 				}
 				_6$$7 = _5$$7;
 				if (!(_6$$7)) {
-					_6$$7 = (zephir_function_exists(method)  == SUCCESS);
+					_6$$7 = (zephir_function_exists(method) == SUCCESS);
 				}
 				if (_6$$7) {
 					ZEPHIR_CALL_FUNCTION(&key, "call_user_func", &_4, 275, method, &element);
@@ -525,7 +580,6 @@ PHP_METHOD(Phalcon_Helper_Arr, group) {
 	}
 	ZEPHIR_INIT_NVAR(&element);
 	RETURN_CTOR(&filtered);
-
 }
 
 /**
@@ -536,8 +590,8 @@ PHP_METHOD(Phalcon_Helper_Arr, group) {
  *
  * return bool
  */
-PHP_METHOD(Phalcon_Helper_Arr, has) {
-
+PHP_METHOD(Phalcon_Helper_Arr, has)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *collection_param = NULL, *index, index_sub;
 	zval collection;
@@ -545,15 +599,21 @@ PHP_METHOD(Phalcon_Helper_Arr, has) {
 
 	ZVAL_UNDEF(&collection);
 	ZVAL_UNDEF(&index_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_ARRAY(collection)
+		Z_PARAM_ZVAL(index)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &collection_param, &index);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 
 
 	RETURN_MM_BOOL(zephir_array_isset(&collection, index));
-
 }
 
 /**
@@ -564,8 +624,8 @@ PHP_METHOD(Phalcon_Helper_Arr, has) {
  *
  * @return bool
  */
-PHP_METHOD(Phalcon_Helper_Arr, isUnique) {
-
+PHP_METHOD(Phalcon_Helper_Arr, isUnique)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *collection_param = NULL, _0;
@@ -574,17 +634,22 @@ PHP_METHOD(Phalcon_Helper_Arr, isUnique) {
 
 	ZVAL_UNDEF(&collection);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ARRAY(collection)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &collection_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 
 
 	ZEPHIR_CALL_FUNCTION(&_0, "array_unique", NULL, 276, &collection);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(zephir_fast_count_int(&collection) == zephir_fast_count_int(&_0));
-
 }
 
 /**
@@ -596,8 +661,8 @@ PHP_METHOD(Phalcon_Helper_Arr, isUnique) {
  *
  * return mixed
  */
-PHP_METHOD(Phalcon_Helper_Arr, last) {
-
+PHP_METHOD(Phalcon_Helper_Arr, last)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -609,10 +674,18 @@ PHP_METHOD(Phalcon_Helper_Arr, last) {
 	ZVAL_UNDEF(&method_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&filtered);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ARRAY(collection)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(method)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &collection_param, &method);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 	if (!method) {
 		method = &method_sub;
@@ -627,7 +700,6 @@ PHP_METHOD(Phalcon_Helper_Arr, last) {
 	ZEPHIR_UNREF(&filtered);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -639,8 +711,8 @@ PHP_METHOD(Phalcon_Helper_Arr, last) {
  *
  * @return mixed
  */
-PHP_METHOD(Phalcon_Helper_Arr, lastKey) {
-
+PHP_METHOD(Phalcon_Helper_Arr, lastKey)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -652,10 +724,18 @@ PHP_METHOD(Phalcon_Helper_Arr, lastKey) {
 	ZVAL_UNDEF(&method_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&filtered);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ARRAY(collection)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(method)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &collection_param, &method);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 	if (!method) {
 		method = &method_sub;
@@ -672,7 +752,6 @@ PHP_METHOD(Phalcon_Helper_Arr, lastKey) {
 	ZEPHIR_RETURN_CALL_FUNCTION("key", NULL, 273, &filtered);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -684,8 +763,8 @@ PHP_METHOD(Phalcon_Helper_Arr, lastKey) {
  *
  * @return array
  */
-PHP_METHOD(Phalcon_Helper_Arr, order) {
-
+PHP_METHOD(Phalcon_Helper_Arr, order)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval order;
@@ -700,10 +779,19 @@ PHP_METHOD(Phalcon_Helper_Arr, order) {
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&order);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_ARRAY(collection)
+		Z_PARAM_ZVAL(attribute)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(order)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &collection_param, &attribute, &order_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 	if (!order_param) {
 		ZEPHIR_INIT_VAR(&order);
@@ -768,7 +856,6 @@ PHP_METHOD(Phalcon_Helper_Arr, order) {
 	ZEPHIR_RETURN_CALL_FUNCTION("array_values", NULL, 12, &sorted);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -779,8 +866,8 @@ PHP_METHOD(Phalcon_Helper_Arr, order) {
  *
  * @return array
  */
-PHP_METHOD(Phalcon_Helper_Arr, pluck) {
-
+PHP_METHOD(Phalcon_Helper_Arr, pluck)
+{
 	zend_bool _2$$3, _3$$3, _6$$6, _7$$6;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -798,10 +885,17 @@ PHP_METHOD(Phalcon_Helper_Arr, pluck) {
 	ZVAL_UNDEF(&_8$$7);
 	ZVAL_UNDEF(&_9$$8);
 	ZVAL_UNDEF(&element);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_ARRAY(collection)
+		Z_PARAM_STR(element)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &collection_param, &element_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 	zephir_get_strval(&element, element_param);
 
@@ -864,7 +958,6 @@ PHP_METHOD(Phalcon_Helper_Arr, pluck) {
 	}
 	ZEPHIR_INIT_NVAR(&item);
 	RETURN_CTOR(&filtered);
-
 }
 
 /**
@@ -876,8 +969,8 @@ PHP_METHOD(Phalcon_Helper_Arr, pluck) {
  *
  * @return array
  */
-PHP_METHOD(Phalcon_Helper_Arr, set) {
-
+PHP_METHOD(Phalcon_Helper_Arr, set)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *collection_param = NULL, *value, value_sub, *index = NULL, index_sub, __$null;
 	zval collection;
@@ -887,10 +980,19 @@ PHP_METHOD(Phalcon_Helper_Arr, set) {
 	ZVAL_UNDEF(&value_sub);
 	ZVAL_UNDEF(&index_sub);
 	ZVAL_NULL(&__$null);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_ARRAY(collection)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(index)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &collection_param, &value, &index);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 	if (!index) {
 		index = &index_sub;
@@ -904,7 +1006,6 @@ PHP_METHOD(Phalcon_Helper_Arr, set) {
 		zephir_array_update_zval(&collection, index, value, PH_COPY | PH_SEPARATE);
 	}
 	RETURN_CTOR(&collection);
-
 }
 
 /**
@@ -915,8 +1016,8 @@ PHP_METHOD(Phalcon_Helper_Arr, set) {
  *
  * @return array
  */
-PHP_METHOD(Phalcon_Helper_Arr, sliceLeft) {
-
+PHP_METHOD(Phalcon_Helper_Arr, sliceLeft)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long elements, ZEPHIR_LAST_CALL_STATUS;
 	zval *collection_param = NULL, *elements_param = NULL, _0, _1;
@@ -926,10 +1027,18 @@ PHP_METHOD(Phalcon_Helper_Arr, sliceLeft) {
 	ZVAL_UNDEF(&collection);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ARRAY(collection)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_LONG(elements)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &collection_param, &elements_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 	if (!elements_param) {
 		elements = 1;
@@ -943,7 +1052,6 @@ PHP_METHOD(Phalcon_Helper_Arr, sliceLeft) {
 	ZEPHIR_RETURN_CALL_FUNCTION("array_slice", NULL, 280, &collection, &_0, &_1);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -954,8 +1062,8 @@ PHP_METHOD(Phalcon_Helper_Arr, sliceLeft) {
  *
  * @return array
  */
-PHP_METHOD(Phalcon_Helper_Arr, sliceRight) {
-
+PHP_METHOD(Phalcon_Helper_Arr, sliceRight)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long elements, ZEPHIR_LAST_CALL_STATUS;
 	zval *collection_param = NULL, *elements_param = NULL, _0;
@@ -964,10 +1072,18 @@ PHP_METHOD(Phalcon_Helper_Arr, sliceRight) {
 
 	ZVAL_UNDEF(&collection);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ARRAY(collection)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_LONG(elements)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &collection_param, &elements_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 	if (!elements_param) {
 		elements = 1;
@@ -980,7 +1096,6 @@ PHP_METHOD(Phalcon_Helper_Arr, sliceRight) {
 	ZEPHIR_RETURN_CALL_FUNCTION("array_slice", NULL, 280, &collection, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -991,8 +1106,8 @@ PHP_METHOD(Phalcon_Helper_Arr, sliceRight) {
  *
  * @return array
  */
-PHP_METHOD(Phalcon_Helper_Arr, split) {
-
+PHP_METHOD(Phalcon_Helper_Arr, split)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *collection_param = NULL, _0, _1;
@@ -1002,10 +1117,16 @@ PHP_METHOD(Phalcon_Helper_Arr, split) {
 	ZVAL_UNDEF(&collection);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ARRAY(collection)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &collection_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 
 
@@ -1017,30 +1138,34 @@ PHP_METHOD(Phalcon_Helper_Arr, split) {
 	zephir_check_call_status();
 	zephir_array_fast_append(return_value, &_1);
 	RETURN_MM();
-
 }
 
 /**
  * Returns the passed array as an object
  */
-PHP_METHOD(Phalcon_Helper_Arr, toObject) {
-
+PHP_METHOD(Phalcon_Helper_Arr, toObject)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *collection_param = NULL;
 	zval collection;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&collection);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ARRAY(collection)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &collection_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 
 
 	zephir_convert_to_object(&collection);
 	RETURN_CTOR(&collection);
-
 }
 
 /**
@@ -1052,8 +1177,8 @@ PHP_METHOD(Phalcon_Helper_Arr, toObject) {
  *
  * @return bool
  */
-PHP_METHOD(Phalcon_Helper_Arr, validateAll) {
-
+PHP_METHOD(Phalcon_Helper_Arr, validateAll)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
@@ -1065,10 +1190,18 @@ PHP_METHOD(Phalcon_Helper_Arr, validateAll) {
 	ZVAL_UNDEF(&method_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ARRAY(collection)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(method)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &collection_param, &method);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 	if (!method) {
 		method = &method_sub;
@@ -1079,7 +1212,6 @@ PHP_METHOD(Phalcon_Helper_Arr, validateAll) {
 	ZEPHIR_CALL_SELF(&_0, "filter", &_1, 271, &collection, method);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(zephir_fast_count_int(&_0) == zephir_fast_count_int(&collection));
-
 }
 
 /**
@@ -1091,8 +1223,8 @@ PHP_METHOD(Phalcon_Helper_Arr, validateAll) {
  *
  * @return bool
  */
-PHP_METHOD(Phalcon_Helper_Arr, validateAny) {
-
+PHP_METHOD(Phalcon_Helper_Arr, validateAny)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
@@ -1104,10 +1236,18 @@ PHP_METHOD(Phalcon_Helper_Arr, validateAny) {
 	ZVAL_UNDEF(&method_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ARRAY(collection)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(method)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &collection_param, &method);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 	if (!method) {
 		method = &method_sub;
@@ -1118,7 +1258,6 @@ PHP_METHOD(Phalcon_Helper_Arr, validateAny) {
 	ZEPHIR_CALL_SELF(&_0, "filter", &_1, 271, &collection, method);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(zephir_fast_count_int(&_0) > 0);
-
 }
 
 /**
@@ -1130,8 +1269,8 @@ PHP_METHOD(Phalcon_Helper_Arr, validateAny) {
  *
  * @return array
  */
-PHP_METHOD(Phalcon_Helper_Arr, whiteList) {
-
+PHP_METHOD(Phalcon_Helper_Arr, whiteList)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *collection_param = NULL, *whiteList_param = NULL, _0, _1, _2;
@@ -1143,10 +1282,17 @@ PHP_METHOD(Phalcon_Helper_Arr, whiteList) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_ARRAY(collection)
+		Z_PARAM_ARRAY(whiteList)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &collection_param, &whiteList_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&collection, collection_param);
 	ZEPHIR_OBS_COPY_OR_DUP(&whiteList, whiteList_param);
 
@@ -1162,6 +1308,5 @@ PHP_METHOD(Phalcon_Helper_Arr, whiteList) {
 	ZEPHIR_RETURN_CALL_FUNCTION("array_intersect_key", NULL, 2, &collection, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

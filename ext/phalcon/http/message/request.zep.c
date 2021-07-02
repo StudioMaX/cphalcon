@@ -33,13 +33,12 @@
 /**
  * PSR-7 Request
  */
-ZEPHIR_INIT_CLASS(Phalcon_Http_Message_Request) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Http_Message_Request)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Http\\Message, Request, phalcon, http_message_request, phalcon_http_message_abstractrequest_ce, phalcon_http_message_request_method_entry, ZEND_ACC_FINAL_CLASS);
 
 	zend_class_implements(phalcon_http_message_request_ce, 1, zephir_get_internal_ce(SL("psr\\http\\message\\requestinterface")));
 	return SUCCESS;
-
 }
 
 /**
@@ -50,8 +49,8 @@ ZEPHIR_INIT_CLASS(Phalcon_Http_Message_Request) {
  * @param StreamInterface|resource|string $body
  * @param array                           $headers
  */
-PHP_METHOD(Phalcon_Http_Message_Request, __construct) {
-
+PHP_METHOD(Phalcon_Http_Message_Request, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *method_param = NULL, *uri = NULL, uri_sub, *body = NULL, body_sub, *headers = NULL, headers_sub, __$null, _0, _1, _2, _3, _4, _5;
@@ -69,10 +68,20 @@ PHP_METHOD(Phalcon_Http_Message_Request, __construct) {
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 4)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(method)
+		Z_PARAM_ZVAL(uri)
+		Z_PARAM_ZVAL(body)
+		Z_PARAM_ZVAL(headers)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 4, &method_param, &uri, &body, &headers);
-
 	if (!method_param) {
 		ZEPHIR_INIT_VAR(&method);
 		ZVAL_STRING(&method, "GET");
@@ -120,6 +129,5 @@ PHP_METHOD(Phalcon_Http_Message_Request, __construct) {
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("body"), &_4);
 	ZEPHIR_MM_RESTORE();
-
 }
 

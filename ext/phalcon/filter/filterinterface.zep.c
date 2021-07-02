@@ -23,16 +23,14 @@
 /**
  * Lazy loads, stores and exposes sanitizer objects
  */
-ZEPHIR_INIT_CLASS(Phalcon_Filter_FilterInterface) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Filter_FilterInterface)
+{
 	ZEPHIR_REGISTER_INTERFACE(Phalcon\\Filter, FilterInterface, phalcon, filter_filterinterface, phalcon_filter_filterinterface_method_entry);
 
 	return SUCCESS;
-
 }
 
 /**
  * Sanitizes a value with a specified single or set of sanitizers
  */
 ZEPHIR_DOC_METHOD(Phalcon_Filter_FilterInterface, sanitize);
-

@@ -17,6 +17,7 @@
 #include "kernel/object.h"
 #include "kernel/operators.h"
 #include "kernel/array.h"
+#include "ext/psr/psr_link.h"
 
 
 /**
@@ -32,20 +33,18 @@
  *
  * @property LinkInterface[] links
  */
-ZEPHIR_INIT_CLASS(Phalcon_Html_Link_LinkProvider) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Html_Link_LinkProvider)
+{
 	ZEPHIR_REGISTER_CLASS(Phalcon\\Html\\Link, LinkProvider, phalcon, html_link_linkprovider, phalcon_html_link_linkprovider_method_entry, 0);
 
 	/**
 	 * @var LinkInterface[]
 	 */
 	zend_declare_property_null(phalcon_html_link_linkprovider_ce, SL("links"), ZEND_ACC_PROTECTED);
-
 	phalcon_html_link_linkprovider_ce->create_object = zephir_init_properties_Phalcon_Html_Link_LinkProvider;
 
 	zend_class_implements(phalcon_html_link_linkprovider_ce, 1, zephir_get_internal_ce(SL("psr\\link\\linkproviderinterface")));
 	return SUCCESS;
-
 }
 
 /**
@@ -53,8 +52,8 @@ ZEPHIR_INIT_CLASS(Phalcon_Html_Link_LinkProvider) {
  *
  * @param array links
  */
-PHP_METHOD(Phalcon_Html_Link_LinkProvider, __construct) {
-
+PHP_METHOD(Phalcon_Html_Link_LinkProvider, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -67,10 +66,17 @@ PHP_METHOD(Phalcon_Html_Link_LinkProvider, __construct) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2$$4);
 	ZVAL_UNDEF(&_4$$6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(links)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &links_param);
-
 	if (!links_param) {
 		ZEPHIR_INIT_VAR(&links);
 		array_init(&links);
@@ -113,7 +119,6 @@ PHP_METHOD(Phalcon_Html_Link_LinkProvider, __construct) {
 	}
 	ZEPHIR_INIT_NVAR(&link);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -124,13 +129,13 @@ PHP_METHOD(Phalcon_Html_Link_LinkProvider, __construct) {
  *
  * @return LinkInterface[]|\Traversable
  */
-PHP_METHOD(Phalcon_Html_Link_LinkProvider, getLinks) {
-
+PHP_METHOD(Phalcon_Html_Link_LinkProvider, getLinks)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "links");
 
+	RETURN_MEMBER(getThis(), "links");
 }
 
 /**
@@ -143,8 +148,8 @@ PHP_METHOD(Phalcon_Html_Link_LinkProvider, getLinks) {
  *
  * @return LinkInterface[]|Traversable
  */
-PHP_METHOD(Phalcon_Html_Link_LinkProvider, getLinksByRel) {
-
+PHP_METHOD(Phalcon_Html_Link_LinkProvider, getLinksByRel)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *rel, rel_sub, link, links, rels, _0, *_1, _2;
@@ -156,10 +161,16 @@ PHP_METHOD(Phalcon_Html_Link_LinkProvider, getLinksByRel) {
 	ZVAL_UNDEF(&rels);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(rel)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &rel);
-
 
 
 	ZEPHIR_INIT_VAR(&links);
@@ -199,7 +210,6 @@ PHP_METHOD(Phalcon_Html_Link_LinkProvider, getLinksByRel) {
 	}
 	ZEPHIR_INIT_NVAR(&link);
 	RETURN_CCTOR(&links);
-
 }
 
 /**
@@ -209,32 +219,38 @@ PHP_METHOD(Phalcon_Html_Link_LinkProvider, getLinksByRel) {
  *
  * @return string
  */
-PHP_METHOD(Phalcon_Html_Link_LinkProvider, getKey) {
-
+PHP_METHOD(Phalcon_Html_Link_LinkProvider, getKey)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *link, link_sub;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&link_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(link, PsrLinkLinkInterface_ce_ptr)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &link);
 
 
-
 	ZEPHIR_RETURN_CALL_FUNCTION("spl_object_hash", NULL, 98, link);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-zend_object *zephir_init_properties_Phalcon_Html_Link_LinkProvider(zend_class_entry *class_type TSRMLS_DC) {
-
+zend_object *zephir_init_properties_Phalcon_Html_Link_LinkProvider(zend_class_entry *class_type)
+{
 		zval _0, _1$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
+	
 
 		ZEPHIR_MM_GROW();
 	
@@ -250,6 +266,5 @@ zend_object *zephir_init_properties_Phalcon_Html_Link_LinkProvider(zend_class_en
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

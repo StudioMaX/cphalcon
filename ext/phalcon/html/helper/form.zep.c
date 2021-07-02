@@ -30,12 +30,11 @@
 /**
  * Class Form
  */
-ZEPHIR_INIT_CLASS(Phalcon_Html_Helper_Form) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Html_Helper_Form)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Html\\Helper, Form, phalcon, html_helper_form, phalcon_html_helper_abstracthelper_ce, phalcon_html_helper_form_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -46,8 +45,8 @@ ZEPHIR_INIT_CLASS(Phalcon_Html_Helper_Form) {
  * @return string
  * @throws Exception
  */
-PHP_METHOD(Phalcon_Html_Helper_Form, __invoke) {
-
+PHP_METHOD(Phalcon_Html_Helper_Form, __invoke)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *attributes_param = NULL, overrides, _0, _1;
@@ -58,10 +57,17 @@ PHP_METHOD(Phalcon_Html_Helper_Form, __invoke) {
 	ZVAL_UNDEF(&overrides);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(attributes)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &attributes_param);
-
 	if (!attributes_param) {
 		ZEPHIR_INIT_VAR(&attributes);
 		array_init(&attributes);
@@ -82,6 +88,5 @@ PHP_METHOD(Phalcon_Html_Helper_Form, __invoke) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "renderelement", NULL, 0, &_1, &overrides);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

@@ -68,14 +68,12 @@
  * );
  * ```
  */
-ZEPHIR_INIT_CLASS(Phalcon_Validation_Validator_Date) {
-
+ZEPHIR_INIT_CLASS(Phalcon_Validation_Validator_Date)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Phalcon\\Validation\\Validator, Date, phalcon, validation_validator_date, phalcon_validation_abstractvalidator_ce, phalcon_validation_validator_date_method_entry, 0);
 
 	zend_declare_property_string(phalcon_validation_validator_date_ce, SL("template"), "Field :field is not a valid date", ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
 /**
@@ -88,8 +86,8 @@ ZEPHIR_INIT_CLASS(Phalcon_Validation_Validator_Date) {
  *     'allowEmpty' => false
  * ]
  */
-PHP_METHOD(Phalcon_Validation_Validator_Date, __construct) {
-
+PHP_METHOD(Phalcon_Validation_Validator_Date, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -98,10 +96,17 @@ PHP_METHOD(Phalcon_Validation_Validator_Date, __construct) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&options);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(options)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &options_param);
-
 	if (!options_param) {
 		ZEPHIR_INIT_VAR(&options);
 		array_init(&options);
@@ -113,14 +118,13 @@ PHP_METHOD(Phalcon_Validation_Validator_Date, __construct) {
 	ZEPHIR_CALL_PARENT(NULL, phalcon_validation_validator_date_ce, getThis(), "__construct", &_0, 0, &options);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Executes the validation
  */
-PHP_METHOD(Phalcon_Validation_Validator_Date, validate) {
-
+PHP_METHOD(Phalcon_Validation_Validator_Date, validate)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *validation, validation_sub, *field, field_sub, value, format, _0, _2, _1$$3, _3$$5;
@@ -134,10 +138,17 @@ PHP_METHOD(Phalcon_Validation_Validator_Date, validate) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_3$$5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_OBJECT_OF_CLASS(validation, phalcon_validation_ce)
+		Z_PARAM_ZVAL(field)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &validation, &field);
-
 
 
 	ZEPHIR_CALL_METHOD(&value, validation, "getvalue", NULL, 0, field);
@@ -164,11 +175,10 @@ PHP_METHOD(Phalcon_Validation_Validator_Date, validate) {
 		RETURN_MM_BOOL(0);
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(Phalcon_Validation_Validator_Date, checkDate) {
-
+PHP_METHOD(Phalcon_Validation_Validator_Date, checkDate)
+{
 	zend_bool _3;
 	zend_class_entry *_0, *_1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -182,10 +192,17 @@ PHP_METHOD(Phalcon_Validation_Validator_Date, checkDate) {
 	ZVAL_UNDEF(&errors);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_ZVAL(format)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &value, &format);
-
 
 
 	if (!(Z_TYPE_P(value) == IS_STRING)) {
@@ -204,6 +221,5 @@ PHP_METHOD(Phalcon_Validation_Validator_Date, checkDate) {
 		_3 = ZEPHIR_IS_LONG(&_4, 0);
 	}
 	RETURN_MM_BOOL(_3);
-
 }
 
