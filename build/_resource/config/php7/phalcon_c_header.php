@@ -54,6 +54,7 @@ return <<<HEADER
 #include <ext/spl/spl_iterators.h>
 #include <ext/date/php_date.h>
 #include <ext/json/php_json.h>
+#include <ext/session/php_session.h>
 
 #include <Zend/zend_API.h>
 #include <Zend/zend_operators.h>
